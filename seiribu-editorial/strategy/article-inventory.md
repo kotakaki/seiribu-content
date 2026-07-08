@@ -51,7 +51,7 @@
 | 親が物を捨てさせてくれないときの上手なコミュニケーション方法 | https://www.seiribu.site/parent-wont-let-go-of-things/ | 未リライト（旧版） |
 | 急に物を減らしたくなる心理とは？心理学的な視点から考察してわかること | https://www.seiribu.site/psychology-of-decluttering/ | 未リライト（旧版） |
 | 物を減らすと楽になる！疲れている人はぜひ一度試してほしい | https://www.seiribu.site/reduce-things/ | 未リライト（旧版） |
-| 物を捨てられない男性の心理とは？気持ちに共感して家族が助ける方法 | https://www.seiribu.site/why-hoard-things/ | 未リライト（旧版） |
+| 物を捨てられない人の心理とは？夫や父親など男性に多い理由と接し方 | https://www.seiribu.site/why-hoard-things/ | リライト完了（ドラフト完成） |
 
 ## ピラーページ（制作中）
 
