@@ -4,23 +4,23 @@
 
 | 用途 | ファイル | サイズ | WordPress画像タイトル | ALT |
 | --- | --- | --- | --- | --- |
-| アイキャッチ | `why-hoard-things-eyecatch.png` | 1200 x 630 | 物を捨てられない親と寄り添う子世代のイラスト | 物を捨てられない親と寄り添う子世代のイラスト |
-| 記事内図解 | `why-hoard-things-inline-psychology.png` | 1200 x 800 | 物を捨てられない人の心理に隠された5つの理由の概念図 | 物を捨てられない人の心理に隠された5つの理由の概念図 |
-| 記事内イメージ | `why-hoard-things-inline-male-memory.png` | 1200 x 800 | 物に思い出を重ねる男性のイラスト | 物に思い出を重ねる男性のイラスト。古いギターや工具を手に、過去の記憶が浮かんでいる |
-| 記事内図解 | `why-hoard-things-inline-spectrum.png` | 1200 x 800 | ただの物持ちからためこみ症までの段階チャート | 「ただの物持ち」から「ためこみ症」までの段階を示すスペクトラムチャート |
-| 記事内図解 | `why-hoard-things-inline-ng-ok.png` | 1200 x 800 | 物を捨てられない家族への接し方NG対応とOK対応 | 物を捨てられない家族への接し方NG対応とOK対応の比較チャート |
+| アイキャッチ（推奨） | `why-hoard-things-eyecatch-v2.png` | 1200 x 630 | 物を捨てられない親と寄り添う子世代のイラスト | 物を捨てられない親と寄り添う子世代のイラスト |
+| 記事内図解（推奨） | `why-hoard-things-inline-psychology-v3.png` | 1200 x 800 | 物を捨てられない人の心理に隠された5つの理由の概念図 | 物を捨てられない人の心理に隠された5つの理由の概念図 |
+| 記事内イメージ（推奨） | `why-hoard-things-inline-male-memory-v2.png` | 1200 x 800 | 物に思い出を重ねる男性のイラスト | 物に思い出を重ねる男性のイラスト。古いギターや工具を手に、過去の記憶が浮かんでいる |
+| 記事内図解（推奨） | `why-hoard-things-inline-spectrum-v3.png` | 1200 x 800 | ただの物持ちからためこみ症までの段階チャート | 「ただの物持ち」から「ためこみ症」までの段階を示すスペクトラムチャート |
+| 記事内図解（推奨） | `why-hoard-things-inline-ng-ok-v3.png` | 1200 x 800 | 物を捨てられない家族への接し方NG対応とOK対応 | 物を捨てられない家族への接し方NG対応とOK対応の比較チャート |
 
 ## 設置位置
 
-- `why-hoard-things-eyecatch.png`
+- `why-hoard-things-eyecatch-v2.png`
   - 固定ページまたは投稿のアイキャッチ
-- `why-hoard-things-inline-psychology.png`
+- `why-hoard-things-inline-psychology-v3.png`
   - H2「物を捨てられない人の心理に隠された5つの理由」直下
-- `why-hoard-things-inline-male-memory.png`
+- `why-hoard-things-inline-male-memory-v2.png`
   - H2「夫や父親など、特に男性が物を溜め込みやすい背景」直下
-- `why-hoard-things-inline-spectrum.png`
+- `why-hoard-things-inline-spectrum-v3.png`
   - H2「『ただの物持ち』と『ためこみ症』の境界線」直下
-- `why-hoard-things-inline-ng-ok.png`
+- `why-hoard-things-inline-ng-ok-v3.png`
   - H3「絶対にやってはいけないNG対応」直下
 
 ## キャプション候補
@@ -43,7 +43,9 @@
 
 ## 制作メモ
 
-- すべての画像にセイリ部ロゴを配置済み
+- アイキャッチと情景イラストはv2、図解はv3を公開用の推奨版とする
+- すべての推奨画像にセイリ部ロゴを配置済み
 - 本記事は心理系テーマのため、汚部屋や強い対立表現は避けた
-- 日本語ラベルを正確に表示するため、画像生成AIではなくPillowでレイアウト生成した
+- アイキャッチと情景イラストは画像生成素材を使い、文字とロゴはPillowで合成した
+- 日本語ラベルが必要な図解は、文字崩れを避けるためPillowでレイアウト生成した
 - 見出しフォントは制作環境にUDモトヤアポロがないため、Noto Sans JP Boldで代替した
