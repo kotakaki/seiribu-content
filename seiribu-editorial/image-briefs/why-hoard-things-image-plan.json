@@ -10,7 +10,30 @@
   "brand": {
     "name": "セイリ部",
     "canva_template_url": "https://canva.link/mqlqak3adj01g1i",
-    "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png"
+    "canva_mode": "optional_manual",
+    "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+    "brand_signature": {
+      "required_in_final_outputs": true,
+      "generation_assets_must_not_include_logo": true,
+      "logo_required_targets": [
+        "アイキャッチ完成版",
+        "本文図解完成版",
+        "Canva仕上げ画像"
+      ],
+      "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+    },
+    "local_composition": {
+      "standard": true,
+      "engine": "Pillow",
+      "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+      "eyecatch_output_size": "1200 x 630",
+      "background": "#FAF3EA",
+      "title_color": "#7A3454",
+      "subtitle_color": "#24304A",
+      "logo_width": 160,
+      "logo_position": "左上",
+      "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+    }
   },
   "images": [
     {
@@ -18,7 +41,8 @@
       "generated": false,
       "file_name": "why-hoard-things-eyecatch.png",
       "size": "1200 x 630",
-      "method": "Canvaテンプレ + 画像生成素材",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ローカル合成（Pillow）",
       "wp_title": "物を捨てられない親と寄り添う子世代のイラスト",
       "alt": "物を捨てられない親と寄り添う子世代のイラスト",
       "position": "アイキャッチ",
@@ -34,12 +58,33 @@
         "ALT": "物を捨てられない親と寄り添う子世代のイラスト",
         "ファイル名": "why-hoard-things-eyecatch"
       },
-      "final_prompt": "セイリ部のブランド型アイキャッチ用の背景・人物素材を作る。画像内に文字は入れない。構図: 実家の一室。物に囲まれた親（50〜60代）が腕組みして考え込んでいる横で、子世代（30代）が少し困りつつも寄り添っている。対立ではなく「理解しようとしている」距離感。主なビジュアル: 50〜60代の親、30代の子世代、古い本棚・思い出の品々（整理されているがやや多い程度）。トーン: 日本の実家らしさ、親子・家族で確認している雰囲気、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる。避ける表現: ゴミ屋敷、汚部屋、散らかり放題の極端な描写、暗いトーン、孤独感。上部にはタイトルとサブタイトルをCanvaで載せるため、十分な余白を残す。人物の顔や重要な品物にロゴが重ならない余白も確保する。",
+      "final_prompt": "Create a text-free eyecatch background and subject illustration for the Seiribu article '物を捨てられない人の心理とは？夫や父親など男性に多い理由と接し方'. Aspect ratio: 16:9. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. This image will be finished later with the local Seiribu Pillow compositor, so leave calm uncluttered space for a title and logo to be added later, but do not draw any placeholder cards or panels with text. Composition: 実家の一室。物に囲まれた親（50〜60代）が腕組みして考え込んでいる横で、子世代（30代）が少し困りつつも寄り添っている。対立ではなく「理解しようとしている」距離感. Main visual: 50〜60代の親、30代の子世代、古い本棚・思い出の品々（整理されているがやや多い程度）. Purpose: 記事のファーストインプレッション。SNSシェア時のサムネイル. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷、汚部屋、散らかり放題の極端な描写、暗いトーン、孤独感. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "local_composition": {
+        "standard": true,
+        "engine": "Pillow",
+        "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+        "title": "物を捨てられない人の心理とは？",
+        "subtitle": "夫や父親など男性に多い理由と接し方",
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_position": "左上",
+        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
+        "output_size": "1200 x 630",
+        "source_material_file": "",
+        "output_file": "why-hoard-things-eyecatch.png",
+        "headline_font": "UDモトヤアポロ 太字",
+        "fallback_headline_font": "Noto Sans JP Bold",
+        "subtitle_font": "Noto Sans JP Regular",
+        "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+      },
       "canva_instructions": {
+        "status": "optional_manual",
         "template_url": "https://canva.link/mqlqak3adj01g1i",
         "title": "物を捨てられない人の心理とは？",
         "subtitle": "夫や父親など男性に多い理由と接し方",
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
         "logo_position": "左上",
         "headline_font": "UDモトヤアポロ 太字",
         "subtitle_font": "Noto Sans JP Regular"
@@ -50,7 +95,8 @@
       "generated": false,
       "file_name": "why-hoard-things-inline-psychology.png",
       "size": "1200 x 800",
-      "method": "Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で作る",
+      "aspect_ratio": "3:2",
+      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
       "wp_title": "物を捨てられない人の心理に隠された5つの理由の概念図",
       "alt": "物を捨てられない人の心理に隠された5つの理由の概念図",
       "position": "本文中のCMSブリーフ位置",
@@ -63,7 +109,8 @@
         "ALT": "物を捨てられない人の心理に隠された5つの理由の概念図",
         "キャプション候補": "物を捨てられない心理は、1つの原因ではなく複数のメカニズムが絡み合っている"
       },
-      "final_prompt": "日本語ラベルを正確に読ませる記事内図解を作る。画像生成AIに文字を任せず、Canva、Pillow、SVGなどのレイアウト制御で制作する。入れる内容: ①損失回避バイアス（「捨てたら損するかも」）②拡張自己（「物は自分の一部」）③アニミズム的思考（「物に魂が宿る」）④判断疲れ（「決める気力がない」）⑤孤独感・不安（「物に囲まれると安心」）を中心の「物を捨てられない」から放射状に配置。目的: 5つの心理パターンを俯瞰し、記事の全体像を掴ませる。避ける表現: 学術論文のような堅苦しいダイアグラム、ネガティブな色使い。右下の余白にセイリ部ロゴを小さく配置する。",
+      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: ①損失回避バイアス（「捨てたら損するかも」）②拡張自己（「物は自分の一部」）③アニミズム的思考（「物に魂が宿る」）④判断疲れ（「決める気力がない」）⑤孤独感・不安（「物に囲まれると安心」）を中心の「物を捨てられない」から放射状に配置。目的: 5つの心理パターンを俯瞰し、記事の全体像を掴ませる。避ける表現: 学術論文のような堅苦しいダイアグラム、ネガティブな色使い。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
+      "local_composition": {},
       "canva_instructions": {}
     },
     {
@@ -71,6 +118,7 @@
       "generated": false,
       "file_name": "why-hoard-things-inline-male-memory.png",
       "size": "1200 x 800",
+      "aspect_ratio": "3:2",
       "method": "画像生成素材",
       "wp_title": "物に思い出を重ねる男性のイラスト。古いギターや工具を手に、過去の記憶が浮かんでいる",
       "alt": "物に思い出を重ねる男性のイラスト。古いギターや工具を手に、過去の記憶が浮かんでいる",
@@ -84,7 +132,8 @@
         "ALT": "物に思い出を重ねる男性のイラスト。古いギターや工具を手に、過去の記憶が浮かんでいる",
         "キャプション候補": "物には、言葉にできない感情が託されている"
       },
-      "final_prompt": "物を捨てられない人の心理とは？夫や父親など男性に多い理由と接し方の記事内で使う温かい編集イラスト素材を作る。目的: 「物に感情を託す」という抽象的な心理を視覚的に伝える。入れたい要素: 古いギターや工具箱、思い出の写真立てなどを手に取っている父親世代の男性。物のまわりに、うっすらとその思い出のシーンが浮かんでいるイメージ。トーン: 日本の実家らしさ、親子・家族で確認している雰囲気、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる。画像内文字は入れない。避ける表現: 暗い部屋、汚い描写、だらしなさ。あくまで「大切にしている姿」として描く。",
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '物を捨てられない人の心理とは？夫や父親など男性に多い理由と接し方'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 古いギターや工具箱、思い出の写真立てなどを手に取っている父親世代の男性。物のまわりに、うっすらとその思い出のシーンが浮かんでいるイメージ. Purpose: 「物に感情を託す」という抽象的な心理を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 暗い部屋、汚い描写、だらしなさ。あくまで「大切にしている姿」として描く.",
+      "local_composition": {},
       "canva_instructions": {}
     },
     {
@@ -92,7 +141,8 @@
       "generated": false,
       "file_name": "why-hoard-things-inline-spectrum.png",
       "size": "1200 x 800",
-      "method": "Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で作る",
+      "aspect_ratio": "3:2",
+      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
       "wp_title": "「ただの物持ち」から「ためこみ症」までの段階を示すスペクトラムチャート",
       "alt": "「ただの物持ち」から「ためこみ症」までの段階を示すスペクトラムチャート",
       "position": "本文中のCMSブリーフ位置",
@@ -105,7 +155,8 @@
         "ALT": "「ただの物持ち」から「ためこみ症」までの段階を示すスペクトラムチャート",
         "キャプション候補": "物の多さだけでなく「生活への影響」が境界線になる"
       },
-      "final_prompt": "日本語ラベルを正確に読ませる記事内図解を作る。画像生成AIに文字を任せず、Canva、Pillow、SVGなどのレイアウト制御で制作する。入れる内容: 左端「個人の価値観の範囲（趣味の部屋に物が多い、共有スペースは整理）」→中央「注意ゾーン（共有スペースに侵食、家族が困り始めている）」→右端「専門家への相談を検討（生活動線がふさがれている、基本動作に支障）」のグラデーションスペクトラム。目的: 通常の物持ちとためこみ症の違いを、スペクトラム（段階）として可視化する。避ける表現: 「正常/異常」の二分法、病気へのスティグマを感じさせる表現。右下の余白にセイリ部ロゴを小さく配置する。",
+      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 左端「個人の価値観の範囲（趣味の部屋に物が多い、共有スペースは整理）」→中央「注意ゾーン（共有スペースに侵食、家族が困り始めている）」→右端「専門家への相談を検討（生活動線がふさがれている、基本動作に支障）」のグラデーションスペクトラム。目的: 通常の物持ちとためこみ症の違いを、スペクトラム（段階）として可視化する。避ける表現: 「正常/異常」の二分法、病気へのスティグマを感じさせる表現。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
+      "local_composition": {},
       "canva_instructions": {}
     },
     {
@@ -113,7 +164,8 @@
       "generated": false,
       "file_name": "why-hoard-things-inline-ng-ok.png",
       "size": "1200 x 800",
-      "method": "Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で作る",
+      "aspect_ratio": "3:2",
+      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
       "wp_title": "物を捨てられない家族への接し方NG対応とOK対応の比較チャート",
       "alt": "物を捨てられない家族への接し方NG対応とOK対応の比較チャート",
       "position": "本文中のCMSブリーフ位置",
@@ -126,7 +178,8 @@
         "ALT": "物を捨てられない家族への接し方NG対応とOK対応の比較チャート",
         "キャプション候補": "「捨てて」を「選んで」に変えるだけで、相手の反応は大きく変わる"
       },
-      "final_prompt": "日本語ラベルを正確に読ませる記事内図解を作る。画像生成AIに文字を任せず、Canva、Pillow、SVGなどのレイアウト制御で制作する。入れる内容: 左にNG（✕ 勝手に捨てる / ✕ 責める / ✕ 比較する）、右にOK（◯「選んで」と聞く / ◯ 保留箱を使う / ◯ 聖域ルール / ◯ 売る・譲る）を対比配置。目的: やってはいけない対応と、代わりにやるべき対応を一目で比較する。避ける表現: 指差し・説教調、怒っている家族の表情。右下の余白にセイリ部ロゴを小さく配置する。",
+      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 左にNG（✕ 勝手に捨てる / ✕ 責める / ✕ 比較する）、右にOK（◯「選んで」と聞く / ◯ 保留箱を使う / ◯ 聖域ルール / ◯ 売る・譲る）を対比配置。目的: やってはいけない対応と、代わりにやるべき対応を一目で比較する。避ける表現: 指差し・説教調、怒っている家族の表情。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
+      "local_composition": {},
       "canva_instructions": {}
     }
   ],

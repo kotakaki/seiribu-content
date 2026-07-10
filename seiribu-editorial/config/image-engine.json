@@ -1,7 +1,30 @@
 {
   "brand_name": "セイリ部",
   "canva_template_url": "https://canva.link/mqlqak3adj01g1i",
+  "canva_mode": "optional_manual",
   "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+  "local_composition": {
+    "standard": true,
+    "engine": "Pillow",
+    "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+    "eyecatch_output_size": "1200 x 630",
+    "background": "#FAF3EA",
+    "title_color": "#7A3454",
+    "subtitle_color": "#24304A",
+    "logo_width": 160,
+    "logo_position": "左上",
+    "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+  },
+  "brand_signature": {
+    "required_in_final_outputs": true,
+    "generation_assets_must_not_include_logo": true,
+    "logo_required_targets": [
+      "アイキャッチ完成版",
+      "本文図解完成版",
+      "Canva仕上げ画像"
+    ],
+    "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+  },
   "reference_paths": [
     "seiribu-editorial/assets/images/brand/references/seiribu-brand-reference-01.png",
     "seiribu-editorial/assets/images/brand/references/seiribu-brand-reference-02.png",
@@ -10,7 +33,8 @@
   ],
   "eyecatch": {
     "size": "1200 x 630",
-    "layout": "左上に小さくロゴ、上部中央に大きな見出し、直下にサブタイトル、下部から中央に人物や実家の物を配置するブランド型",
+    "aspect_ratio": "16:9",
+    "layout": "タイトル・サブタイトル・ロゴをローカル合成で載せる前提で、上部に余白を残し、下部から中央に人物や実家の物を配置するブランド型素材",
     "headline_font": "UDモトヤアポロ 太字",
     "subtitle_font": "Noto Sans JP Regular",
     "fallback_headline_font": "Noto Sans JP Bold",
@@ -21,14 +45,52 @@
       "薄いグレー"
     ]
   },
+  "eyecatch_material": {
+    "size": "1536 x 1024",
+    "aspect_ratio": "3:2",
+    "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）"
+  },
   "inline_diagram": {
     "size": "1200 x 800",
+    "aspect_ratio": "3:2",
     "logo_position": "右下",
-    "method": "Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で作る"
+    "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る"
   },
+  "inline_image": {
+    "size": "1200 x 800",
+    "aspect_ratio": "3:2",
+    "method": "画像生成素材"
+  },
+  "diagram_asset": {
+    "size": "1024 x 1024",
+    "aspect_ratio": "1:1",
+    "method": "図解用小物素材"
+  },
+  "photo_material": {
+    "size": "1200 x 800",
+    "aspect_ratio": "3:2",
+    "method": "写真風生成素材"
+  },
+  "generation_style": {
+    "illustration": "warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in",
+    "photo": "bright realistic editorial photo, natural daylight, clean lived-in Japanese home, not gritty, not luxury advertising, not dramatic",
+    "cutout": "warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background"
+  },
+  "generation_forbidden": [
+    "no text",
+    "no letters",
+    "no numbers",
+    "no Japanese characters",
+    "no English words",
+    "no labels",
+    "no logo",
+    "no watermark",
+    "no signage",
+    "no speech bubbles"
+  ],
   "tone": [
     "日本の実家らしさ",
-    "親子・家族で確認している雰囲気",
+    "読者が状況を想像しやすい生活感",
     "明るく清潔",
     "不安を煽らない",
     "買取業者っぽくしすぎない",
@@ -39,6 +101,7 @@
     "暗い遺品整理の雰囲気",
     "札束や高額査定の強調",
     "不用品回収業者だけを推す広告感",
+    "既存記事と同じ構図や素材の使い回し",
     "ミニマリスト風の真っ白な部屋",
     "ロゴが見出し・人物の顔・重要な品物を邪魔する配置"
   ]
