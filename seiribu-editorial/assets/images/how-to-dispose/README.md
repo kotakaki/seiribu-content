@@ -9,6 +9,13 @@
 | 記事内図解 | `how-to-dispose-inline-method-matrix.png` | 1200 x 800 | 不用品を手放す4つの方法の費用と手間の比較 | 不用品を手放す4つの方法の費用と手間の比較マトリクス |
 | 記事内図解 | `how-to-dispose-inline-pro-boundary.png` | 1200 x 800 | 自力での処分をやめて業者に任せるべき3つの境界線 | 自力での処分をやめて不用品回収業者に任せるべき3つの境界線チェックリスト |
 
+## 素材・生成ファイル
+
+| 用途 | ファイル |
+| --- | --- |
+| アイキャッチ生成素材 | `how-to-dispose-eyecatch-material.png` |
+| アイキャッチPNG版 | `how-to-dispose-eyecatch.png` |
+
 ## 使い方
 
 - `how-to-dispose-eyecatch.webp` を記事のアイキャッチ画像に設定する
@@ -16,6 +23,9 @@
 - `how-to-dispose-inline-method-matrix.png` は「不用品を手放す4つの方法（費用と手間の比較）」の直下に入れる
 - `how-to-dispose-inline-pro-boundary.png` は「「自力」と「業者」の境界線は？どこからプロに任せるべきか」の直下に入れる
 - 記事内図解には右下、アイキャッチには左上にセイリ部ロゴを配置済み
+- 再生成は `seiribu-editorial/scripts/create_how_to_dispose_images.py` を実行する
+- 図解は日本語ラベルの正確性を優先し、画像生成AIではなくHTML/CSSレンダリングで制作する
+- アイキャッチは `how-to-dispose-eyecatch-material.png` を背景素材として使い、タイトルとロゴをHTML/CSSレンダリングで合成する
 
 ## キャプション候補
 
