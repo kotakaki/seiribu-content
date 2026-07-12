@@ -1,0 +1,147 @@
+{
+  "article": {
+    "path": "seiribu-editorial/drafts/kaitori-kaishu-order.md",
+    "title": "実家の不用品は「買取」と「回収」どちらが先？損しない処分の順番",
+    "slug": "kaitori-kaishu-order",
+    "main_kw": "不用品 買取 回収 どっち, 実家 不用品 買取 回収",
+    "target_reader": "実家の荷物が多く、売れる物と捨てる物の判断に迷う40〜60代。",
+    "search_intent": "実家の不用品を売るべきか、回収・処分すべきか、どちらを先に確認すれば損しないか知りたい。"
+  },
+  "brand": {
+    "name": "セイリ部",
+    "canva_template_url": "https://canva.link/mqlqak3adj01g1i",
+    "canva_mode": "optional_manual",
+    "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+    "brand_signature": {
+      "required_in_final_outputs": true,
+      "generation_assets_must_not_include_logo": true,
+      "logo_required_targets": [
+        "アイキャッチ完成版",
+        "本文図解完成版",
+        "Canva仕上げ画像"
+      ],
+      "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+    },
+    "local_composition": {
+      "standard": true,
+      "engine": "Pillow",
+      "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+      "eyecatch_output_size": "1200 x 630",
+      "background": "#FAF3EA",
+      "title_color": "#7A3454",
+      "subtitle_color": "#24304A",
+      "logo_width": 160,
+      "logo_position": "左上",
+      "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+    }
+  },
+  "images": [
+    {
+      "role": "アイキャッチ素材",
+      "generated": false,
+      "file_name": "kaitori-kaishu-order-eyecatch.png",
+      "size": "1536 x 1024",
+      "aspect_ratio": "3:2",
+      "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）",
+      "wp_title": "買取と回収の正しい順番を示すイラスト",
+      "alt": "買取と回収の正しい順番を示すイラスト",
+      "position": "アイキャッチ合成用素材",
+      "caption": "",
+      "fields": {
+        "種類": "アイキャッチ素材（文字や背景を含まない、人物と小物のイラスト素材のみ）",
+        "目的": "買取と回収の正しい順番を視覚的に伝える",
+        "読者に伝えたい感情": "順番さえ守ればスムーズに進むという安心感、賢い選択",
+        "構図": "左側に「買取（お金になる）」、右側に「回収（片付く）」を意味するアイテムやアイコンを配置し、矢印で順番を示す構図",
+        "入れたい人物・物": "古いカメラや着物（買取）、段ボールや古い家具（回収）",
+        "避けたい表現": "画像内へのテキスト（文字）の生成、背景の描画",
+        "タイトル文言": "実家の不用品 買取と回収どちらが先？",
+        "サブタイトル文言": "損しない処分の順番",
+        "ALT": "買取と回収の正しい順番を示すイラスト",
+        "ファイル名": "kaitori-kaishu-order-eyecatch"
+      },
+      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '実家の不用品は「買取」と「回収」どちらが先？損しない処分の順番'. Aspect ratio: 3:2. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 古いカメラや着物（買取）、段ボールや古い家具（回収）. Purpose: 買取と回収の正しい順番を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、背景の描画. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "local_composition": {
+        "standard": true,
+        "engine": "Pillow",
+        "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+        "title": "実家の不用品 買取と回収どちらが先？",
+        "subtitle": "損しない処分の順番",
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_position": "左上",
+        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
+        "output_size": "1200 x 630",
+        "source_material_file": "kaitori-kaishu-order-eyecatch.png",
+        "output_file": "kaitori-kaishu-order-eyecatch-branded.png",
+        "headline_font": "UDモトヤアポロ 太字",
+        "fallback_headline_font": "Noto Sans JP Bold",
+        "subtitle_font": "Noto Sans JP Regular",
+        "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+      },
+      "canva_instructions": {
+        "status": "optional_manual",
+        "template_url": "https://canva.link/mqlqak3adj01g1i",
+        "title": "実家の不用品 買取と回収どちらが先？",
+        "subtitle": "損しない処分の順番",
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
+        "logo_position": "左上",
+        "headline_font": "UDモトヤアポロ 太字",
+        "subtitle_font": "Noto Sans JP Regular"
+      }
+    },
+    {
+      "role": "記事内イメージ",
+      "generated": false,
+      "file_name": "kaitori-kaishu-order-inline-inline-01.png",
+      "size": "1200 x 800",
+      "aspect_ratio": "3:2",
+      "method": "画像生成素材",
+      "wp_title": "価値あるものをゴミとして処分してしまうリスク",
+      "alt": "価値あるものをゴミとして処分してしまうリスク",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "専門知識がないと、価値あるものまでゴミとして扱われてしまうことも。",
+      "fields": {
+        "種類": "記事内イメージ素材 / 情景イラスト",
+        "目的": "「価値あるものをゴミとして捨ててしまうリスク」を視覚的に伝える",
+        "読者に伝えたい感情": "もったいない、損をしたくないという警戒心",
+        "入れたい要素": "アンティークの時計や年代物のカメラが、ただのガラクタとしてゴミ袋に入れられようとしている様子に、慌てる人のイラスト",
+        "避けたい表現": "画像内へのテキスト（文字）の生成",
+        "ALT": "価値あるものをゴミとして処分してしまうリスク",
+        "キャプション候補": "専門知識がないと、価値あるものまでゴミとして扱われてしまうことも。"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '実家の不用品は「買取」と「回収」どちらが先？損しない処分の順番'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: アンティークの時計や年代物のカメラが、ただのガラクタとしてゴミ袋に入れられようとしている様子に、慌てる人のイラスト. Purpose: 「価値あるものをゴミとして捨ててしまうリスク」を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成.",
+      "local_composition": {},
+      "canva_instructions": {}
+    },
+    {
+      "role": "記事内イメージ",
+      "generated": false,
+      "file_name": "kaitori-kaishu-order-inline-male-memory.png",
+      "size": "1200 x 800",
+      "aspect_ratio": "3:2",
+      "method": "画像生成素材",
+      "wp_title": "親の気持ちに寄り添った実家の買取査定",
+      "alt": "親の気持ちに寄り添った実家の買取査定",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "大切な思い出の品も、価値をわかってくれる人になら安心して手放せます。",
+      "fields": {
+        "種類": "記事内イメージ素材 / 情景イラスト",
+        "目的": "親の気持ちに寄り添った片付けの成功イメージを伝える",
+        "読者に伝えたい感情": "安心感、ポジティブな気持ち、親孝行",
+        "入れたい要素": "査定員が古いカメラや着物を丁寧に扱い、それを見て親が安心したように微笑んでいるイラスト",
+        "避けたい表現": "画像内へのテキスト（文字）の生成",
+        "ALT": "親の気持ちに寄り添った実家の買取査定",
+        "キャプション候補": "大切な思い出の品も、価値をわかってくれる人になら安心して手放せます。"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '実家の不用品は「買取」と「回収」どちらが先？損しない処分の順番'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 査定員が古いカメラや着物を丁寧に扱い、それを見て親が安心したように微笑んでいるイラスト. Purpose: 親の気持ちに寄り添った片付けの成功イメージを伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成.",
+      "local_composition": {},
+      "canva_instructions": {}
+    }
+  ],
+  "quality_notes": [
+    "ローカル合成で仕上げるためのアイキャッチ素材指定を利用しています。",
+    "本文画像の枚数は適正範囲です。"
+  ]
+}
