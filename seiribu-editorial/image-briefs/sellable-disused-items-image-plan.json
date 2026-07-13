@@ -1,0 +1,100 @@
+{
+  "engine": {
+    "mode": "light",
+    "mode_settings": {
+      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
+      "max_eyecatches": 1,
+      "max_inline_images": 1,
+      "compact_prompts": true,
+      "omit_canva_detail": true
+    },
+    "storage_policy": {
+      "generation_tool": "imagegen",
+      "diagram_tool": "visualize / Pillow / SVG",
+      "canva_tool": "optional_manual",
+      "draft_dir": "/private/tmp/seiribu-image-work/sellable-disused-items",
+      "final_dir": "seiribu-editorial/assets/images/sellable-disused-items",
+      "generation_rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。",
+      "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
+      "archive_root": "/private/tmp/seiribu-image-archive",
+      "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
+    }
+  },
+  "article": {
+    "path": "seiribu-editorial/drafts/pillars/sellable-disused-items-rewrite-v2.md",
+    "title": "実家の片付けで売れるもの一覧｜捨てる前に確認する品物と整理手順",
+    "slug": "sellable-disused-items",
+    "main_kw": "実家 片付け 売れるもの",
+    "target_reader": "",
+    "search_intent": "実家の片付けで出てきた物の中に、売れる可能性がある物があるか知りたい。捨てる前に何を確認すべきか、どの品目を査定・買取判断に回すべきかを知りたい。"
+  },
+  "brand": {
+    "name": "セイリ部",
+    "canva_template_url": "https://canva.link/mqlqak3adj01g1i",
+    "canva_mode": "optional_manual",
+    "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+    "brand_signature": {
+      "required_in_final_outputs": true,
+      "generation_assets_must_not_include_logo": true,
+      "logo_required_targets": [
+        "アイキャッチ完成版",
+        "Canva仕上げ画像"
+      ],
+      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
+    },
+    "local_composition": {
+      "standard": true,
+      "engine": "Pillow",
+      "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+      "eyecatch_output_size": "1200 x 675",
+      "background": "#FAF3EA",
+      "title_color": "#7A3454",
+      "subtitle_color": "#24304A",
+      "logo_width": 160,
+      "logo_position": "左上",
+      "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+    }
+  },
+  "images": [
+    {
+      "role": "記事内イメージ",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "sellable-disused-items-inline-01.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材",
+      "wp_title": "実家の片付けで出てきた古い本やカメラ、レコード、ブランド品を親子で確認している様子",
+      "alt": "実家の片付けで出てきた古い本やカメラ、レコード、ブランド品を親子で確認している様子",
+      "position": "導入文の直後（最初のH2の上）",
+      "caption": "実家には、捨ててしまうにはもったいない品物がたくさん眠っています。",
+      "fields": {
+        "目的": "実家の片付けで出てきた様々な「売れるかもしれない物」を確認している様子をイメージさせる",
+        "設置位置": "導入文の直後（最初のH2の上）",
+        "伝えたい内容": "古い本、フィルムカメラ、レコード、ブランドバッグ、切手帳、茶道具などを親子で一緒に確認している明るい様子",
+        "入れたい要素": "親子（40代の子と70代の親）、段ボール、カメラ、レコード、ブランド品",
+        "避けたい表現": "暗い雰囲気、ゴミ屋敷のような散らかりすぎた部屋",
+        "ALT": "実家の片付けで出てきた古い本やカメラ、レコード、ブランド品を親子で確認している様子",
+        "キャプション候補": "実家には、捨ててしまうにはもったいない品物がたくさん眠っています。"
+      },
+      "final_prompt": "Warm text-free Seiribu editorial illustration for '実家の片付けで売れるもの一覧｜捨てる前に確認する品物と整理手順'. Aspect ratio: 16:9. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 親子（40代の子と70代の親）、段ボール、カメラ、レコード、ブランド品. Purpose: 実家の片付けで出てきた様々な「売れるかもしれない物」を確認している様子をイメージさせる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 暗い雰囲気、ゴミ屋敷のような散らかりすぎた部屋. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
+      "local_composition": {},
+      "canva_instructions": {}
+    }
+  ],
+  "omitted_images": [
+    {
+      "role": "記事内図解",
+      "file_name": "sellable-disused-items-inline-three-boxes.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "H2「実家の片付けで売れるものは、捨てる前の確認で見つかる」の直下"
+    }
+  ],
+  "quality_notes": [
+    "アイキャッチまたはアイキャッチ合成用素材の指定がありません。自動補完はしません。",
+    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
+    "lightモードのため、初回制作は1件に絞り、1件を保留しました。"
+  ]
+}

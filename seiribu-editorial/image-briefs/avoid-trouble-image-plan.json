@@ -1,4 +1,25 @@
 {
+  "engine": {
+    "mode": "light",
+    "mode_settings": {
+      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
+      "max_eyecatches": 1,
+      "max_inline_images": 1,
+      "compact_prompts": true,
+      "omit_canva_detail": true
+    },
+    "storage_policy": {
+      "generation_tool": "imagegen",
+      "diagram_tool": "visualize / Pillow / SVG",
+      "canva_tool": "optional_manual",
+      "draft_dir": "/private/tmp/seiribu-image-work/avoid-trouble",
+      "final_dir": "seiribu-editorial/assets/images/avoid-trouble",
+      "generation_rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。",
+      "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
+      "archive_root": "/private/tmp/seiribu-image-archive",
+      "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
+    }
+  },
   "article": {
     "path": "seiribu-editorial/drafts/avoid-trouble.md",
     "title": "実家の親を守る！訪問買取（押し買い）のトラブル手口とクーリングオフの全知識",
@@ -17,16 +38,16 @@
       "generation_assets_must_not_include_logo": true,
       "logo_required_targets": [
         "アイキャッチ完成版",
-        "本文図解完成版",
         "Canva仕上げ画像"
       ],
-      "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
     },
     "local_composition": {
       "standard": true,
       "engine": "Pillow",
       "script": "seiribu-editorial/scripts/compose_eyecatch.py",
-      "eyecatch_output_size": "1200 x 630",
+      "eyecatch_output_size": "1200 x 675",
       "background": "#FAF3EA",
       "title_color": "#7A3454",
       "subtitle_color": "#24304A",
@@ -39,9 +60,11 @@
     {
       "role": "アイキャッチ素材",
       "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "avoid-trouble-eyecatch.png",
-      "size": "1536 x 1024",
-      "aspect_ratio": "3:2",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
       "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）",
       "wp_title": "訪問買取トラブル対策のアイキャッチ",
       "alt": "訪問買取トラブル対策のアイキャッチ",
@@ -59,7 +82,7 @@
         "ALT": "訪問買取トラブル対策のアイキャッチ",
         "ファイル名": "avoid-trouble-eyecatch.png"
       },
-      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '実家の親を守る！訪問買取（押し買い）のトラブル手口とクーリングオフの全知識'. Aspect ratio: 3:2. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 悪質業者をシャットアウトする盾や、実家のドアをしっかり閉めている情景. Purpose: 実家の親を悪質業者から守るという「防衛・安心感」を伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、背景の描画、過度に恐怖を煽るホラー調、血、ドクロなどの表現. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "final_prompt": "Text-free Seiribu eyecatch cutout asset. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Subject: 悪質業者をシャットアウトする盾や、実家のドアをしっかり閉めている情景. Purpose: 実家の親を悪質業者から守るという「防衛・安心感」を伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Transparent background, or single flat light background for easy removal. No room, wall, floor, shadow, title area, logo area, frame. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、背景の描画、過度に恐怖を煽るホラー調、血、ドクロなどの表現. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
       "local_composition": {
         "standard": true,
         "engine": "Pillow",
@@ -69,8 +92,8 @@
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
         "logo_required": true,
         "logo_position": "左上",
-        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
-        "output_size": "1200 x 630",
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。",
+        "output_size": "1200 x 675",
         "source_material_file": "avoid-trouble-eyecatch.png",
         "output_file": "avoid-trouble-eyecatch-branded.png",
         "headline_font": "UDモトヤアポロ 太字",
@@ -78,25 +101,16 @@
         "subtitle_font": "Noto Sans JP Regular",
         "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
       },
-      "canva_instructions": {
-        "status": "optional_manual",
-        "template_url": "https://canva.link/mqlqak3adj01g1i",
-        "title": "実家の親を守る！訪問買取トラブル対策",
-        "subtitle": "押し買いの手口とクーリングオフ",
-        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
-        "logo_required": true,
-        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
-        "logo_position": "左上",
-        "headline_font": "UDモトヤアポロ 太字",
-        "subtitle_font": "Noto Sans JP Regular"
-      }
+      "canva_instructions": {}
     },
     {
       "role": "記事内図解",
       "generated": false,
-      "file_name": "avoid-trouble-inline-inline-01.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "avoid-trouble-inline-01.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
       "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
       "wp_title": "押し買いの典型的な3つの手口",
       "alt": "押し買いの典型的な3つの手口",
@@ -111,61 +125,28 @@
         "ALT": "押し買いの典型的な3つの手口",
         "キャプション候補": "なし"
       },
-      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 不用品と言いながら貴金属を狙う、居座って帰らない、契約書を渡さないという3つのシーンをアイコンやイラストで表現。目的: 「押し買い」の典型的な3つの手口を視覚的に理解させる。避ける表現: 画像内へのテキスト（文字）の生成、複雑すぎるフローチャート。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内イメージ",
-      "generated": false,
-      "file_name": "avoid-trouble-inline-inline-02.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "画像生成素材",
-      "wp_title": "訪問買取業者に困惑する高齢者の親",
-      "alt": "訪問買取業者に困惑する高齢者の親",
-      "position": "本文中のCMSブリーフ位置",
-      "caption": "なし",
-      "fields": {
-        "種類": "記事内イメージ素材",
-        "目的": "親世代の「もったいない精神」と「押しへの弱さ」に共感させる",
-        "読者に伝えたい感情": "うちの親もまさにこれだ…という納得感",
-        "入れたい要素": "押し入れいっぱいの荷物を前に途方に暮れる高齢者、または業者に強く言われて困惑している高齢者",
-        "避けたい表現": "画像内へのテキスト（文字）の生成、高齢者を極端に認知症のように描くこと",
-        "ALT": "訪問買取業者に困惑する高齢者の親",
-        "キャプション候補": "なし"
-      },
-      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '実家の親を守る！訪問買取（押し買い）のトラブル手口とクーリングオフの全知識'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 押し入れいっぱいの荷物を前に途方に暮れる高齢者、または業者に強く言われて困惑している高齢者. Purpose: 親世代の「もったいない精神」と「押しへの弱さ」に共感させる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、高齢者を極端に認知症のように描くこと.",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内図解",
-      "generated": false,
-      "file_name": "avoid-trouble-inline-inline-03.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
-      "wp_title": "クーリングオフの8日間と対象外品目",
-      "alt": "クーリングオフの8日間と対象外品目",
-      "position": "本文中のCMSブリーフ位置",
-      "caption": "なし",
-      "fields": {
-        "種類": "記事内図解素材",
-        "目的": "クーリングオフの条件（8日間・対象外品目）を分かりやすく整理する",
-        "読者に伝えたい感情": "取り戻せるんだという安心感",
-        "入れたい要素": "カレンダー（8日間を強調）、対象品と対象外品の簡単な対比図",
-        "避けたい表現": "画像内へのテキスト（文字）の生成、法律の専門書のような硬すぎるデザイン",
-        "ALT": "クーリングオフの8日間と対象外品目",
-        "キャプション候補": "なし"
-      },
-      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: カレンダー（8日間を強調）、対象品と対象外品の簡単な対比図。目的: クーリングオフの条件（8日間・対象外品目）を分かりやすく整理する。避ける表現: 画像内へのテキスト（文字）の生成、法律の専門書のような硬すぎるデザイン。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
+      "final_prompt": "画像生成AIには渡さない。1200 x 675 / 16:9 の図解として、Pillow・SVG・Canvaなどで制作。内容: 不用品と言いながら貴金属を狙う、居座って帰らない、契約書を渡さないという3つのシーンをアイコンやイラストで表現。目的: 「押し買い」の典型的な3つの手口を視覚的に理解させる。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴ: 本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
       "local_composition": {},
       "canva_instructions": {}
     }
   ],
+  "omitted_images": [
+    {
+      "role": "記事内イメージ",
+      "file_name": "avoid-trouble-inline-02.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内図解",
+      "file_name": "avoid-trouble-inline-03.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "本文中のCMSブリーフ位置"
+    }
+  ],
   "quality_notes": [
     "ローカル合成で仕上げるためのアイキャッチ素材指定を利用しています。",
-    "本文画像の枚数は適正範囲です。"
+    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
+    "lightモードのため、初回制作は2件に絞り、2件を保留しました。"
   ]
 }

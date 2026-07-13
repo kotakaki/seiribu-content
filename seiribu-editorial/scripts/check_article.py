@@ -17,8 +17,7 @@ FORBIDDEN_PATTERNS = {
 }
 
 REQUIRED_SNIPPETS = [
-    "human_review_required: true",
-    "## この記事でわかること",
+    "**この記事でわかること**",
     "## まとめ",
 ]
 

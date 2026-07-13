@@ -1,0 +1,66 @@
+{
+  "engine": {
+    "mode": "light",
+    "mode_settings": {
+      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
+      "max_eyecatches": 1,
+      "max_inline_images": 1,
+      "compact_prompts": true,
+      "omit_canva_detail": true
+    },
+    "storage_policy": {
+      "generation_tool": "imagegen",
+      "diagram_tool": "visualize / Pillow / SVG",
+      "canva_tool": "optional_manual",
+      "draft_dir": "/private/tmp/seiribu-image-work/sellable-disused-items-rewrite",
+      "final_dir": "seiribu-editorial/assets/images/sellable-disused-items-rewrite",
+      "generation_rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。",
+      "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
+      "archive_root": "/private/tmp/seiribu-image-archive",
+      "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
+    }
+  },
+  "article": {
+    "path": "seiribu-editorial/drafts/pillars/sellable-disused-items-rewrite.md",
+    "title": "実家の片付けで売れるものは？捨てる前に整理したい品物と確認ポイント",
+    "slug": "sellable-disused-items-rewrite",
+    "main_kw": "",
+    "target_reader": "",
+    "search_intent": ""
+  },
+  "brand": {
+    "name": "セイリ部",
+    "canva_template_url": "https://canva.link/mqlqak3adj01g1i",
+    "canva_mode": "optional_manual",
+    "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+    "brand_signature": {
+      "required_in_final_outputs": true,
+      "generation_assets_must_not_include_logo": true,
+      "logo_required_targets": [
+        "アイキャッチ完成版",
+        "Canva仕上げ画像"
+      ],
+      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
+    },
+    "local_composition": {
+      "standard": true,
+      "engine": "Pillow",
+      "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+      "eyecatch_output_size": "1200 x 675",
+      "background": "#FAF3EA",
+      "title_color": "#7A3454",
+      "subtitle_color": "#24304A",
+      "logo_width": 160,
+      "logo_position": "左上",
+      "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+    }
+  },
+  "images": [],
+  "omitted_images": [],
+  "quality_notes": [
+    "アイキャッチまたはアイキャッチ合成用素材の指定がありません。自動補完はしません。",
+    "本文画像が少なめです。ピラー記事では図解をもう1枚検討してください。",
+    "lightモードですが、保留対象はありません。"
+  ]
+}

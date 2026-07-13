@@ -263,7 +263,7 @@ def infer_suffix(block: ImageBrief) -> str:
     for pattern, suffix in candidates:
         if re.search(pattern, text):
             return suffix
-    return f"inline-{block.index:02d}"
+    return f"{block.index:02d}"
 
 
 def ensure_png_filename(name: str) -> str:

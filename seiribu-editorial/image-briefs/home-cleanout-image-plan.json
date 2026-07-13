@@ -1,4 +1,25 @@
 {
+  "engine": {
+    "mode": "light",
+    "mode_settings": {
+      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
+      "max_eyecatches": 1,
+      "max_inline_images": 1,
+      "compact_prompts": true,
+      "omit_canva_detail": true
+    },
+    "storage_policy": {
+      "generation_tool": "imagegen",
+      "diagram_tool": "visualize / Pillow / SVG",
+      "canva_tool": "optional_manual",
+      "draft_dir": "/private/tmp/seiribu-image-work/home-cleanout",
+      "final_dir": "seiribu-editorial/assets/images/home-cleanout",
+      "generation_rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。",
+      "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
+      "archive_root": "/private/tmp/seiribu-image-archive",
+      "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
+    }
+  },
   "article": {
     "path": "seiribu-editorial/drafts/pillars/home-cleanout-clean.md",
     "title": "実家の片付けはどこから？売る・残す・処分の順番と揉めない進め方",
@@ -17,16 +38,16 @@
       "generation_assets_must_not_include_logo": true,
       "logo_required_targets": [
         "アイキャッチ完成版",
-        "本文図解完成版",
         "Canva仕上げ画像"
       ],
-      "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
     },
     "local_composition": {
       "standard": true,
       "engine": "Pillow",
       "script": "seiribu-editorial/scripts/compose_eyecatch.py",
-      "eyecatch_output_size": "1200 x 630",
+      "eyecatch_output_size": "1200 x 675",
       "background": "#FAF3EA",
       "title_color": "#7A3454",
       "subtitle_color": "#24304A",
@@ -39,9 +60,11 @@
     {
       "role": "記事内図解",
       "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "home-cleanout-inline-principles.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
       "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
       "wp_title": "実家の片付けを失敗しないための3つの鉄則",
       "alt": "実家の片付けを失敗しないための3つの鉄則",
@@ -56,61 +79,28 @@
         "ALT": "実家の片付けを失敗しないための3つの鉄則",
         "キャプション候補": "この3つを最初に家族で共有するだけで、片付けはスムーズに進みます"
       },
-      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 3つのルールを並べ、横に温かみのあるシンプルなアイコン（握手、複数人の家族、3つの箱など）。目的: 読者に「この3つさえ守れば失敗しない」と安心感を持たせること。避ける表現: 禁止マーク（❌）など、読者を過度に萎縮させる表現。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内図解",
-      "generated": false,
-      "file_name": "home-cleanout-inline-steps.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
-      "wp_title": "実家の片付けを効率よく進める4つのステップ",
-      "alt": "実家の片付けを効率よく進める4つのステップ",
-      "position": "H2「実家の片付けはどこから始める？効率的な順番」の直下（ステップ1の前）",
-      "caption": "判断に迷わない小さな場所から始めて、成功体験を積みましょう",
-      "fields": {
-        "目的": "片付けのハードルを下げ、簡単な場所から始めればよいことを視覚的に伝える",
-        "設置位置": "H2「実家の片付けはどこから始める？効率的な順番」の直下（ステップ1の前）",
-        "伝えたい内容": "話し合いから始まり、徐々に難易度の高い場所へ進む4つのステップ",
-        "入れたい要素": "「1. 話し合い」→「2. 自分の物・ゴミ」→「3. 玄関・洗面所」→「4. リビング・趣味品」の横型フロー。各ステップに小さなアイコン",
-        "避けたい表現": "作業の辛さを連想させるような暗い色合い",
-        "ALT": "実家の片付けを効率よく進める4つのステップ",
-        "キャプション候補": "判断に迷わない小さな場所から始めて、成功体験を積みましょう"
-      },
-      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 「1. 話し合い」→「2. 自分の物・ゴミ」→「3. 玄関・洗面所」→「4. リビング・趣味品」の横型フロー。各ステップに小さなアイコン。目的: 片付けのハードルを下げ、簡単な場所から始めればよいことを視覚的に伝える。避ける表現: 作業の辛さを連想させるような暗い色合い。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内図解",
-      "generated": false,
-      "file_name": "home-cleanout-inline-three-boxes.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
-      "wp_title": "実家の荷物を「売れる物」「家族に確認」「処分」の3箱に仕分けるイメージ図",
-      "alt": "実家の荷物を「売れる物」「家族に確認」「処分」の3箱に仕分けるイメージ図",
-      "position": "H3「ステップ4」内の解説直下（3箱仕分けの説明の前）",
-      "caption": "「捨てる・捨てない」で迷ったら、まずはこの3つの箱に分けてみましょう",
-      "fields": {
-        "目的": "実家の荷物をシンプルに3つに分類すればよいと伝えること",
-        "設置位置": "H3「ステップ4」内の解説直下（3箱仕分けの説明の前）",
-        "伝えたい内容": "「捨てる」を避け、「売れる物」「家族に確認」「処分方法を確認」の3つの箱に分けるという実務的な作業イメージ",
-        "入れたい要素": "3つの段ボール箱（緑・黄・グレーなどで色分け）。それぞれの箱の上に代表的な品物アイコン",
-        "避けたい表現": "乱雑にゴミが詰め込まれたような不潔な表現",
-        "ALT": "実家の荷物を「売れる物」「家族に確認」「処分」の3箱に仕分けるイメージ図",
-        "キャプション候補": "「捨てる・捨てない」で迷ったら、まずはこの3つの箱に分けてみましょう"
-      },
-      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 3つの段ボール箱（緑・黄・グレーなどで色分け）。それぞれの箱の上に代表的な品物アイコン。目的: 実家の荷物をシンプルに3つに分類すればよいと伝えること。避ける表現: 乱雑にゴミが詰め込まれたような不潔な表現。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
+      "final_prompt": "画像生成AIには渡さない。1200 x 675 / 16:9 の図解として、Pillow・SVG・Canvaなどで制作。内容: 3つのルールを並べ、横に温かみのあるシンプルなアイコン（握手、複数人の家族、3つの箱など）。目的: 読者に「この3つさえ守れば失敗しない」と安心感を持たせること。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴ: 本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
       "local_composition": {},
       "canva_instructions": {}
     }
   ],
+  "omitted_images": [
+    {
+      "role": "記事内図解",
+      "file_name": "home-cleanout-inline-steps.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "H2「実家の片付けはどこから始める？効率的な順番」の直下（ステップ1の前）"
+    },
+    {
+      "role": "記事内図解",
+      "file_name": "home-cleanout-inline-three-boxes.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "H3「ステップ4」内の解説直下（3箱仕分けの説明の前）"
+    }
+  ],
   "quality_notes": [
     "アイキャッチまたはアイキャッチ合成用素材の指定がありません。自動補完はしません。",
-    "本文画像の枚数は適正範囲です。"
+    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
+    "lightモードのため、初回制作は1件に絞り、2件を保留しました。"
   ]
 }

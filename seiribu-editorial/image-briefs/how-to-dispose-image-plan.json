@@ -1,6 +1,27 @@
 {
+  "engine": {
+    "mode": "light",
+    "mode_settings": {
+      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
+      "max_eyecatches": 1,
+      "max_inline_images": 1,
+      "compact_prompts": true,
+      "omit_canva_detail": true
+    },
+    "storage_policy": {
+      "generation_tool": "imagegen",
+      "diagram_tool": "visualize / Pillow / SVG",
+      "canva_tool": "optional_manual",
+      "draft_dir": "/private/tmp/seiribu-image-work/how-to-dispose",
+      "final_dir": "seiribu-editorial/assets/images/how-to-dispose",
+      "generation_rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。",
+      "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
+      "archive_root": "/private/tmp/seiribu-image-archive",
+      "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
+    }
+  },
   "article": {
-    "path": "/Users/dvcong/.codex/attachments/1fd389a8-7604-488b-ab2d-6a583a40bee5/pasted-text.txt",
+    "path": "seiribu-editorial/drafts/how-to-dispose.md",
     "title": "実家の不用品を安く処分する方法｜粗大ごみ・持ち込み・回収業者の使い分け",
     "slug": "how-to-dispose",
     "main_kw": "実家 不用品 処分 安く",
@@ -17,16 +38,16 @@
       "generation_assets_must_not_include_logo": true,
       "logo_required_targets": [
         "アイキャッチ完成版",
-        "本文図解完成版",
         "Canva仕上げ画像"
       ],
-      "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
     },
     "local_composition": {
       "standard": true,
       "engine": "Pillow",
       "script": "seiribu-editorial/scripts/compose_eyecatch.py",
-      "eyecatch_output_size": "1200 x 630",
+      "eyecatch_output_size": "1200 x 675",
       "background": "#FAF3EA",
       "title_color": "#7A3454",
       "subtitle_color": "#24304A",
@@ -37,64 +58,59 @@
   },
   "images": [
     {
-      "role": "アイキャッチ",
+      "role": "アイキャッチ素材",
       "generated": false,
-      "file_name": "how-to-dispose-eyecatch.webp",
-      "size": "1200 x 630",
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "how-to-dispose-eyecatch-material.png",
+      "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成素材 + ローカル合成（Pillow）",
+      "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）",
       "wp_title": "実家の不用品を安く処分する方法を検討している様子",
       "alt": "実家の不用品を安く処分する方法を検討している様子",
-      "position": "アイキャッチ",
+      "position": "アイキャッチ合成用素材",
       "caption": "",
       "fields": {
-        "目的": "読者に「自分に合った処分方法がわかりそう」という安心感と実用性への期待を持たせる",
-        "読者に伝えたい感情": "費用や手間で悩んでいたが、比較してスッキリと選べそうな安心感",
-        "入れたい要素": "実家の部屋で不用品の入った段ボールを前に、親子（または子世代）がノートやスマホを見ながら「どれがお得かな？」と前向きに計画を立てている様子",
-        "避けたい表現": "お札が舞うような過度な「安さ」の強調、ゴミ箱や汚部屋のネガティブな描写",
-        "タイトル文言": "実家の不用品を安く処分する方法",
-        "サブタイトル文言": "粗大ごみ・持ち込み・回収業者の費用比較",
+        "種類": "アイキャッチ素材（文字や背景を含まない、人物と小物のイラスト素材のみ）",
+        "目的": "読者の「大型家具や大量のゴミをどうやって捨てればいいか途方に暮れている」というリアルな悩みに深く共感し、解決策への期待を持たせる",
+        "読者に伝えたい感情": "自力では動かせない粗大ごみや使い物にならない大量のガラクタを前に、費用と手間の壁を感じて途方に暮れているリアルな悩みへの共感",
+        "構図": "大きすぎるタンスや、使い物にならない大量のガラクタ（壊れた家電など）を前に、子世代が頭を抱えて途方に暮れている様子。スマホを片手に「どうやって捨てれば…」と悩んでいる。",
+        "入れたい人物・物": "子世代（30〜40代）、古いタンス、壊れた家電や大量のガラクタ（※背景は描かず小物として配置）",
+        "避けたい表現": "画像内へのテキスト（文字）の生成、背景の描画、お札が舞うような過度な「安さ」の強調、特殊清掃レベルの極端な汚部屋",
+        "タイトル文言": "実家の不用品を安く処分する方法（※画像内には生成せず合成時に追加）",
+        "サブタイトル文言": "粗大ごみ・持ち込み・回収業者の費用比較（※同上）",
         "ALT": "実家の不用品を安く処分する方法を検討している様子",
-        "ファイル名": "how-to-dispose-eyecatch.webp"
+        "ファイル名": "how-to-dispose-eyecatch-material"
       },
-      "final_prompt": "Create a text-free eyecatch background and subject illustration for the Seiribu article '実家の不用品を安く処分する方法｜粗大ごみ・持ち込み・回収業者の使い分け'. Aspect ratio: 16:9. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. This image will be finished later with the local Seiribu Pillow compositor, so leave calm uncluttered space for a title and logo to be added later, but do not draw any placeholder cards or panels with text. Composition: タイトル・サブタイトル・ロゴをローカル合成で載せる前提で、上部に余白を残し、下部から中央に人物や実家の物を配置するブランド型素材. Main visual: 実家の部屋で不用品の入った段ボールを前に、親子（または子世代）がノートやスマホを見ながら「どれがお得かな？」と前向きに計画を立てている様子. Purpose: 読者に「自分に合った処分方法がわかりそう」という安心感と実用性への期待を持たせる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: お札が舞うような過度な「安さ」の強調、ゴミ箱や汚部屋のネガティブな描写. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "final_prompt": "Text-free Seiribu eyecatch cutout asset. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Subject: 子世代（30〜40代）、古いタンス、壊れた家電や大量のガラクタ（※背景は描かず小物として配置）. Purpose: 読者の「大型家具や大量のゴミをどうやって捨てればいいか途方に暮れている」というリアルな悩みに深く共感し、解決策への期待を持たせる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Transparent background, or single flat light background for easy removal. No room, wall, floor, shadow, title area, logo area, frame. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、背景の描画、お札が舞うような過度な「安さ」の強調、特殊清掃レベルの極端な汚部屋. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
       "local_composition": {
         "standard": true,
         "engine": "Pillow",
         "script": "seiribu-editorial/scripts/compose_eyecatch.py",
-        "title": "実家の不用品を安く処分する方法",
-        "subtitle": "粗大ごみ・持ち込み・回収業者の費用比較",
+        "title": "実家の不用品を安く処分する方法（※画像内には生成せず合成時に追加）",
+        "subtitle": "粗大ごみ・持ち込み・回収業者の費用比較（※同上）",
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
         "logo_required": true,
         "logo_position": "左上",
-        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
-        "output_size": "1200 x 630",
-        "source_material_file": "",
-        "output_file": "how-to-dispose-eyecatch.webp",
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。",
+        "output_size": "1200 x 675",
+        "source_material_file": "how-to-dispose-eyecatch-material.png",
+        "output_file": "how-to-dispose-eyecatch-branded.png",
         "headline_font": "UDモトヤアポロ 太字",
         "fallback_headline_font": "Noto Sans JP Bold",
         "subtitle_font": "Noto Sans JP Regular",
         "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
       },
-      "canva_instructions": {
-        "status": "optional_manual",
-        "template_url": "https://canva.link/mqlqak3adj01g1i",
-        "title": "実家の不用品を安く処分する方法",
-        "subtitle": "粗大ごみ・持ち込み・回収業者の費用比較",
-        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
-        "logo_required": true,
-        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
-        "logo_position": "左上",
-        "headline_font": "UDモトヤアポロ 太字",
-        "subtitle_font": "Noto Sans JP Regular"
-      }
+      "canva_instructions": {}
     },
     {
       "role": "記事内図解",
       "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "how-to-dispose-inline-options.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
       "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
       "wp_title": "実家の不用品処分費用を安く抑える3つの手順",
       "alt": "実家の不用品処分費用を安く抑える3つの手順（売る、家庭ごみ、不用品回収）",
@@ -109,61 +125,28 @@
         "ALT": "実家の不用品処分費用を安く抑える3つの手順（売る、家庭ごみ、不用品回収）",
         "キャプション候補": "売る・自力で捨てる手順を挟むことで、業者への依頼費用を最小化できます。"
       },
-      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 逆三角形（漏斗）の図、3つのステップ名とアイコン、下に行くほど荷物量が減っていく表現。目的: 費用を最小化する処分手順の「漏斗（ファネル）」構造を視覚的に理解させる。避ける表現: 「捨てる」を推奨するようなポジティブすぎる表現、ゴミ箱に何でも捨てるイラスト。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内図解",
-      "generated": false,
-      "file_name": "how-to-dispose-inline-options-2.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
-      "wp_title": "不用品を手放す4つの方法の費用と手間の比較マトリクス",
-      "alt": "不用品を手放す4つの方法の費用と手間の比較マトリクス",
-      "position": "H2「不用品を手放す4つの方法（費用と手間の比較）」の直下（比較表の上）",
-      "caption": "それぞれの方法の「費用」と「手間」のバランスを知り、状況に合わせて使い分けましょう。",
-      "fields": {
-        "目的": "4つの処分方法の特徴を「費用と手間」の2軸で直感的に比較させる",
-        "設置位置": "H2「不用品を手放す4つの方法（費用と手間の比較）」の直下（比較表の上）",
-        "伝えたい内容": "どの方法が自分の状況（予算・時間・体力）に合っているか、パッと見で判断できるポジショニング",
-        "入れたい要素": "縦軸（手間がかかる〜手間なし）、横軸（費用が安い〜高い）の2軸マトリクス。4つの方法（持ち込み、粗大ごみ、ジモティー等、回収業者）の配置",
-        "避けたい表現": "不用品回収業者だけを過剰に目立たせる（アフィリエイト誘導に見える）表現",
-        "ALT": "不用品を手放す4つの方法の費用と手間の比較マトリクス",
-        "キャプション候補": "それぞれの方法の「費用」と「手間」のバランスを知り、状況に合わせて使い分けましょう。"
-      },
-      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 縦軸（手間がかかる〜手間なし）、横軸（費用が安い〜高い）の2軸マトリクス。4つの方法（持ち込み、粗大ごみ、ジモティー等、回収業者）の配置。目的: 4つの処分方法の特徴を「費用と手間」の2軸で直感的に比較させる。避ける表現: 不用品回収業者だけを過剰に目立たせる（アフィリエイト誘導に見える）表現。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内図解",
-      "generated": false,
-      "file_name": "how-to-dispose-inline-spectrum.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
-      "wp_title": "自力での処分をやめて不用品回収業者に任せるべき3つの境界線チェックリスト",
-      "alt": "自力での処分をやめて不用品回収業者に任せるべき3つの境界線チェックリスト",
-      "position": "H2「「自力」と「業者」の境界線は？どこからプロに任せるべきか」の直下",
-      "caption": "無理をして自力で進めると、かえって危険や出費を伴うケースがあります。",
-      "fields": {
-        "目的": "「これは業者に任せたほうがいい」という判断基準を明確にする",
-        "設置位置": "H2「「自力」と「業者」の境界線は？どこからプロに任せるべきか」の直下",
-        "伝えたい内容": "自力でやるとかえって「危険」「割高」「面倒」になる3つのデッドライン",
-        "入れたい要素": "3つのチェックボックス（①家電リサイクル対象品、②階段での大型家具搬出、③帰省費用が業者代を超える）。「1つでも当てはまるならプロを検討」というメッセージ",
-        "避けたい表現": "不安を煽るような過激なイラスト（ケガをして血が出ている等）",
-        "ALT": "自力での処分をやめて不用品回収業者に任せるべき3つの境界線チェックリスト",
-        "キャプション候補": "無理をして自力で進めると、かえって危険や出費を伴うケースがあります。"
-      },
-      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 3つのチェックボックス（①家電リサイクル対象品、②階段での大型家具搬出、③帰省費用が業者代を超える）。「1つでも当てはまるならプロを検討」というメッセージ。目的: 「これは業者に任せたほうがいい」という判断基準を明確にする。避ける表現: 不安を煽るような過激なイラスト（ケガをして血が出ている等）。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
+      "final_prompt": "画像生成AIには渡さない。1200 x 675 / 16:9 の図解として、Pillow・SVG・Canvaなどで制作。内容: 逆三角形（漏斗）の図、3つのステップ名とアイコン、下に行くほど荷物量が減っていく表現。目的: 費用を最小化する処分手順の「漏斗（ファネル）」構造を視覚的に理解させる。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴ: 本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
       "local_composition": {},
       "canva_instructions": {}
     }
   ],
+  "omitted_images": [
+    {
+      "role": "記事内図解",
+      "file_name": "how-to-dispose-inline-options-2.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "H2「不用品を手放す4つの方法（費用と手間の比較）」の直下（比較表の上）"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "how-to-dispose-inline-psychology.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "H2「「自力」と「業者」の境界線は？どこからプロに任せるべきか」の直下"
+    }
+  ],
   "quality_notes": [
-    "記事内のアイキャッチ指定を利用しています。",
-    "本文画像の枚数は適正範囲です。"
+    "ローカル合成で仕上げるためのアイキャッチ素材指定を利用しています。",
+    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
+    "lightモードのため、初回制作は2件に絞り、2件を保留しました。"
   ]
 }

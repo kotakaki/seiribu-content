@@ -1,4 +1,25 @@
 {
+  "engine": {
+    "mode": "light",
+    "mode_settings": {
+      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
+      "max_eyecatches": 1,
+      "max_inline_images": 1,
+      "compact_prompts": true,
+      "omit_canva_detail": true
+    },
+    "storage_policy": {
+      "generation_tool": "imagegen",
+      "diagram_tool": "visualize / Pillow / SVG",
+      "canva_tool": "optional_manual",
+      "draft_dir": "/private/tmp/seiribu-image-work/sell-or-dispose",
+      "final_dir": "seiribu-editorial/assets/images/sell-or-dispose",
+      "generation_rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。",
+      "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
+      "archive_root": "/private/tmp/seiribu-image-archive",
+      "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
+    }
+  },
   "article": {
     "path": "seiribu-editorial/drafts/pillars/sell-or-dispose-clean.md",
     "title": "買取不可だったものはどうする？売れない理由と処分方法",
@@ -17,16 +38,16 @@
       "generation_assets_must_not_include_logo": true,
       "logo_required_targets": [
         "アイキャッチ完成版",
-        "本文図解完成版",
         "Canva仕上げ画像"
       ],
-      "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
     },
     "local_composition": {
       "standard": true,
       "engine": "Pillow",
       "script": "seiribu-editorial/scripts/compose_eyecatch.py",
-      "eyecatch_output_size": "1200 x 630",
+      "eyecatch_output_size": "1200 x 675",
       "background": "#FAF3EA",
       "title_color": "#7A3454",
       "subtitle_color": "#24304A",
@@ -39,10 +60,12 @@
     {
       "role": "アイキャッチ",
       "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "sell-or-dispose-eyecatch.webp",
-      "size": "1200 x 630",
+      "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成素材 + ローカル合成（Pillow）",
+      "method": "背景なし画像生成素材 + ローカル合成（Pillow）",
       "wp_title": "買取不可だった不用品の処分方法と売れない理由",
       "alt": "買取不可だった不用品の処分方法と売れない理由",
       "position": "アイキャッチ",
@@ -57,7 +80,7 @@
         "ALT": "買取不可だった不用品の処分方法と売れない理由",
         "ファイル名": "sell-or-dispose-eyecatch.webp"
       },
-      "final_prompt": "Create a text-free eyecatch background and subject illustration for the Seiribu article '買取不可だったものはどうする？売れない理由と処分方法'. Aspect ratio: 16:9. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. This image will be finished later with the local Seiribu Pillow compositor, so leave calm uncluttered space for a title and logo to be added later, but do not draw any placeholder cards or panels with text. Composition: タイトル・サブタイトル・ロゴをローカル合成で載せる前提で、上部に余白を残し、下部から中央に人物や実家の物を配置するブランド型素材. Main visual: 買取業者に見送られた後、残った段ボール箱や古着を前に「さて、次はどうやって手放そうか」と前向きに考えている家族（親子）の後ろ姿や横顔. Purpose: 読者が「買取不可になっても、ちゃんと次の手があるんだ」と安心できるような表紙. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 暗く絶望している姿、ゴミ屋敷のような汚い部屋、買取業者の悪目立ち. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "final_prompt": "Text-free Seiribu eyecatch cutout material for '買取不可だったものはどうする？売れない理由と処分方法'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Main visual: 買取業者に見送られた後、残った段ボール箱や古着を前に「さて、次はどうやって手放そうか」と前向きに考えている家族（親子）の後ろ姿や横顔. Purpose: 読者が「買取不可になっても、ちゃんと次の手があるんだ」と安心できるような表紙. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Transparent background, or single flat light background for easy removal. No room, wall, floor, shadow, title area, logo area, frame. This background-free material will be finished later with the local Seiribu Pillow compositor. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 暗く絶望している姿、ゴミ屋敷のような汚い部屋、買取業者の悪目立ち. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
       "local_composition": {
         "standard": true,
         "engine": "Pillow",
@@ -67,8 +90,8 @@
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
         "logo_required": true,
         "logo_position": "左上",
-        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
-        "output_size": "1200 x 630",
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。",
+        "output_size": "1200 x 675",
         "source_material_file": "",
         "output_file": "sell-or-dispose-eyecatch.webp",
         "headline_font": "UDモトヤアポロ 太字",
@@ -76,25 +99,16 @@
         "subtitle_font": "Noto Sans JP Regular",
         "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
       },
-      "canva_instructions": {
-        "status": "optional_manual",
-        "template_url": "https://canva.link/mqlqak3adj01g1i",
-        "title": "買取不可だったものはどうする？",
-        "subtitle": "売れない理由と処分方法",
-        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
-        "logo_required": true,
-        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
-        "logo_position": "左上",
-        "headline_font": "UDモトヤアポロ 太字",
-        "subtitle_font": "Noto Sans JP Regular"
-      }
+      "canva_instructions": {}
     },
     {
       "role": "記事内イメージ",
       "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "sell-or-dispose-inline-three-boxes.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
       "method": "画像生成素材",
       "wp_title": "不用品を「自治体・寄付・業者」の3つに仕分けている風景",
       "alt": "不用品を「自治体・寄付・業者」の3つに仕分けている風景",
@@ -108,36 +122,22 @@
         "ALT": "不用品を「自治体・寄付・業者」の3つに仕分けている風景",
         "キャプション候補": "状況に合わせて、自分に一番合った手放し方を選びましょう"
       },
-      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '買取不可だったものはどうする？売れない理由と処分方法'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 「自治体のゴミ袋」「寄付用の段ボール」「業者に任せる大きな家具」などを、スッキリとした部屋で仕分けている前向きな片付けの風景. Purpose: 3つの処分方法があることを視覚的に伝え、片付けが前に進むポジティブな印象を与えること. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 複雑すぎるB2Bのような比較表や、ゴミが散乱している汚い部屋.",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内イメージ",
-      "generated": false,
-      "file_name": "sell-or-dispose-inline-three-boxes-2.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "画像生成素材",
-      "wp_title": "買取を断られても落ち込まず、次のステップへ進む家族のイラスト",
-      "alt": "買取を断られても落ち込まず、次のステップへ進む家族のイラスト",
-      "position": "本文中のCMSブリーフ位置",
-      "caption": "買取を断られる主な理由は「業者が再販できないから」です。品物のせいではありません。",
-      "fields": {
-        "目的": "読者に「自分や品物が悪いのではなく、業者のビジネス上の理由で断られる」と納得してもらうこと",
-        "読者に伝えたい感情": "買取不可だったことへの落胆を和らげ、「無価値なわけじゃないんだ」という安心感",
-        "入れたい要素": "業者が帰った後、残された荷物（古い着物や箱）を前に、親子がお茶を飲みながら「まあ、しょうがないね」と穏やかに話しているような温かいイラスト",
-        "避けたい表現": "読者を責めるような表現や、暗く落ち込んでいる絶望的な雰囲気",
-        "ALT": "買取を断られても落ち込まず、次のステップへ進む家族のイラスト",
-        "キャプション候補": "買取を断られる主な理由は「業者が再販できないから」です。品物のせいではありません。"
-      },
-      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '買取不可だったものはどうする？売れない理由と処分方法'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 業者が帰った後、残された荷物（古い着物や箱）を前に、親子がお茶を飲みながら「まあ、しょうがないね」と穏やかに話しているような温かいイラスト. Purpose: 読者に「自分や品物が悪いのではなく、業者のビジネス上の理由で断られる」と納得してもらうこと. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 読者を責めるような表現や、暗く落ち込んでいる絶望的な雰囲気.",
+      "final_prompt": "Warm text-free Seiribu editorial illustration for '買取不可だったものはどうする？売れない理由と処分方法'. Aspect ratio: 16:9. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 「自治体のゴミ袋」「寄付用の段ボール」「業者に任せる大きな家具」などを、スッキリとした部屋で仕分けている前向きな片付けの風景. Purpose: 3つの処分方法があることを視覚的に伝え、片付けが前に進むポジティブな印象を与えること. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 複雑すぎるB2Bのような比較表や、ゴミが散乱している汚い部屋. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
       "local_composition": {},
       "canva_instructions": {}
     }
   ],
+  "omitted_images": [
+    {
+      "role": "記事内イメージ",
+      "file_name": "sell-or-dispose-inline-three-boxes-2.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "本文中のCMSブリーフ位置"
+    }
+  ],
   "quality_notes": [
     "記事内のアイキャッチ指定を利用しています。",
-    "本文画像の枚数は適正範囲です。"
+    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
+    "lightモードのため、初回制作は2件に絞り、1件を保留しました。"
   ]
 }

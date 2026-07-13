@@ -1,4 +1,25 @@
 {
+  "engine": {
+    "mode": "light",
+    "mode_settings": {
+      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
+      "max_eyecatches": 1,
+      "max_inline_images": 1,
+      "compact_prompts": true,
+      "omit_canva_detail": true
+    },
+    "storage_policy": {
+      "generation_tool": "imagegen",
+      "diagram_tool": "visualize / Pillow / SVG",
+      "canva_tool": "optional_manual",
+      "draft_dir": "/private/tmp/seiribu-image-work/declutter-parents-house-frustration",
+      "final_dir": "seiribu-editorial/assets/images/declutter-parents-house-frustration",
+      "generation_rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。",
+      "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
+      "archive_root": "/private/tmp/seiribu-image-archive",
+      "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
+    }
+  },
   "article": {
     "path": "seiribu-editorial/drafts/declutter-parents-house-frustration.md",
     "title": "実家の物が多すぎてイライラする！親と喧嘩せずに片付ける具体的なステップ",
@@ -17,16 +38,16 @@
       "generation_assets_must_not_include_logo": true,
       "logo_required_targets": [
         "アイキャッチ完成版",
-        "本文図解完成版",
         "Canva仕上げ画像"
       ],
-      "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
     },
     "local_composition": {
       "standard": true,
       "engine": "Pillow",
       "script": "seiribu-editorial/scripts/compose_eyecatch.py",
-      "eyecatch_output_size": "1200 x 630",
+      "eyecatch_output_size": "1200 x 675",
       "background": "#FAF3EA",
       "title_color": "#7A3454",
       "subtitle_color": "#24304A",
@@ -39,9 +60,11 @@
     {
       "role": "アイキャッチ素材",
       "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "declutter-parents-house-frustration-eyecatch.png",
-      "size": "1536 x 1024",
-      "aspect_ratio": "3:2",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
       "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）",
       "wp_title": "実家の片付けに悩む人物",
       "alt": "実家の片付けに悩む人物",
@@ -59,7 +82,7 @@
         "ALT": "実家の片付けに悩む人物",
         "ファイル名": "declutter-parents-house-frustration-eyecatch"
       },
-      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '実家の物が多すぎてイライラする！親と喧嘩せずに片付ける具体的なステップ'. Aspect ratio: 3:2. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: ため息をついて悩む子供世代の人物、段ボール箱、虫眼鏡（査定の象徴）. Purpose: 実家の物が多くて悩む読者の痛みに共感しつつ、解決への希望を持たせる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、背景の描画、過度に暗い表情. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "final_prompt": "Text-free Seiribu eyecatch cutout asset. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Subject: ため息をついて悩む子供世代の人物、段ボール箱、虫眼鏡（査定の象徴）. Purpose: 実家の物が多くて悩む読者の痛みに共感しつつ、解決への希望を持たせる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Transparent background, or single flat light background for easy removal. No room, wall, floor, shadow, title area, logo area, frame. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、背景の描画、過度に暗い表情. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
       "local_composition": {
         "standard": true,
         "engine": "Pillow",
@@ -69,8 +92,8 @@
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
         "logo_required": true,
         "logo_position": "左上",
-        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
-        "output_size": "1200 x 630",
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。",
+        "output_size": "1200 x 675",
         "source_material_file": "declutter-parents-house-frustration-eyecatch.png",
         "output_file": "declutter-parents-house-frustration-eyecatch-branded.png",
         "headline_font": "UDモトヤアポロ 太字",
@@ -78,25 +101,16 @@
         "subtitle_font": "Noto Sans JP Regular",
         "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
       },
-      "canva_instructions": {
-        "status": "optional_manual",
-        "template_url": "https://canva.link/mqlqak3adj01g1i",
-        "title": "（※画像内には生成せず合成時に追加）",
-        "subtitle": "（※同上）",
-        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
-        "logo_required": true,
-        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
-        "logo_position": "左上",
-        "headline_font": "UDモトヤアポロ 太字",
-        "subtitle_font": "Noto Sans JP Regular"
-      }
+      "canva_instructions": {}
     },
     {
       "role": "記事内イメージ",
       "generated": false,
-      "file_name": "declutter-parents-house-frustration-inline-inline-01.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "declutter-parents-house-frustration-inline-01.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
       "method": "画像生成素材",
       "wp_title": "実家の片付けについて悩みを共有し合う人たち",
       "alt": "実家の片付けについて悩みを共有し合う人たち",
@@ -111,37 +125,22 @@
         "ALT": "実家の片付けについて悩みを共有し合う人たち",
         "キャプション候補": "実家の片付けは、多くの人が直面する共通の悩みです。"
       },
-      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '実家の物が多すぎてイライラする！親と喧嘩せずに片付ける具体的なステップ'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 頭を抱えて悩む子供世代の男女複数人が、「うちもそう！」と共感し合っている温かい雰囲気のイラスト. Purpose: 同じ悩みを抱える人が多いことを伝え、読者を安心させる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、暗く絶望的なトーン.",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内イメージ",
-      "generated": false,
-      "file_name": "declutter-parents-house-frustration-inline-inline-02.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "画像生成素材",
-      "wp_title": "勝手に物を捨てられて怒る親と子供の対立",
-      "alt": "勝手に物を捨てられて怒る親と子供の対立",
-      "position": "本文中のCMSブリーフ位置",
-      "caption": "親の所有物を無断で捨てる行為は、家族の絆を深く傷つけてしまいます。",
-      "fields": {
-        "種類": "情景イラスト",
-        "目的": "勝手な処分が引き起こす最悪の結末を視覚的に警告する",
-        "読者に伝えたい感情": "ハッとする気づき、警告",
-        "入れたい要素": "勝手にゴミ袋に物を詰める子供に対し、親がショックを受けて激怒している緊迫した雰囲気のイラスト",
-        "避けたい表現": "過度に暴力的・極端な描写、画像内へのテキスト生成",
-        "ALT": "勝手に物を捨てられて怒る親と子供の対立",
-        "キャプション候補": "親の所有物を無断で捨てる行為は、家族の絆を深く傷つけてしまいます。"
-      },
-      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '実家の物が多すぎてイライラする！親と喧嘩せずに片付ける具体的なステップ'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 勝手にゴミ袋に物を詰める子供に対し、親がショックを受けて激怒している緊迫した雰囲気のイラスト. Purpose: 勝手な処分が引き起こす最悪の結末を視覚的に警告する. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 過度に暴力的・極端な描写、画像内へのテキスト生成.",
+      "final_prompt": "Warm text-free Seiribu editorial illustration for '実家の物が多すぎてイライラする！親と喧嘩せずに片付ける具体的なステップ'. Aspect ratio: 16:9. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 頭を抱えて悩む子供世代の男女複数人が、「うちもそう！」と共感し合っている温かい雰囲気のイラスト. Purpose: 同じ悩みを抱える人が多いことを伝え、読者を安心させる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、暗く絶望的なトーン. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
       "local_composition": {},
       "canva_instructions": {}
     }
   ],
+  "omitted_images": [
+    {
+      "role": "記事内イメージ",
+      "file_name": "declutter-parents-house-frustration-inline-02.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "本文中のCMSブリーフ位置"
+    }
+  ],
   "quality_notes": [
     "ローカル合成で仕上げるためのアイキャッチ素材指定を利用しています。",
-    "本文画像の枚数は適正範囲です。"
+    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
+    "lightモードのため、初回制作は2件に絞り、1件を保留しました。"
   ]
 }

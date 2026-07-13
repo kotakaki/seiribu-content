@@ -1,4 +1,25 @@
 {
+  "engine": {
+    "mode": "light",
+    "mode_settings": {
+      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
+      "max_eyecatches": 1,
+      "max_inline_images": 1,
+      "compact_prompts": true,
+      "omit_canva_detail": true
+    },
+    "storage_policy": {
+      "generation_tool": "imagegen",
+      "diagram_tool": "visualize / Pillow / SVG",
+      "canva_tool": "optional_manual",
+      "draft_dir": "/private/tmp/seiribu-image-work/only-child",
+      "final_dir": "seiribu-editorial/assets/images/only-child",
+      "generation_rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。",
+      "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
+      "archive_root": "/private/tmp/seiribu-image-archive",
+      "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
+    }
+  },
   "article": {
     "path": "seiribu-editorial/drafts/only-child.md",
     "title": "一人っ子の実家の片付けはどう進める？親との話し合いと準備",
@@ -17,16 +38,16 @@
       "generation_assets_must_not_include_logo": true,
       "logo_required_targets": [
         "アイキャッチ完成版",
-        "本文図解完成版",
         "Canva仕上げ画像"
       ],
-      "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
     },
     "local_composition": {
       "standard": true,
       "engine": "Pillow",
       "script": "seiribu-editorial/scripts/compose_eyecatch.py",
-      "eyecatch_output_size": "1200 x 630",
+      "eyecatch_output_size": "1200 x 675",
       "background": "#FAF3EA",
       "title_color": "#7A3454",
       "subtitle_color": "#24304A",
@@ -39,9 +60,11 @@
     {
       "role": "アイキャッチ素材",
       "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "only-child-eyecatch.png",
-      "size": "1536 x 1024",
-      "aspect_ratio": "3:2",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
       "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）",
       "wp_title": "一人っ子の実家の片付け負担をプロの力で減らすイメージ",
       "alt": "一人っ子の実家の片付け負担をプロの力で減らすイメージ",
@@ -59,7 +82,7 @@
         "ALT": "一人っ子の実家の片付け負担をプロの力で減らすイメージ",
         "ファイル名": "only-child-eyecatch"
       },
-      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '一人っ子の実家の片付けはどう進める？親との話し合いと準備'. Aspect ratio: 3:2. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 悩む男女（40〜50代）、段ボールや古い家具、エプロンや制服を着た業者スタッフ、明るい光. Purpose: 記事の顔として「一人っ子が抱える孤独なプレッシャー」と「プロに頼る解決策」を直感的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、背景の描画、過度なホラーテイスト. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "final_prompt": "Text-free Seiribu eyecatch cutout asset. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Subject: 悩む男女（40〜50代）、段ボールや古い家具、エプロンや制服を着た業者スタッフ、明るい光. Purpose: 記事の顔として「一人っ子が抱える孤独なプレッシャー」と「プロに頼る解決策」を直感的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Transparent background, or single flat light background for easy removal. No room, wall, floor, shadow, title area, logo area, frame. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、背景の描画、過度なホラーテイスト. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
       "local_composition": {
         "standard": true,
         "engine": "Pillow",
@@ -69,8 +92,8 @@
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
         "logo_required": true,
         "logo_position": "左上",
-        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
-        "output_size": "1200 x 630",
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。",
+        "output_size": "1200 x 675",
         "source_material_file": "only-child-eyecatch.png",
         "output_file": "only-child-eyecatch-branded.png",
         "headline_font": "UDモトヤアポロ 太字",
@@ -78,25 +101,16 @@
         "subtitle_font": "Noto Sans JP Regular",
         "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
       },
-      "canva_instructions": {
-        "status": "optional_manual",
-        "template_url": "https://canva.link/mqlqak3adj01g1i",
-        "title": "一人っ子の実家の片付けはどう進める？親との話し合いと準備（※画像内には生成せず合成時に追加）",
-        "subtitle": "100%の負担を抱え込まないためのプロ活用術（※同上）",
-        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
-        "logo_required": true,
-        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
-        "logo_position": "左上",
-        "headline_font": "UDモトヤアポロ 太字",
-        "subtitle_font": "Noto Sans JP Regular"
-      }
+      "canva_instructions": {}
     },
     {
       "role": "記事内イメージ",
       "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "only-child-inline-psychology.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
       "method": "画像生成素材",
       "wp_title": "一人で実家の片付けの負担を抱え込む一人っ子のイメージ",
       "alt": "一人で実家の片付けの負担を抱え込む一人っ子のイメージ",
@@ -110,83 +124,34 @@
         "避けたい表現": "画像内へのテキスト（文字）の生成、ホラーテイスト",
         "ALT": "一人で実家の片付けの負担を抱え込む一人っ子のイメージ"
       },
-      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '一人っ子の実家の片付けはどう進める？親との話し合いと準備'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 山積みの段ボールや古い家具に囲まれた部屋の中央で、ため息をつきながら一人で立ち尽くす人物のイラスト. Purpose: 一人っ子が抱える孤独感とプレッシャーを視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、ホラーテイスト.",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内イメージ",
-      "generated": false,
-      "file_name": "only-child-conflict-trap.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "画像生成素材",
-      "wp_title": "片付けを巡って親と1対1で対立してしまう一人っ子のイメージ",
-      "alt": "片付けを巡って親と1対1で対立してしまう一人っ子のイメージ",
-      "position": "本文中のCMSブリーフ位置",
-      "caption": "",
-      "fields": {
-        "種類": "記事内イメージ素材",
-        "目的": "「親を説得しようとして反発される罠」を視覚的に伝える",
-        "読者に伝えたい感情": "あるある感、これやっちゃダメなんだという気づき",
-        "入れたい人物・物": "実家で言い争うように向き合う親（不満顔）と子（困り顔）、その間にある古い不用品",
-        "避けたい表現": "激しい怒りや暴力を連想させる過度なホラーテイスト、文字の生成",
-        "ALT": "片付けを巡って親と1対1で対立してしまう一人っ子のイメージ",
-        "ファイル名": "only-child-conflict-trap"
-      },
-      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '一人っ子の実家の片付けはどう進める？親との話し合いと準備'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 実家で言い争うように向き合う親（不満顔）と子（困り顔）、その間にある古い不用品. Purpose: 「親を説得しようとして反発される罠」を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 激しい怒りや暴力を連想させる過度なホラーテイスト、文字の生成.",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内図解",
-      "generated": false,
-      "file_name": "only-child-two-professionals.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
-      "wp_title": "一人っ子が味方につけるべき2種類のプロ",
-      "alt": "一人っ子が味方につけるべき2種類のプロ（出張買取業者と不用品回収業者）",
-      "position": "本文中のCMSブリーフ位置",
-      "caption": "",
-      "fields": {
-        "種類": "記事内図解",
-        "目的": "「価値を判定する買取業者」と「ゴミを一掃する回収業者」の役割の違いを明確にする",
-        "伝えたい内容": "左側に「出張買取業者（価値を査定する）」、右側に「不用品回収業者（一気に搬出する）」の2軸",
-        "指示": "図解レイアウト用素材。業者の人物イラストとアイコン程度のシンプルで明るいもの。AIに文字は生成させない。",
-        "ALT": "一人っ子が味方につけるべき2種類のプロ（出張買取業者と不用品回収業者）",
-        "ファイル名": "only-child-two-professionals"
-      },
-      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 左側に「出張買取業者（価値を査定する）」、右側に「不用品回収業者（一気に搬出する）」の2軸。目的: 「価値を判定する買取業者」と「ゴミを一掃する回収業者」の役割の違いを明確にする。避ける表現: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
-      "local_composition": {},
-      "canva_instructions": {}
-    },
-    {
-      "role": "記事内図解",
-      "generated": false,
-      "file_name": "only-child-3steps-flow.png",
-      "size": "1200 x 800",
-      "aspect_ratio": "3:2",
-      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
-      "wp_title": "買取の利益で回収費用を相殺する実家の片付け3ステップ",
-      "alt": "買取の利益で回収費用を相殺する実家の片付け3ステップ",
-      "position": "本文中のCMSブリーフ位置",
-      "caption": "",
-      "fields": {
-        "種類": "記事内図解",
-        "目的": "買取の利益で回収費用を相殺する「片付け3ステップ」の全体像を直感的に理解させる",
-        "伝えたい内容": "1.重要書類の確保 → 2.出張買取（軍資金ゲット） → 3.不用品回収（相殺して安く処分）の流れ",
-        "指示": "フロー図用素材。AIには文字を生成させない。ステップ1,2,3を示すアイコン要素（書類、買取の現金、トラック等）。",
-        "ALT": "買取の利益で回収費用を相殺する実家の片付け3ステップ",
-        "ファイル名": "only-child-3steps-flow"
-      },
-      "final_prompt": "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。最終サイズ: 1200 x 800。アスペクト比: 3:2。入れる内容: 1.重要書類の確保 → 2.出張買取（軍資金ゲット） → 3.不用品回収（相殺して安く処分）の流れ。目的: 買取の利益で回収費用を相殺する「片付け3ステップ」の全体像を直感的に理解させる。避ける表現: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。",
+      "final_prompt": "Warm text-free Seiribu editorial illustration for '一人っ子の実家の片付けはどう進める？親との話し合いと準備'. Aspect ratio: 16:9. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 山積みの段ボールや古い家具に囲まれた部屋の中央で、ため息をつきながら一人で立ち尽くす人物のイラスト. Purpose: 一人っ子が抱える孤独感とプレッシャーを視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、ホラーテイスト. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
       "local_composition": {},
       "canva_instructions": {}
     }
   ],
+  "omitted_images": [
+    {
+      "role": "記事内イメージ",
+      "file_name": "only-child-conflict-trap.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内図解",
+      "file_name": "only-child-two-professionals.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内図解",
+      "file_name": "only-child-3steps-flow.png",
+      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
+      "position": "本文中のCMSブリーフ位置"
+    }
+  ],
   "quality_notes": [
     "ローカル合成で仕上げるためのアイキャッチ素材指定を利用しています。",
-    "本文画像が多めです。公開時は重要な2〜3枚に絞ることも検討してください。"
+    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
+    "lightモードのため、初回制作は2件に絞り、3件を保留しました。"
   ]
 }
