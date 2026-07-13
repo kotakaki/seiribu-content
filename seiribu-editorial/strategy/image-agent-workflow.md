@@ -132,6 +132,22 @@ ALTテキスト:
 
 ### 3. 画像素材を生成する
 
+標準の画像生成ツールはCodexの `imagegen` スキルです。imagegenでは、完成画像ではなく、文字・ロゴなしの素材候補を作ります。日本語ラベルを正確に置く図解、比較表、チャートは `visualize`、Pillow、SVGなど、文字とレイアウトを制御できる方法で作ります。
+
+生成候補は、最初から `assets/images/...` に置きません。記事スラッグごとに `/private/tmp/seiribu-image-work/<article-slug>/` を作業置き場として使い、QAを通った採用画像だけを `assets/images/<article-slug>/` に移します。
+
+生成候補が複数できた場合、公開用フォルダへ残すのは採用品だけです。比較用の旧版、背景抜き前の素材、クロマキー素材、不採用品は `/private/tmp/seiribu-image-archive/` へ退避します。退避前には必ずドライランで確認します。
+
+```bash
+python scripts/clean_image_assets.py --article <article-slug> --dry-run
+```
+
+実際に退避するときだけ、以下を実行します。
+
+```bash
+python scripts/clean_image_assets.py --article <article-slug> --apply
+```
+
 画像生成AIは、背景、人物、物、小物アイコンなどのビジュアル素材だけを作ります。文字、ロゴ、フォント、表、矢印、日本語ラベルは作りません。
 
 ユーザーが「Canvaで整える」「背景なし」「画像素材だけ」と指定した場合も、生成AIには背景、タイトル、ロゴ、床、壁、影を入れない切り抜き素材だけを作らせます。完成版のタイトルとロゴは、標準ではローカル合成で入れます。
@@ -274,6 +290,8 @@ ALTテキスト:
 | rejected | 不採用画像。公開用フォルダから外し、必要なら `/private/tmp` へ退避 | 記載しない |
 
 画像生成AIの出力は、最初から `final` に置きません。まず `source` または `draft` として扱い、文字混入、ロゴ混入、背景混入、既存画像との構図流用を確認したうえで、合格したものだけ `final` に昇格します。最終的に公開フォルダに残すのは、記事で使う画像だけです。候補画像や不採用画像を残すと、次回のエージェントがそれを採用品と誤認しやすくなります。
+
+公開用フォルダに残す画像は、各 `assets/images/<article-slug>/README.md` の「推奨画像」または「完成画像」に載せる画像を基準にします。`scripts/clean_image_assets.py` は、この採用品セクションに載っていない画像を退避候補として検出します。README内の素材画像も一時的に残したい場合は、`--keep-all-readme-references` を付けて慎重に確認します。
 
 ## 生成前QA
 

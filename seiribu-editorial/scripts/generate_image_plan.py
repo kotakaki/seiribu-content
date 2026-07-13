@@ -329,6 +329,32 @@ def local_composition_config(config: dict[str, Any]) -> dict[str, Any]:
     return config.get("local_composition", {})
 
 
+def generation_tool_config(config: dict[str, Any]) -> dict[str, Any]:
+    return config.get("generation_tool", {})
+
+
+def asset_retention_config(config: dict[str, Any]) -> dict[str, Any]:
+    return config.get("asset_retention", {})
+
+
+def image_storage_policy(meta: ArticleMeta, config: dict[str, Any]) -> dict[str, str]:
+    generation = generation_tool_config(config)
+    retention = asset_retention_config(config)
+    draft_root = generation.get("draft_root", "/private/tmp/seiribu-image-work")
+    final_root = generation.get("final_root", "seiribu-editorial/assets/images")
+    return {
+        "generation_tool": generation.get("primary", "imagegen"),
+        "diagram_tool": generation.get("diagram", "visualize / Pillow / SVG"),
+        "canva_tool": generation.get("canva", "optional_manual"),
+        "draft_dir": f"{draft_root.rstrip('/')}/{meta.slug}",
+        "final_dir": f"{final_root.rstrip('/')}/{meta.slug}",
+        "generation_rule": generation.get("rule", ""),
+        "public_assets_policy": retention.get("public_assets_policy", ""),
+        "archive_root": retention.get("archive_root", "/private/tmp/seiribu-image-archive"),
+        "archive_script": retention.get("archive_script", "seiribu-editorial/scripts/clean_image_assets.py"),
+    }
+
+
 def mode_settings(config: dict[str, Any], mode: str) -> dict[str, Any]:
     return config.get("modes", {}).get(mode, {})
 
@@ -678,6 +704,7 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
     active = active_briefs(briefs)
     omitted = omitted_briefs(briefs)
     settings = mode_settings(config, mode)
+    storage = image_storage_policy(meta, config)
     lines: list[str] = [
         f"# 画像制作プラン: {meta.title}",
         "",
@@ -691,6 +718,11 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
         f"- Canvaテンプレ: {config.get('canva_template_url', '未設定')}（任意・手動微調整）",
         f"- ロゴ: `{config.get('logo_path', '')}`",
         f"- 完成版ロゴ必須: {'はい' if brand_signature(config).get('required_in_final_outputs', True) else 'いいえ'}",
+        f"- 画像生成ツール: {storage['generation_tool']}",
+        f"- 図解レイアウトツール: {storage['diagram_tool']}",
+        f"- 生成候補の一時置き場: `{storage['draft_dir']}`",
+        f"- 採用画像の公開用置き場: `{storage['final_dir']}`",
+        f"- 画像掃除スクリプト: `{storage['archive_script']}`",
         "",
         "## 判定サマリー",
         "",
@@ -781,6 +813,8 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
         "- ロゴとタイトルは標準ではローカル合成（Pillow）、必要に応じてSVGやCanvaの手動微調整で配置する。",
         "- アイキャッチ完成版と本文図解完成版では、セイリ部ロゴを必ず小さなブランド署名として配置する。",
         "- 暗い遺品整理、ゴミ屋敷、高額査定広告の印象を避ける。",
+        f"- imagegenの生成候補は `{storage['draft_dir']}` に置き、採用画像だけ `{storage['final_dir']}` に移す。",
+        f"- 公開用フォルダに残った候補や旧版は `{storage['archive_script']} --article {meta.slug} --dry-run` で確認してから退避する。",
         "",
     ]
     return "\n".join(lines)
@@ -792,6 +826,7 @@ def json_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str, Any
         "engine": {
             "mode": mode,
             "mode_settings": mode_settings(config, mode),
+            "storage_policy": image_storage_policy(meta, config),
         },
         "article": {
             "path": relpath(meta.path),

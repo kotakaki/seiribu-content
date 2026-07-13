@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
+import clean_image_assets
 import generate_image_plan as image_plan
 
 
@@ -149,6 +151,13 @@ def check_light_mode_keeps_first_pass_small(config: dict) -> None:
 
     plan = image_plan.json_plan(meta, briefs, config, mode="light")
     assert plan["engine"]["mode"] == "light", plan["engine"]
+    storage = plan["engine"]["storage_policy"]
+    assert storage["generation_tool"] == "imagegen", storage
+    assert storage["diagram_tool"] == "visualize / Pillow / SVG", storage
+    assert storage["draft_dir"].endswith("/fixture"), storage
+    assert storage["final_dir"].endswith("/assets/images/fixture"), storage
+    assert storage["archive_root"] == "/private/tmp/seiribu-image-archive", storage
+    assert storage["archive_script"].endswith("clean_image_assets.py"), storage
     assert len(plan["images"]) == 2, plan["images"]
     assert all(image["included"] is True for image in plan["images"]), plan["images"]
     assert len(plan["omitted_images"]) == 2, plan["omitted_images"]
@@ -233,6 +242,95 @@ def check_duplicate_file_names_are_disambiguated(config: dict) -> None:
     assert any(name.endswith("-2.png") for name in file_names), file_names
 
 
+def check_cleanup_finds_non_recommended_assets() -> None:
+    with TemporaryDirectory() as tmp:
+        tmp_root = Path(tmp)
+        image_root = tmp_root / "assets" / "images"
+        article_dir = image_root / "sample-article"
+        article_dir.mkdir(parents=True)
+        (article_dir / "README.md").write_text(
+            """# sample
+
+## 推奨画像
+
+| 用途 | ファイル |
+| --- | --- |
+| アイキャッチ | `keep.png` |
+
+## 素材画像
+
+| 用途 | ファイル |
+| --- | --- |
+| 生成素材 | `material.png` |
+""",
+            encoding="utf-8",
+        )
+        for name in ["keep.png", "material.png", "old-v2.png"]:
+            (article_dir / name).touch()
+
+        reports = clean_image_assets.build_reports(
+            image_root,
+            tmp_root / "archive",
+            "test-run",
+            article="sample-article",
+        )
+        [report] = reports
+        candidate_names = {candidate.source.name for candidate in report.candidates}
+
+        assert {path.name for path in report.kept} == {"keep.png"}, report
+        assert candidate_names == {"material.png", "old-v2.png"}, candidate_names
+
+        cautious_reports = clean_image_assets.build_reports(
+            image_root,
+            tmp_root / "archive",
+            "test-run",
+            article="sample-article",
+            keep_all_readme_references=True,
+        )
+        [cautious_report] = cautious_reports
+        cautious_candidate_names = {candidate.source.name for candidate in cautious_report.candidates}
+
+        assert {path.name for path in cautious_report.kept} == {"keep.png", "material.png"}, cautious_report
+        assert cautious_candidate_names == {"old-v2.png"}, cautious_candidate_names
+
+
+def check_cleanup_accepts_completed_image_sections() -> None:
+    with TemporaryDirectory() as tmp:
+        tmp_root = Path(tmp)
+        image_root = tmp_root / "assets" / "images"
+        article_dir = image_root / "completed-article"
+        article_dir.mkdir(parents=True)
+        (article_dir / "README.md").write_text(
+            """# sample
+
+## 完成画像
+
+| 用途 | ファイル |
+| --- | --- |
+| アイキャッチ | `final.webp` |
+
+## 素材・生成ファイル
+
+| 用途 | ファイル |
+| --- | --- |
+| 生成素材 | `source.png` |
+""",
+            encoding="utf-8",
+        )
+        for name in ["final.webp", "source.png"]:
+            (article_dir / name).touch()
+
+        [report] = clean_image_assets.build_reports(
+            image_root,
+            Path("/private/tmp/seiribu-image-archive"),
+            "test-run",
+            article="completed-article",
+        )
+
+        assert {path.name for path in report.kept} == {"final.webp"}, report
+        assert {candidate.source.name for candidate in report.candidates} == {"source.png"}, report
+
+
 def main() -> None:
     config = load_config()
     check_missing_eyecatch_is_not_auto_generated(config)
@@ -243,6 +341,8 @@ def main() -> None:
     check_diagram_asset_can_be_generated(config)
     check_scene_illustration_is_not_misclassified_as_diagram(config)
     check_duplicate_file_names_are_disambiguated(config)
+    check_cleanup_finds_non_recommended_assets()
+    check_cleanup_accepts_completed_image_sections()
     print("image flow regression checks passed")
 
 

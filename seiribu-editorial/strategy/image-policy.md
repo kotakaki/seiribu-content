@@ -114,6 +114,16 @@ WordPressのアイキャッチは、まず以下を基準にします。
 
 READMEや画像制作プランには、`final` として使う画像だけを掲載します。試作や不採用画像を公開フォルダに混ぜないようにします。
 
+imagegenで作る候補画像は、原則 `/private/tmp/seiribu-image-work/<article-slug>/` に置きます。日本語ラベル入りの図解や比較表は `visualize`、Pillow、SVGなどで作り、同じく一時置き場で確認してから採用画像だけを `assets/images/<article-slug>/` に移します。
+
+過去候補が公開用フォルダに貯まってきたら、まず以下で退避候補を確認します。
+
+```bash
+python scripts/clean_image_assets.py --article <article-slug> --dry-run
+```
+
+確認後、実際に退避する場合だけ `--apply` を付けます。退避先は `/private/tmp/seiribu-image-archive/` で、ファイルは削除しません。複数記事をまとめて退避する場合は、ドライランで確認したあとに限り `--all --apply` を使います。
+
 ## トーン
 
 - やさしい

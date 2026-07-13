@@ -3,6 +3,19 @@
   "canva_template_url": "https://canva.link/mqlqak3adj01g1i",
   "canva_mode": "optional_manual",
   "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+  "generation_tool": {
+    "primary": "imagegen",
+    "diagram": "visualize / Pillow / SVG",
+    "canva": "optional_manual",
+    "draft_root": "/private/tmp/seiribu-image-work",
+    "final_root": "seiribu-editorial/assets/images",
+    "rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。"
+  },
+  "asset_retention": {
+    "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
+    "archive_root": "/private/tmp/seiribu-image-archive",
+    "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
+  },
   "default_mode": "light",
   "modes": {
     "light": {
