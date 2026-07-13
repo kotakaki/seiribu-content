@@ -35,7 +35,7 @@
     "standard": true,
     "engine": "Pillow",
     "script": "seiribu-editorial/scripts/compose_eyecatch.py",
-    "eyecatch_output_size": "1200 x 630",
+    "eyecatch_output_size": "1200 x 675",
     "background": "#FAF3EA",
     "title_color": "#7A3454",
     "subtitle_color": "#24304A",
@@ -48,10 +48,10 @@
     "generation_assets_must_not_include_logo": true,
     "logo_required_targets": [
       "アイキャッチ完成版",
-      "本文図解完成版",
       "Canva仕上げ画像"
     ],
-    "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+    "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
+    "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
   },
   "reference_paths": [
     "seiribu-editorial/assets/images/brand/references/seiribu-brand-reference-01.png",
@@ -60,7 +60,7 @@
     "seiribu-editorial/assets/images/brand/references/seiribu-brand-reference-04.png"
   ],
   "eyecatch": {
-    "size": "1200 x 630",
+    "size": "1200 x 675",
     "aspect_ratio": "16:9",
     "layout": "タイトル・サブタイトル・ロゴをローカル合成で載せる前提で、上部に余白を残し、下部から中央に人物や実家の物を配置するブランド型素材",
     "headline_font": "UDモトヤアポロ 太字",
@@ -74,19 +74,19 @@
     ]
   },
   "eyecatch_material": {
-    "size": "1536 x 1024",
-    "aspect_ratio": "3:2",
+    "size": "1200 x 675",
+    "aspect_ratio": "16:9",
     "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）"
   },
   "inline_diagram": {
-    "size": "1200 x 800",
-    "aspect_ratio": "3:2",
-    "logo_position": "右下",
+    "size": "1200 x 675",
+    "aspect_ratio": "16:9",
+    "logo_policy": "標準ではロゴなし。明示依頼がある場合だけ後工程で右下などの余白に小さく配置する。",
     "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る"
   },
   "inline_image": {
-    "size": "1200 x 800",
-    "aspect_ratio": "3:2",
+    "size": "1200 x 675",
+    "aspect_ratio": "16:9",
     "method": "画像生成素材"
   },
   "diagram_asset": {
@@ -95,8 +95,8 @@
     "method": "図解用小物素材"
   },
   "photo_material": {
-    "size": "1200 x 800",
-    "aspect_ratio": "3:2",
+    "size": "1200 x 675",
+    "aspect_ratio": "16:9",
     "method": "写真風生成素材"
   },
   "generation_style": {

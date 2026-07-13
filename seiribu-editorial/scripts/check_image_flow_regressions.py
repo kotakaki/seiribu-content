@@ -57,8 +57,8 @@ def check_canva_material_role(config: dict) -> None:
     [result] = image_plan.enrich_briefs(meta, [brief], config, mode="standard")
 
     assert result.role == "アイキャッチ素材", result.role
-    assert result.size == "1536 x 1024", result.size
-    assert result.aspect_ratio == "3:2", result.aspect_ratio
+    assert result.size == "1200 x 675", result.size
+    assert result.aspect_ratio == "16:9", result.aspect_ratio
     assert result.file_name == "fixture-cutout.png", result.file_name
     assert result.local_composition["engine"] == "Pillow", result.local_composition
     assert result.local_composition["logo_required"] is True, result.local_composition
@@ -68,7 +68,7 @@ def check_canva_material_role(config: dict) -> None:
     assert "Do not include a room, wall, floor" in result.final_prompt, result.final_prompt
     assert "Do not reuse" in result.final_prompt, result.final_prompt
     assert result.canva_instructions["logo_required"] is True, result.canva_instructions
-    assert "完成版にはセイリ部ロゴを必ず" in result.canva_instructions["logo_rule"], result.canva_instructions
+    assert "アイキャッチ完成版とCanva仕上げ画像" in result.canva_instructions["logo_rule"], result.canva_instructions
 
 
 def check_regular_eyecatch_has_generation_limits(config: dict) -> None:
@@ -90,13 +90,17 @@ def check_regular_eyecatch_has_generation_limits(config: dict) -> None:
     [result] = image_plan.enrich_briefs(meta, [brief], config, mode="standard")
 
     assert result.role == "アイキャッチ", result.role
-    assert result.method == "画像生成素材 + ローカル合成（Pillow）", result.method
+    assert result.method == "背景なし画像生成素材 + ローカル合成（Pillow）", result.method
+    assert result.size == "1200 x 675", result.size
     assert result.aspect_ratio == "16:9", result.aspect_ratio
     assert result.local_composition["engine"] == "Pillow", result.local_composition
+    assert result.local_composition["output_size"] == "1200 x 675", result.local_composition
     assert result.local_composition["logo_required"] is True, result.local_composition
     prompt = result.final_prompt.lower()
     assert "no text" in prompt, result.final_prompt
     assert "no logo" in prompt, result.final_prompt
+    assert "background-free" in prompt, result.final_prompt
+    assert "Do not include a room, wall, floor" in result.final_prompt, result.final_prompt
     assert "finished later with the local Seiribu Pillow compositor" in result.final_prompt, result.final_prompt
     assert result.canva_instructions["logo_required"] is True, result.canva_instructions
 
@@ -145,6 +149,8 @@ def check_light_mode_keeps_first_pass_small(config: dict) -> None:
     assert "Purpose:" in active[0].final_prompt, active[0].final_prompt
     assert "Tone:" in active[0].final_prompt, active[0].final_prompt
     assert "Do not reuse composition, character placement, object placement, or background concept" in active[0].final_prompt, active[0].final_prompt
+    assert active[1].size == "1200 x 675", active[1].size
+    assert active[1].aspect_ratio == "16:9", active[1].aspect_ratio
 
     notes = image_plan.quality_notes(briefs, mode="light")
     assert "lightモードのため、初回制作は2件に絞り、2件を保留しました。" in notes, notes
@@ -179,9 +185,11 @@ def check_diagram_is_not_image_generation_prompt(config: dict) -> None:
     [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config, mode="standard")
 
     assert result.role == "記事内図解", result.role
-    assert result.aspect_ratio == "3:2", result.aspect_ratio
+    assert result.size == "1200 x 675", result.size
+    assert result.aspect_ratio == "16:9", result.aspect_ratio
     assert "画像生成AIには渡さない" in result.final_prompt, result.final_prompt
     assert "自治体、寄付、不用品回収業者の比較表" in result.final_prompt, result.final_prompt
+    assert "本文画像・本文図解は標準ではロゴなし" in result.final_prompt, result.final_prompt
 
 
 def check_diagram_asset_can_be_generated(config: dict) -> None:
@@ -222,6 +230,8 @@ def check_scene_illustration_is_not_misclassified_as_diagram(config: dict) -> No
     [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config, mode="standard")
 
     assert result.role == "記事内イメージ", result.role
+    assert result.size == "1200 x 675", result.size
+    assert result.aspect_ratio == "16:9", result.aspect_ratio
     assert "Create a warm text-free editorial illustration" in result.final_prompt, result.final_prompt
 
 

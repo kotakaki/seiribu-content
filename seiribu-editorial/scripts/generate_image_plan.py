@@ -325,6 +325,18 @@ def brand_signature(config: dict[str, Any]) -> dict[str, Any]:
     return config.get("brand_signature", {})
 
 
+def logo_required_targets(config: dict[str, Any]) -> list[str]:
+    targets = brand_signature(config).get("logo_required_targets", [])
+    return [str(target) for target in targets]
+
+
+def non_eyecatch_logo_rule(config: dict[str, Any]) -> str:
+    return brand_signature(config).get(
+        "non_eyecatch_default",
+        "本文画像・本文図解は標準ではロゴなし。明示依頼がある場合だけ後工程で小さく配置する。",
+    )
+
+
 def local_composition_config(config: dict[str, Any]) -> dict[str, Any]:
     return config.get("local_composition", {})
 
@@ -419,7 +431,7 @@ def build_local_composition(block: ImageBrief, meta: ArticleMeta, config: dict[s
         "logo_required": brand_signature(config).get("required_in_final_outputs", True),
         "logo_position": composition.get("logo_position", config["eyecatch"].get("logo_position", "左上")),
         "logo_rule": brand_signature(config).get("rule", ""),
-        "output_size": composition.get("eyecatch_output_size", config["eyecatch"].get("size", "1200 x 630")),
+        "output_size": composition.get("eyecatch_output_size", config["eyecatch"].get("size", "1200 x 675")),
         "source_material_file": block.file_name if block.role == "アイキャッチ素材" else "",
         "output_file": f"{meta.slug}-eyecatch-branded.png" if block.role == "アイキャッチ素材" else block.file_name,
         "headline_font": config["eyecatch"].get("headline_font", ""),
@@ -441,7 +453,8 @@ def compact_prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, A
         return (
             f"画像生成AIには渡さない。{block.size} / {block.aspect_ratio} の図解として、Pillow・SVG・Canvaなどで制作。"
             f"内容: {labels}。目的: {block.fields.get('目的', '')}。"
-            "日本語ラベル、表、矢印、ロゴは後工程で正確に配置する。"
+            "日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。"
+            f"ロゴ: {non_eyecatch_logo_rule(config)}"
         )
 
     if block.role == "アイキャッチ素材":
@@ -456,10 +469,12 @@ def compact_prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, A
 
     if block.role == "アイキャッチ":
         return (
-            f"Text-free Seiribu eyecatch illustration for '{meta.title}'. Aspect ratio: {block.aspect_ratio}. "
-            f"Style: {generation_style(config, 'illustration')}. Main visual: {visual}. "
+            f"Text-free Seiribu eyecatch cutout material for '{meta.title}'. Aspect ratio: {block.aspect_ratio}. "
+            f"Style: {generation_style(config, 'cutout')}. Main visual: {visual}. "
             f"Purpose: {purpose}. Tone: {generation_tone(config)}. "
-            "Leave calm space for local title/logo composition; do not draw text panels. "
+            "Transparent background, or single flat light background for easy removal. "
+            "No room, wall, floor, shadow, title area, logo area, frame. "
+            "This background-free material will be finished later with the local Seiribu Pillow compositor. "
             f"Avoid: {forbidden}; {avoid}. {reuse_guard}"
         )
 
@@ -510,11 +525,12 @@ def prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any], mod
         )
     if block.role == "アイキャッチ":
         return (
-            f"Create a text-free eyecatch background and subject illustration for the Seiribu article '{meta.title}'. "
+            f"Create a text-free background-free eyecatch illustration material for the Seiribu article '{meta.title}'. "
             f"Aspect ratio: {block.aspect_ratio}. "
-            f"Style: {generation_style(config, 'illustration')}. "
-            "This image will be finished later with the local Seiribu Pillow compositor, so leave calm uncluttered space for a title and logo to be added later, but do not draw any placeholder cards or panels with text. "
-            f"Composition: {block.fields.get('構図', config['eyecatch']['layout'])}. "
+            f"Style: {generation_style(config, 'cutout')}. "
+            "Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. "
+            "Do not include a room, wall, floor, cast shadow, title area, logo area, decorative frame, placeholder card, or text panel. "
+            "This background-free material will be finished later with the local Seiribu Pillow compositor. "
             f"Main visual: {brief_visual(block)}. "
             f"Purpose: {block.fields.get('目的', '')}. "
             f"Tone: {generation_tone(config)}. "
@@ -530,7 +546,8 @@ def prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any], mod
             f"入れる内容: {labels}。"
             f"目的: {block.fields.get('目的', '')}。"
             f"避ける表現: {block.fields.get('避けたい表現', avoid)}。"
-            "日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴは右下などの余白に小さく配置し、本文ラベルを邪魔しない。"
+            "日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。"
+            f"ロゴ: {non_eyecatch_logo_rule(config)}"
         )
     if block.role == "図解用小物素材":
         return (
@@ -581,8 +598,8 @@ def enrich_briefs(
         block.role = infer_role(block)
         if block.role == "アイキャッチ素材":
             block.method = config.get("eyecatch_material", {}).get("method", "画像生成素材 + 背景透過（ローカル合成で仕上げ）")
-            block.size = config.get("eyecatch_material", {}).get("size", "1536 x 1024")
-            block.aspect_ratio = config.get("eyecatch_material", {}).get("aspect_ratio", "3:2")
+            block.size = config.get("eyecatch_material", {}).get("size", "1200 x 675")
+            block.aspect_ratio = config.get("eyecatch_material", {}).get("aspect_ratio", "16:9")
             block.file_name = ensure_png_filename(
                 block.fields.get("ファイル名") or f"{meta.slug}-eyecatch-cutout.png"
             )
@@ -600,7 +617,7 @@ def enrich_briefs(
                 "subtitle_font": config["eyecatch"].get("subtitle_font", ""),
             }
         elif block.role == "アイキャッチ":
-            block.method = "画像生成素材 + ローカル合成（Pillow）"
+            block.method = "背景なし画像生成素材 + ローカル合成（Pillow）"
             block.size = config["eyecatch"]["size"]
             block.aspect_ratio = config["eyecatch"].get("aspect_ratio", "16:9")
             block.file_name = ensure_png_filename(
@@ -623,7 +640,7 @@ def enrich_briefs(
             inline_count += 1
             block.method = config["inline_diagram"]["method"]
             block.size = config["inline_diagram"]["size"]
-            block.aspect_ratio = config["inline_diagram"].get("aspect_ratio", "3:2")
+            block.aspect_ratio = config["inline_diagram"].get("aspect_ratio", "16:9")
             block.file_name = ensure_png_filename(
                 block.fields.get("ファイル名") or f"{meta.slug}-inline-{infer_suffix(block)}.png"
             )
@@ -640,8 +657,8 @@ def enrich_briefs(
             inline_count += 1
             material_config = config.get("photo_material", {}) if block.role == "写真風素材" else config.get("inline_image", {})
             block.method = material_config.get("method", "画像生成素材")
-            block.size = material_config.get("size", "1200 x 800")
-            block.aspect_ratio = material_config.get("aspect_ratio", "3:2")
+            block.size = material_config.get("size", "1200 x 675")
+            block.aspect_ratio = material_config.get("aspect_ratio", "16:9")
             suffix = "photo" if block.role == "写真風素材" else f"inline-{infer_suffix(block)}"
             block.file_name = ensure_png_filename(block.fields.get("ファイル名") or f"{meta.slug}-{suffix}.png")
 
@@ -717,7 +734,8 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
         f"- 標準仕上げ: ローカル合成（{local_composition_config(config).get('engine', 'Pillow')}）",
         f"- Canvaテンプレ: {config.get('canva_template_url', '未設定')}（任意・手動微調整）",
         f"- ロゴ: `{config.get('logo_path', '')}`",
-        f"- 完成版ロゴ必須: {'はい' if brand_signature(config).get('required_in_final_outputs', True) else 'いいえ'}",
+        f"- ロゴ必須対象: {', '.join(logo_required_targets(config)) or '未設定'}",
+        f"- 本文画像のロゴ: {non_eyecatch_logo_rule(config)}",
         f"- 画像生成ツール: {storage['generation_tool']}",
         f"- 図解レイアウトツール: {storage['diagram_tool']}",
         f"- 生成候補の一時置き場: `{storage['draft_dir']}`",
@@ -810,8 +828,9 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
     lines += [
         "- 画像生成AIに文字、日本語ラベル、ロゴ、透かし、看板を描かせない。",
         "- 日本語ラベルがある図解は、画像生成AIに文字を任せずレイアウト生成で作る。",
-        "- ロゴとタイトルは標準ではローカル合成（Pillow）、必要に応じてSVGやCanvaの手動微調整で配置する。",
-        "- アイキャッチ完成版と本文図解完成版では、セイリ部ロゴを必ず小さなブランド署名として配置する。",
+        "- アイキャッチのロゴとタイトルは標準ではローカル合成（Pillow）、必要に応じてSVGやCanvaの手動微調整で配置する。",
+        f"- ロゴ必須対象: {', '.join(logo_required_targets(config)) or '未設定'}。",
+        f"- 本文画像・本文図解のロゴ: {non_eyecatch_logo_rule(config)}",
         "- 暗い遺品整理、ゴミ屋敷、高額査定広告の印象を避ける。",
         f"- imagegenの生成候補は `{storage['draft_dir']}` に置き、採用画像だけ `{storage['final_dir']}` に移す。",
         f"- 公開用フォルダに残った候補や旧版は `{storage['archive_script']} --article {meta.slug} --dry-run` で確認してから退避する。",
