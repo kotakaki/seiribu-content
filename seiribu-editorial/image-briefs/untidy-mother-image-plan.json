@@ -1,0 +1,147 @@
+{
+  "article": {
+    "path": "seiribu-editorial/drafts/untidy-mother.md",
+    "title": "実家の片付けが進まない！物を捨てない母親が逆ギレする理由と対処法",
+    "slug": "untidy-mother",
+    "main_kw": "実家 片付け 母親 片付けられない (関連: 母親 捨てるの嫌がる 逆ギレ)",
+    "target_reader": "実家の片付けをしようと提案しても、母親が「もったいない」「捨てないで」と逆ギレしたり拒否したりして進まず、精神的・肉体的に疲弊している子供世代。",
+    "search_intent": "母親を怒らせずに片付ける方法、どうしても片付けられない時の最終手段、どうしてあんなに物を溜め込むのかという心理への理解と解決策を知りたい。"
+  },
+  "brand": {
+    "name": "セイリ部",
+    "canva_template_url": "https://canva.link/mqlqak3adj01g1i",
+    "canva_mode": "optional_manual",
+    "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+    "brand_signature": {
+      "required_in_final_outputs": true,
+      "generation_assets_must_not_include_logo": true,
+      "logo_required_targets": [
+        "アイキャッチ完成版",
+        "本文図解完成版",
+        "Canva仕上げ画像"
+      ],
+      "rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。"
+    },
+    "local_composition": {
+      "standard": true,
+      "engine": "Pillow",
+      "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+      "eyecatch_output_size": "1200 x 630",
+      "background": "#FAF3EA",
+      "title_color": "#7A3454",
+      "subtitle_color": "#24304A",
+      "logo_width": 160,
+      "logo_position": "左上",
+      "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+    }
+  },
+  "images": [
+    {
+      "role": "アイキャッチ素材",
+      "generated": false,
+      "file_name": "untidy-mother-eyecatch.png",
+      "size": "1536 x 1024",
+      "aspect_ratio": "3:2",
+      "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）",
+      "wp_title": "片付けで逆ギレする母親と困る子供",
+      "alt": "片付けで逆ギレする母親と困る子供",
+      "position": "アイキャッチ合成用素材",
+      "caption": "",
+      "fields": {
+        "種類": "アイキャッチ素材（文字や背景を含まない、人物と小物のイラスト素材のみ）",
+        "目的": "実家の片付けで対立する親子と、第三者の介入による解決の期待感を示すため",
+        "読者に伝えたい感情": "親子の対立のリアルさと、解決に向けた前向きな気持ち",
+        "構図": "困り顔の子供と少し怒った顔の母親が向き合い、その傍らに段ボール箱がある構成",
+        "入れたい人物・物": "高齢の母親、悩む子供世代、段ボールや散らかった小物",
+        "避けたい表現": "画像内へのテキスト（文字）の生成、背景の描画、深刻すぎる殺伐とした雰囲気",
+        "タイトル文言": "（※画像内には生成せず合成時に追加）",
+        "サブタイトル文言": "（※同上）",
+        "ALT": "片付けで逆ギレする母親と困る子供",
+        "ファイル名": "untidy-mother-eyecatch"
+      },
+      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '実家の片付けが進まない！物を捨てない母親が逆ギレする理由と対処法'. Aspect ratio: 3:2. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 高齢の母親、悩む子供世代、段ボールや散らかった小物. Purpose: 実家の片付けで対立する親子と、第三者の介入による解決の期待感を示すため. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、背景の描画、深刻すぎる殺伐とした雰囲気. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "local_composition": {
+        "standard": true,
+        "engine": "Pillow",
+        "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+        "title": "（※画像内には生成せず合成時に追加）",
+        "subtitle": "（※同上）",
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_position": "左上",
+        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
+        "output_size": "1200 x 630",
+        "source_material_file": "untidy-mother-eyecatch.png",
+        "output_file": "untidy-mother-eyecatch-branded.png",
+        "headline_font": "UDモトヤアポロ 太字",
+        "fallback_headline_font": "Noto Sans JP Bold",
+        "subtitle_font": "Noto Sans JP Regular",
+        "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+      },
+      "canva_instructions": {
+        "status": "optional_manual",
+        "template_url": "https://canva.link/mqlqak3adj01g1i",
+        "title": "（※画像内には生成せず合成時に追加）",
+        "subtitle": "（※同上）",
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_rule": "生成AI素材にはロゴを描かせない。標準ではPillowのローカル合成で、完成版にはセイリ部ロゴを必ず小さなブランド署名として配置する。",
+        "logo_position": "左上",
+        "headline_font": "UDモトヤアポロ 太字",
+        "subtitle_font": "Noto Sans JP Regular"
+      }
+    },
+    {
+      "role": "記事内イメージ",
+      "generated": false,
+      "file_name": "untidy-mother-inline-psychology.png",
+      "size": "1200 x 800",
+      "aspect_ratio": "3:2",
+      "method": "画像生成素材",
+      "wp_title": "片付けられずに悩む高齢の母親",
+      "alt": "片付けられずに悩む高齢の母親",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "逆ギレの裏には、母親なりの葛藤と不安が隠れています。",
+      "fields": {
+        "種類": "記事内イメージ素材",
+        "目的": "母親が片付けられない心理的背景を視覚的に伝えるため",
+        "読者に伝えたい感情": "母親も好きで散らかしているわけではなく、葛藤や不安を抱えているという共感",
+        "入れたい要素": "物であふれた部屋の中で、捨てる決心がつかず困ったような、あるいは少し寂しそうな表情をしている高齢の母親のイラスト",
+        "避けたい表現": "画像内へのテキスト（文字）の生成、極端なゴミ屋敷のような不衛生な描写",
+        "ALT": "片付けられずに悩む高齢の母親",
+        "キャプション候補": "逆ギレの裏には、母親なりの葛藤と不安が隠れています。"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '実家の片付けが進まない！物を捨てない母親が逆ギレする理由と対処法'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 物であふれた部屋の中で、捨てる決心がつかず困ったような、あるいは少し寂しそうな表情をしている高齢の母親のイラスト. Purpose: 母親が片付けられない心理的背景を視覚的に伝えるため. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、極端なゴミ屋敷のような不衛生な描写.",
+      "local_composition": {},
+      "canva_instructions": {}
+    },
+    {
+      "role": "記事内イメージ",
+      "generated": false,
+      "file_name": "untidy-mother-inline-inline-02.png",
+      "size": "1200 x 800",
+      "aspect_ratio": "3:2",
+      "method": "画像生成素材",
+      "wp_title": "査定員の丁寧な説明に納得する母親",
+      "alt": "査定員の丁寧な説明に納得する母親",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "家族の言葉には反発しても、プロの言葉ならすんなり受け入れられることも多いです。",
+      "fields": {
+        "種類": "記事内イメージ素材",
+        "目的": "第三者（査定員）が介入することで、母親が笑顔で納得して品物を手放している様子を伝えるため",
+        "読者に伝えたい感情": "プロに任せることで、争わず平和的に解決できるという安心感",
+        "入れたい要素": "査定員（スーツや清潔な制服姿）が和やかに品物を査定し、母親も嬉しそうに頷いている、安心感のあるイラスト",
+        "避けたい表現": "画像内へのテキスト（文字）の生成、母親が嫌がっている様子",
+        "ALT": "査定員の丁寧な説明に納得する母親",
+        "キャプション候補": "家族の言葉には反発しても、プロの言葉ならすんなり受け入れられることも多いです。"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '実家の片付けが進まない！物を捨てない母親が逆ギレする理由と対処法'. Aspect ratio: 3:2. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 査定員（スーツや清潔な制服姿）が和やかに品物を査定し、母親も嬉しそうに頷いている、安心感のあるイラスト. Purpose: 第三者（査定員）が介入することで、母親が笑顔で納得して品物を手放している様子を伝えるため. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、母親が嫌がっている様子.",
+      "local_composition": {},
+      "canva_instructions": {}
+    }
+  ],
+  "quality_notes": [
+    "ローカル合成で仕上げるためのアイキャッチ素材指定を利用しています。",
+    "本文画像の枚数は適正範囲です。"
+  ]
+}
