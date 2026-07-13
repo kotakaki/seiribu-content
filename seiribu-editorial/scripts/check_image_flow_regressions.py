@@ -26,7 +26,7 @@ def check_missing_eyecatch_is_not_auto_generated(config: dict) -> None:
         title="買取不可だったものはどうする？",
         slug="fixture",
     )
-    briefs = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config)
+    briefs = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config, mode="standard")
     roles = [brief.role for brief in briefs]
     notes = image_plan.quality_notes(briefs)
 
@@ -52,7 +52,7 @@ def check_canva_material_role(config: dict) -> None:
         },
         index=1,
     )
-    [result] = image_plan.enrich_briefs(meta, [brief], config)
+    [result] = image_plan.enrich_briefs(meta, [brief], config, mode="standard")
 
     assert result.role == "アイキャッチ素材", result.role
     assert result.size == "1536 x 1024", result.size
@@ -85,7 +85,7 @@ def check_regular_eyecatch_has_generation_limits(config: dict) -> None:
         },
         index=1,
     )
-    [result] = image_plan.enrich_briefs(meta, [brief], config)
+    [result] = image_plan.enrich_briefs(meta, [brief], config, mode="standard")
 
     assert result.role == "アイキャッチ", result.role
     assert result.method == "画像生成素材 + ローカル合成（Pillow）", result.method
@@ -97,6 +97,61 @@ def check_regular_eyecatch_has_generation_limits(config: dict) -> None:
     assert "no logo" in prompt, result.final_prompt
     assert "finished later with the local Seiribu Pillow compositor" in result.final_prompt, result.final_prompt
     assert result.canva_instructions["logo_required"] is True, result.canva_instructions
+
+
+def check_light_mode_keeps_first_pass_small(config: dict) -> None:
+    article = """# 実家の片付けで母親が逆ギレする理由
+
+> [!CMS担当者へ：アイキャッチ画像]
+> 種類：アイキャッチ素材
+> 目的：親子の対立と解決への前向きさを伝える
+> 入れたい要素：高齢の母親、悩む子供世代、段ボール
+> ALT：片付けで対立する親子
+
+> [!CMS担当者へ：ここに画像を挿入]
+> 種類：記事内イメージ
+> 目的：母親側の不安を伝える
+> 入れたい要素：物の前で悩む母親
+> ALT：物の前で悩む母親
+
+> [!CMS担当者へ：ここに画像を挿入]
+> 種類：記事内イメージ
+> 目的：第三者の介入で落ち着く様子を伝える
+> 入れたい要素：査定士と話す母親
+> ALT：査定士と話す母親
+
+> [!CMS担当者へ：ここに画像を挿入]
+> 種類：記事内図解
+> 目的：揉めない片付け手順を示す
+> 入れたい要素：声かけ、確認、保留箱の3ステップ
+> ALT：揉めない片付け手順
+"""
+    meta = image_plan.ArticleMeta(
+        path=Path("fixture.md"),
+        title="実家の片付けで母親が逆ギレする理由",
+        slug="fixture",
+    )
+    briefs = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config, mode="light")
+    active = image_plan.active_briefs(briefs)
+    omitted = image_plan.omitted_briefs(briefs)
+
+    assert [brief.role for brief in active] == ["アイキャッチ素材", "記事内イメージ"], active
+    assert len(omitted) == 2, omitted
+    assert all(not brief.final_prompt for brief in omitted), omitted
+    assert active[0].canva_instructions == {}, active[0].canva_instructions
+    assert active[0].final_prompt.startswith("Text-free Seiribu eyecatch cutout asset."), active[0].final_prompt
+    assert "Purpose:" in active[0].final_prompt, active[0].final_prompt
+    assert "Tone:" in active[0].final_prompt, active[0].final_prompt
+    assert "Do not reuse composition, character placement, object placement, or background concept" in active[0].final_prompt, active[0].final_prompt
+
+    notes = image_plan.quality_notes(briefs, mode="light")
+    assert "lightモードのため、初回制作は2件に絞り、2件を保留しました。" in notes, notes
+
+    plan = image_plan.json_plan(meta, briefs, config, mode="light")
+    assert plan["engine"]["mode"] == "light", plan["engine"]
+    assert len(plan["images"]) == 2, plan["images"]
+    assert all(image["included"] is True for image in plan["images"]), plan["images"]
+    assert len(plan["omitted_images"]) == 2, plan["omitted_images"]
 
 
 def check_diagram_is_not_image_generation_prompt(config: dict) -> None:
@@ -112,7 +167,7 @@ def check_diagram_is_not_image_generation_prompt(config: dict) -> None:
         title="売れなかった不用品を手放す方法",
         slug="fixture",
     )
-    [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config)
+    [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config, mode="standard")
 
     assert result.role == "記事内図解", result.role
     assert result.aspect_ratio == "3:2", result.aspect_ratio
@@ -134,7 +189,7 @@ def check_diagram_asset_can_be_generated(config: dict) -> None:
         title="実家で売れるもの一覧",
         slug="fixture",
     )
-    [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config)
+    [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config, mode="standard")
 
     assert result.role == "図解用小物素材", result.role
     assert result.aspect_ratio == "1:1", result.aspect_ratio
@@ -155,7 +210,7 @@ def check_scene_illustration_is_not_misclassified_as_diagram(config: dict) -> No
         title="買取不可だったものはどうする？",
         slug="fixture",
     )
-    [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config)
+    [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config, mode="standard")
 
     assert result.role == "記事内イメージ", result.role
     assert "Create a warm text-free editorial illustration" in result.final_prompt, result.final_prompt
@@ -171,7 +226,7 @@ def check_duplicate_file_names_are_disambiguated(config: dict) -> None:
         image_plan.ImageBrief(role="", source_header="[!CMS担当者へ：ここに画像を挿入]", fields={"画像の目的": "箱を使った仕分け", "入れたい要素": "段ボール箱"}, index=1),
         image_plan.ImageBrief(role="", source_header="[!CMS担当者へ：ここに画像を挿入]", fields={"画像の目的": "箱を使った別の仕分け", "入れたい要素": "段ボール箱"}, index=2),
     ]
-    results = image_plan.enrich_briefs(meta, briefs, config)
+    results = image_plan.enrich_briefs(meta, briefs, config, mode="standard")
     file_names = [brief.file_name for brief in results]
 
     assert len(file_names) == len(set(file_names)), file_names
@@ -183,6 +238,7 @@ def main() -> None:
     check_missing_eyecatch_is_not_auto_generated(config)
     check_canva_material_role(config)
     check_regular_eyecatch_has_generation_limits(config)
+    check_light_mode_keeps_first_pass_small(config)
     check_diagram_is_not_image_generation_prompt(config)
     check_diagram_asset_can_be_generated(config)
     check_scene_illustration_is_not_misclassified_as_diagram(config)

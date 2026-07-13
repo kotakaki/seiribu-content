@@ -3,6 +3,21 @@
   "canva_template_url": "https://canva.link/mqlqak3adj01g1i",
   "canva_mode": "optional_manual",
   "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+  "default_mode": "light",
+  "modes": {
+    "light": {
+      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
+      "max_eyecatches": 1,
+      "max_inline_images": 1,
+      "compact_prompts": true,
+      "omit_canva_detail": true
+    },
+    "standard": {
+      "description": "記事内のCMS画像指定をすべて展開する従来モード",
+      "compact_prompts": false,
+      "omit_canva_detail": false
+    }
+  },
   "local_composition": {
     "standard": true,
     "engine": "Pillow",

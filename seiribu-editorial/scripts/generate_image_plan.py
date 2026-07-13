@@ -68,6 +68,8 @@ class ImageBrief:
     fields: dict[str, str]
     index: int
     generated: bool = False
+    included: bool = True
+    omitted_reason: str = ""
     method: str = ""
     size: str = ""
     aspect_ratio: str = ""
@@ -327,6 +329,57 @@ def local_composition_config(config: dict[str, Any]) -> dict[str, Any]:
     return config.get("local_composition", {})
 
 
+def mode_settings(config: dict[str, Any], mode: str) -> dict[str, Any]:
+    return config.get("modes", {}).get(mode, {})
+
+
+def resolve_mode(config: dict[str, Any], requested: str | None = None) -> str:
+    mode = requested or config.get("default_mode", "standard")
+    if mode not in {"light", "standard"}:
+        raise ValueError(f"Unsupported image engine mode: {mode}")
+    return mode
+
+
+def active_briefs(briefs: list[ImageBrief]) -> list[ImageBrief]:
+    return [brief for brief in briefs if brief.included]
+
+
+def omitted_briefs(briefs: list[ImageBrief]) -> list[ImageBrief]:
+    return [brief for brief in briefs if not brief.included]
+
+
+def compact_prompt_enabled(config: dict[str, Any], mode: str) -> bool:
+    return bool(mode_settings(config, mode).get("compact_prompts", False))
+
+
+def canva_detail_enabled(config: dict[str, Any], mode: str) -> bool:
+    return not bool(mode_settings(config, mode).get("omit_canva_detail", False))
+
+
+def apply_mode_limits(briefs: list[ImageBrief], config: dict[str, Any], mode: str) -> None:
+    if mode != "light":
+        return
+
+    settings = mode_settings(config, mode)
+    max_eyecatches = int(settings.get("max_eyecatches", 1))
+    max_inline = int(settings.get("max_inline_images", 1))
+    eyecatch_seen = 0
+    inline_seen = 0
+
+    for brief in briefs:
+        if brief.role in {"アイキャッチ", "アイキャッチ素材"}:
+            eyecatch_seen += 1
+            if eyecatch_seen > max_eyecatches:
+                brief.included = False
+                brief.omitted_reason = "lightモードではアイキャッチ系画像を1件までに絞ります。"
+            continue
+
+        inline_seen += 1
+        if inline_seen > max_inline:
+            brief.included = False
+            brief.omitted_reason = f"lightモードでは本文画像を{max_inline}件までに絞ります。必要なら --mode standard で出力します。"
+
+
 def build_local_composition(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any]) -> dict[str, Any]:
     composition = local_composition_config(config)
     title, subtitle = split_title_for_eyecatch(meta.title)
@@ -350,7 +403,68 @@ def build_local_composition(block: ImageBrief, meta: ArticleMeta, config: dict[s
     }
 
 
-def prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any]) -> str:
+def compact_prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any]) -> str:
+    avoid = block.fields.get("避けたい表現") or "暗さ、ゴミ屋敷感、高額査定広告感、既存構図の流用"
+    forbidden = forbidden_generation_text(config)
+    visual = brief_visual(block)
+    purpose = block.fields.get("目的", "")
+    reuse_guard = "Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images."
+
+    if block.role == "記事内図解":
+        labels = block.fields.get("入れたい要素") or block.fields.get("伝えたい内容") or block.fields.get("指示") or "未指定"
+        return (
+            f"画像生成AIには渡さない。{block.size} / {block.aspect_ratio} の図解として、Pillow・SVG・Canvaなどで制作。"
+            f"内容: {labels}。目的: {block.fields.get('目的', '')}。"
+            "日本語ラベル、表、矢印、ロゴは後工程で正確に配置する。"
+        )
+
+    if block.role == "アイキャッチ素材":
+        return (
+            f"Text-free Seiribu eyecatch cutout asset. Aspect ratio: {block.aspect_ratio}. "
+            f"Style: {generation_style(config, 'cutout')}. Subject: {visual}. "
+            f"Purpose: {purpose}. Tone: {generation_tone(config, exclude_family=True)}. "
+            "Transparent background, or single flat light background for easy removal. "
+            "No room, wall, floor, shadow, title area, logo area, frame. "
+            f"Avoid: {forbidden}; {avoid}. {reuse_guard}"
+        )
+
+    if block.role == "アイキャッチ":
+        return (
+            f"Text-free Seiribu eyecatch illustration for '{meta.title}'. Aspect ratio: {block.aspect_ratio}. "
+            f"Style: {generation_style(config, 'illustration')}. Main visual: {visual}. "
+            f"Purpose: {purpose}. Tone: {generation_tone(config)}. "
+            "Leave calm space for local title/logo composition; do not draw text panels. "
+            f"Avoid: {forbidden}; {avoid}. {reuse_guard}"
+        )
+
+    if block.role == "図解用小物素材":
+        return (
+            f"Small standalone Seiribu diagram asset. Aspect ratio: {block.aspect_ratio}. "
+            f"Style: {generation_style(config, 'cutout')}. Subject: {visual}. "
+            f"Purpose: {purpose}. "
+            f"Avoid: {forbidden}; {avoid}."
+        )
+
+    if block.role == "写真風素材":
+        return (
+            f"Bright realistic editorial photo-style visual for '{meta.title}'. Aspect ratio: {block.aspect_ratio}. "
+            f"Main visual: {visual}. Natural daylight, clean lived-in Japanese home. "
+            f"Purpose: {purpose}. Tone: {generation_tone(config)}. "
+            f"Avoid: {forbidden}; {avoid}. {reuse_guard}"
+        )
+
+    return (
+        f"Warm text-free Seiribu editorial illustration for '{meta.title}'. Aspect ratio: {block.aspect_ratio}. "
+        f"Style: {generation_style(config, 'illustration')}. Main visual: {visual}. "
+        f"Purpose: {purpose}. Tone: {generation_tone(config)}. "
+        f"Avoid: {forbidden}; {avoid}. {reuse_guard}"
+    )
+
+
+def prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any], mode: str = "standard") -> str:
+    if compact_prompt_enabled(config, mode):
+        return compact_prompt_for(block, meta, config)
+
     avoid = "、".join(config.get("avoid", []))
     forbidden = forbidden_generation_text(config)
     if block.role == "アイキャッチ素材":
@@ -427,7 +541,13 @@ def prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any]) -> 
     )
 
 
-def enrich_briefs(meta: ArticleMeta, blocks: list[ImageBrief], config: dict[str, Any]) -> list[ImageBrief]:
+def enrich_briefs(
+    meta: ArticleMeta,
+    blocks: list[ImageBrief],
+    config: dict[str, Any],
+    mode: str | None = None,
+) -> list[ImageBrief]:
+    mode = resolve_mode(config, mode)
     briefs = list(blocks)
 
     inline_count = 0
@@ -501,12 +621,17 @@ def enrich_briefs(meta: ArticleMeta, blocks: list[ImageBrief], config: dict[str,
 
         block.alt = block.fields.get("ALT") or f"{meta.title}に関する{block.role}"
         block.wp_title = infer_wp_title(block, meta)
-        block.final_prompt = prompt_for(block, meta, config)
-
     dedupe_file_names(briefs)
+    apply_mode_limits(briefs, config, mode)
     for block in briefs:
         if block.role in {"アイキャッチ", "アイキャッチ素材"}:
             block.local_composition = build_local_composition(block, meta, config)
+
+        if not canva_detail_enabled(config, mode):
+            block.canva_instructions = {}
+
+        block.final_prompt = prompt_for(block, meta, config, mode) if block.included else ""
+
     return sorted(briefs, key=lambda brief: 0 if brief.role in {"アイキャッチ", "アイキャッチ素材"} else 1)
 
 
@@ -518,9 +643,11 @@ def position_for(brief: ImageBrief) -> str:
     return "アイキャッチ" if brief.role == "アイキャッチ" else "本文中のCMSブリーフ位置"
 
 
-def quality_notes(briefs: list[ImageBrief]) -> list[str]:
-    eyecatches = [b for b in briefs if b.role in {"アイキャッチ", "アイキャッチ素材"}]
-    inline = [b for b in briefs if b.role not in {"アイキャッチ", "アイキャッチ素材"}]
+def quality_notes(briefs: list[ImageBrief], mode: str = "standard") -> list[str]:
+    active = active_briefs(briefs)
+    omitted = omitted_briefs(briefs)
+    eyecatches = [b for b in active if b.role in {"アイキャッチ", "アイキャッチ素材"}]
+    inline = [b for b in active if b.role not in {"アイキャッチ", "アイキャッチ素材"}]
     notes = []
     if not eyecatches:
         notes.append("アイキャッチまたはアイキャッチ合成用素材の指定がありません。自動補完はしません。")
@@ -529,16 +656,28 @@ def quality_notes(briefs: list[ImageBrief]) -> list[str]:
     else:
         notes.append("記事内のアイキャッチ指定を利用しています。")
 
-    if len(inline) < 2:
+    if mode == "light" and omitted:
+        notes.append("本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。")
+    elif len(inline) < 2:
         notes.append("本文画像が少なめです。ピラー記事では図解をもう1枚検討してください。")
     elif len(inline) > 3:
         notes.append("本文画像が多めです。公開時は重要な2〜3枚に絞ることも検討してください。")
     else:
         notes.append("本文画像の枚数は適正範囲です。")
+
+    if mode == "light":
+        if omitted:
+            notes.append(f"lightモードのため、初回制作は{len(active)}件に絞り、{len(omitted)}件を保留しました。")
+        else:
+            notes.append("lightモードですが、保留対象はありません。")
     return notes
 
 
-def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str, Any]) -> str:
+def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str, Any], mode: str | None = None) -> str:
+    mode = resolve_mode(config, mode)
+    active = active_briefs(briefs)
+    omitted = omitted_briefs(briefs)
+    settings = mode_settings(config, mode)
     lines: list[str] = [
         f"# 画像制作プラン: {meta.title}",
         "",
@@ -547,6 +686,7 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
         f"- 記事ファイル: `{relpath(meta.path)}`",
         f"- スラッグ: `{meta.slug}`",
         f"- メインKW: {meta.main_kw or '未設定'}",
+        f"- 出力モード: {mode}（{settings.get('description', '標準出力')}）",
         f"- 標準仕上げ: ローカル合成（{local_composition_config(config).get('engine', 'Pillow')}）",
         f"- Canvaテンプレ: {config.get('canva_template_url', '未設定')}（任意・手動微調整）",
         f"- ロゴ: `{config.get('logo_path', '')}`",
@@ -557,13 +697,25 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
         "| No | 用途 | 制作方法 | 最終サイズ | 生成時の比率 | ファイル名 | 設置位置 |",
         "| --- | --- | --- | --- | --- | --- | --- |",
     ]
-    for no, brief in enumerate(briefs, 1):
+    for no, brief in enumerate(active, 1):
         lines.append(
             f"| {no} | {brief.role} | {brief.method} | {brief.size} | {brief.aspect_ratio} | `{brief.file_name}` | {position_for(brief)} |"
         )
+
+    if omitted:
+        lines += [
+            "",
+            "## 保留した画像",
+            "",
+            "| 用途 | ファイル名 | 保留理由 |",
+            "| --- | --- | --- |",
+        ]
+        for brief in omitted:
+            lines.append(f"| {brief.role} | `{brief.file_name}` | {brief.omitted_reason} |")
+
     lines += ["", "## 制作ブリーフ", ""]
 
-    for no, brief in enumerate(briefs, 1):
+    for no, brief in enumerate(active, 1):
         lines += [
             f"### {no}. {brief.role}",
             "",
@@ -622,7 +774,7 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
             ]
 
     lines += ["## 品質チェック", ""]
-    lines += [f"- {note}" for note in quality_notes(briefs)]
+    lines += [f"- {note}" for note in quality_notes(briefs, mode)]
     lines += [
         "- 画像生成AIに文字、日本語ラベル、ロゴ、透かし、看板を描かせない。",
         "- 日本語ラベルがある図解は、画像生成AIに文字を任せずレイアウト生成で作る。",
@@ -634,8 +786,13 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
     return "\n".join(lines)
 
 
-def json_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str, Any]) -> dict[str, Any]:
+def json_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str, Any], mode: str | None = None) -> dict[str, Any]:
+    mode = resolve_mode(config, mode)
     return {
+        "engine": {
+            "mode": mode,
+            "mode_settings": mode_settings(config, mode),
+        },
         "article": {
             "path": relpath(meta.path),
             "title": meta.title,
@@ -656,6 +813,8 @@ def json_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str, Any
             {
                 "role": b.role,
                 "generated": b.generated,
+                "included": b.included,
+                "omitted_reason": b.omitted_reason,
                 "file_name": b.file_name,
                 "size": b.size,
                 "aspect_ratio": b.aspect_ratio,
@@ -669,27 +828,43 @@ def json_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str, Any
                 "local_composition": b.local_composition,
                 "canva_instructions": b.canva_instructions,
             }
-            for b in briefs
+            for b in active_briefs(briefs)
         ],
-        "quality_notes": quality_notes(briefs),
+        "omitted_images": [
+            {
+                "role": b.role,
+                "file_name": b.file_name,
+                "reason": b.omitted_reason,
+                "position": position_for(b),
+            }
+            for b in omitted_briefs(briefs)
+        ],
+        "quality_notes": quality_notes(briefs, mode),
     }
 
 
-def write_plan(article: Path, config: dict[str, Any], output_dir: Path, output_format: str) -> list[Path]:
+def write_plan(
+    article: Path,
+    config: dict[str, Any],
+    output_dir: Path,
+    output_format: str,
+    mode: str | None = None,
+) -> list[Path]:
+    mode = resolve_mode(config, mode)
     text = article.read_text(encoding="utf-8")
     meta = article_meta(article, text)
-    briefs = enrich_briefs(meta, parse_cms_blocks(text), config)
+    briefs = enrich_briefs(meta, parse_cms_blocks(text), config, mode)
     output_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
 
     if output_format in {"md", "both"}:
         md_path = output_dir / f"{meta.slug}-image-plan.md"
-        md_path.write_text(markdown_plan(meta, briefs, config), encoding="utf-8")
+        md_path.write_text(markdown_plan(meta, briefs, config, mode), encoding="utf-8")
         written.append(md_path)
     if output_format in {"json", "both"}:
         json_path = output_dir / f"{meta.slug}-image-plan.json"
         json_path.write_text(
-            json.dumps(json_plan(meta, briefs, config), ensure_ascii=False, indent=2) + "\n",
+            json.dumps(json_plan(meta, briefs, config, mode), ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
         written.append(json_path)
@@ -704,6 +879,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument(
+        "--mode",
+        choices=["light", "standard"],
+        help="Output mode. Defaults to config default_mode.",
+    )
+    parser.add_argument(
         "--format",
         choices=["md", "json", "both"],
         default="both",
@@ -715,9 +895,10 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     config = read_json(args.config)
+    mode = resolve_mode(config, args.mode)
     all_written: list[Path] = []
     for article in args.articles:
-        all_written.extend(write_plan(article, config, args.output_dir, args.format))
+        all_written.extend(write_plan(article, config, args.output_dir, args.format, mode))
     for path in all_written:
         print(f"Wrote {path}")
 
