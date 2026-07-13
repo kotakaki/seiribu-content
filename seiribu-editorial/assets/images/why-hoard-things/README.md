@@ -30,8 +30,8 @@
 ## 制作メモ
 
 - アイキャッチと情景イラストはv2、境界線の図解はv4を公開用の推奨版とする
-- 旧版の図解（`why-hoard-things-inline-psychology-v3.png`、`why-hoard-things-inline-spectrum-v3.png`、`why-hoard-things-inline-ng-ok-v3.png`）は比較用として残しているが、公開推奨から外した
-- `why-hoard-things-inline-boundary-v4.png` は、画像生成素材 `why-hoard-things-boundary-source-v1.png` に日本語ラベルとロゴを合成して制作
+- 旧版、比較用、生成素材は公開用フォルダから退避済み
+- `why-hoard-things-inline-boundary-v4.png` は、生成素材に日本語ラベルとロゴを合成して制作
 - すべての推奨画像にセイリ部ロゴを配置済み
 - 本記事は心理系テーマのため、汚部屋や強い対立表現は避けた
 - アイキャッチと情景イラストは画像生成素材を使い、文字とロゴはPillowで合成した
