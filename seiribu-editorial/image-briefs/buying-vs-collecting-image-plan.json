@@ -12,8 +12,8 @@
       "generation_tool": "imagegen",
       "diagram_tool": "visualize / Pillow / SVG",
       "canva_tool": "optional_manual",
-      "draft_dir": "/private/tmp/seiribu-image-work/sell-before-dispose",
-      "final_dir": "seiribu-editorial/assets/images/sell-before-dispose",
+      "draft_dir": "/private/tmp/seiribu-image-work/buying-vs-collecting",
+      "final_dir": "seiribu-editorial/assets/images/buying-vs-collecting",
       "generation_rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。",
       "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
       "archive_root": "/private/tmp/seiribu-image-archive",
@@ -21,9 +21,9 @@
     }
   },
   "article": {
-    "path": "seiribu-editorial/drafts/sell-before-dispose.md",
+    "path": "seiribu-editorial/drafts/buying-vs-collecting.md",
     "title": "実家の不用品は「買取」と「回収」どちらが先？損しない処分の順番",
-    "slug": "sell-before-dispose",
+    "slug": "buying-vs-collecting",
     "main_kw": "不用品 買取 回収 どっち, 実家 不用品 買取 回収",
     "target_reader": "実家の荷物が多く、売れる物と捨てる物の判断に迷う40〜60代。",
     "search_intent": "実家の不用品を売るべきか、回収・処分すべきか、どちらを先に確認すれば損しないか知りたい。"
@@ -62,7 +62,7 @@
       "generated": false,
       "included": true,
       "omitted_reason": "",
-      "file_name": "sell-before-dispose-eyecatch.png",
+      "file_name": "buying-vs-collecting-eyecatch.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
       "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）",
@@ -80,7 +80,7 @@
         "タイトル文言": "実家の不用品 買取と回収どちらが先？",
         "サブタイトル文言": "損しない処分の順番",
         "ALT": "買取と回収の正しい順番を示すイラスト",
-        "ファイル名": "sell-before-dispose-eyecatch"
+        "ファイル名": "buying-vs-collecting-eyecatch"
       },
       "final_prompt": "Text-free Seiribu eyecatch cutout asset. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Subject: 古いカメラや着物（買取）、段ボールや古い家具（回収）. Purpose: 買取と回収の正しい順番を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Transparent background, or single flat light background for easy removal. No room, wall, floor, shadow, title area, logo area, frame. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、背景の描画. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
       "local_composition": {
@@ -94,8 +94,8 @@
         "logo_position": "左上",
         "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。",
         "output_size": "1200 x 675",
-        "source_material_file": "sell-before-dispose-eyecatch.png",
-        "output_file": "sell-before-dispose-eyecatch-branded.png",
+        "source_material_file": "buying-vs-collecting-eyecatch.png",
+        "output_file": "buying-vs-collecting-eyecatch-branded.png",
         "headline_font": "UDモトヤアポロ 太字",
         "fallback_headline_font": "Noto Sans JP Bold",
         "subtitle_font": "Noto Sans JP Regular",
@@ -108,7 +108,7 @@
       "generated": false,
       "included": true,
       "omitted_reason": "",
-      "file_name": "sell-before-dispose-inline-01.png",
+      "file_name": "buying-vs-collecting-inline-01.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
       "method": "画像生成素材",
@@ -133,7 +133,7 @@
   "omitted_images": [
     {
       "role": "記事内イメージ",
-      "file_name": "sell-before-dispose-inline-male-memory.png",
+      "file_name": "buying-vs-collecting-inline-male-memory.png",
       "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
       "position": "本文中のCMSブリーフ位置"
     }
