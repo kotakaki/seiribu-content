@@ -121,6 +121,14 @@ CTA：買取業者まとめ記事（Pillar2）への内部リンク
 
 親を怒らせず、かつ自分もイライラしないためには、正面衝突を避けるコミュニケーションが不可欠です。ここでは、親の警戒心を解き、自然と片付けに向かわせるための具体的な3ステップを紹介します。
 
+> [!CMS担当者へ：ここに図解を挿入]
+> - 種類：記事内図解素材
+> - ALT：イライラせずに実家の片付けを進める「親への声かけ」3ステップ
+> - ファイル名：declutter-parents-house-3steps-communication
+> - キャプション候補：頭ごなしに否定せず、親の気持ちに寄り添うアプローチが成功の秘訣です。
+> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
+>   画像を1枚だけ生成してください。: Flat editorial illustration. Conceptual diagram. Scene: A 3-step sequence showing how to communicate with elderly parents about decluttering. Step 1 (a heart or gentle speech bubble showing care instead of anger), Step 2 (cleaning up a small corner like an old child's room), Step 3 (smiling and walking together at a relaxed pace, symbolizing not rushing). Style: warm, clean vector art, simple infographic style. Tone: reassuring, educational, positive. Minimal text. No complex flowcharts. No logos, no watermarks. Aspect ratio 16:9.
+
 ### ステップ1：「片付けて」ではなく「心配している」と伝える
 
 親に対して「汚いから片付けて」「いらないものは捨てて」という言葉は禁句です。これらの言葉は、親にとって「自分の生活を否定された」という攻撃に聞こえてしまいます。
