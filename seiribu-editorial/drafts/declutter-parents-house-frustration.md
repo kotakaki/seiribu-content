@@ -79,7 +79,7 @@ CTA：買取業者まとめ記事（Pillar2）への内部リンク
 > - ALT：実家の片付けについて悩みを共有し合う人たち
 > - キャプション候補：実家の片付けは、多くの人が直面する共通の悩みです。
 > - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Flat editorial illustration. Scene: A group of 40-50s Japanese men and women looking relieved and empathetic, sharing their worries about cleaning up their parents' houses, nodding and saying "Me too!" in a warm atmosphere. Style: warm, clean, Japanese domestic everyday life. Tone: empathetic, reassuring, not dark or scary. Minimal text only if essential. No logos, no watermarks. Aspect ratio 16:9.
+>   画像を1枚だけ生成してください。: Flat editorial illustration. Scene: A group of 40-50s Japanese men and women sitting together, looking exhausted and frustrated as they share their struggles and stress about cleaning up their cluttered parents' houses. They are sighing and holding their heads, but nodding in deep empathy with each other ("I totally understand the frustration"). Style: warm, clean, Japanese domestic everyday life. Tone: relatable exhaustion and shared frustration, avoiding extreme darkness but clearly showing they are stressed. Minimal text only if essential. No logos, no watermarks. Aspect ratio 16:9.
 
 ### イライラの正体は「将来への不安」と「親への心配」
 
