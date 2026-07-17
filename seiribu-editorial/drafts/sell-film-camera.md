@@ -126,15 +126,15 @@ H2: 古いフィルムカメラの買取に関してよくある質問
 そのため、動作未確認や外観に劣化が見られても、まずは専門業者に見てもらう価値があります。
 
 > [!CMS担当者へ：ここに画像を挿入]
-> - 種類：情景イラスト
-> - 画像の目的：壊れたカメラでも価値があることを視覚的に伝え、読者を安心させる
+> - 種類：イラスト図解
+> - 画像の目的：壊れたカメラでも部品取りとしての価値があることを構造的に伝え、読者を安心させる
 > - 読者に伝えたい感情：安心感、もったいないことをしなくてよかったという安堵
-> - 画像のアイデア（情景・図解の具体案）：ホコリをかぶった古いカメラを、専門の査定士がルーペやライトを使って丁寧に価値を見出している様子。背景には実家の和室の雰囲気を少し残す。
-> - 避けたい表現：画像内へのテキスト（文字）の生成、極端にボロボロで不潔な印象を与える描写
-> - ALT：古いフィルムカメラを丁寧に査定する専門家
-> - キャプション候補：動かなくても部品としての価値があるため、専門家は丁寧に査定してくれます。
+> - 画像のアイデア（情景・図解の具体案）：ボロボロのカメラが、専門家の手によって「レンズ」「内部の部品」などの価値ある要素に分解・評価されている様子をフローチャートや図解で示す。
+> - 避けたい表現：極端にボロボロで不潔な印象を与える描写、複雑すぎる文字情報
+> - ALT：壊れたカメラでも部品に価値がある図解
+> - キャプション候補：動かなくても内部の部品やレンズとしての価値があるため、捨てずに査定に出しましょう。
 > - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style illustration. Scene: A professional appraiser carefully examining an old, dusty film camera with a loupe and light. The background has a slight hint of a Japanese tatami room (washitsu). Style: warm, clean, Japanese domestic everyday life, slightly lived-in, like a gentle picture book. Tone: reassuring. Minimal text. No logos. Aspect ratio 16:9.
+>   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. A clear visual diagram showing why a broken camera has value. Layout: A broken, dusty vintage camera in the center, with arrows pointing from it to valuable parts like "レンズ" (Lens) and "内部部品" (Internal parts), being evaluated by a professional appraiser. Use clear text labels in Japanese ("レンズ", "内部部品", "価値あり") to explain the structure. Style: warm, clean, like a gentle picture book, highly structural and easy to understand as a diagram. Aspect ratio 16:9.
 
 ## 査定額アップ？実家の古いカメラを売る前に確認すべき4つのポイント
 
@@ -184,12 +184,12 @@ H2: 古いフィルムカメラの買取に関してよくある質問
 > - 種類：イラスト図解
 > - 画像の目的：素人の手入れが危険であることを視覚的に警告する
 > - 読者に伝えたい感情：注意喚起、そのままにしておくのが正解だという納得感
-> - 画像のアイデア（情景・図解の具体案）：カメラをタオルやスプレーでゴシゴシ拭こうとしている子世代の手に、「ちょっと待って！」とバツ印（×）が出ている図解。その横に「そのままプロへ（〇）」という対比を描く。
-> - 避けたい表現：画像内へのテキスト（文字）の生成、ホラーのような怖い警告
+> - 画像のアイデア（情景・図解の具体案）：画面分割の対比図。「自分で掃除（×）」はタオルでゴシゴシ拭く手、「そのまま査定（〇）」は汚れたカメラを専門家に渡す図。
+> - 避けたい表現：ホラーのような怖い警告
 > - ALT：古いカメラの無理な掃除はNG
 > - キャプション候補：レンズを拭いたり無理に動かしたりすると価値が下がるため、汚れたまま査定に出すのが基本です。
 > - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. A clear visual diagram showing the correct and incorrect way to handle an old camera. Layout: Split-screen comparing A and B. Left side (incorrect): Hands trying to scrub a camera lens with a towel and spray, marked with a clear red "X" mark. Right side (correct): The dirty camera being gently handed over to a professional, marked with a clear green "〇" mark. Use clear visual symbols. Style: warm, clean, like a gentle picture book, but highly structural and easy to understand as a diagram. Aspect ratio 16:9.
+>   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. A clear visual diagram showing the correct and incorrect way to handle an old camera. Layout: Split-screen comparing A and B. Left side (incorrect): Hands trying to scrub a camera lens with a towel and spray, marked with a clear red "X" mark and the text label "NG: 無理な掃除". Right side (correct): The dirty camera being gently handed over to a professional, marked with a clear green "〇" mark and the text label "OK: そのまま査定へ". Use clear visual symbols and Japanese text labels to explain the structure. Style: warm, clean, like a gentle picture book, highly structural and easy to understand as a diagram. Aspect ratio 16:9.
 
 ## 実家のカメラはどこに売るべき？リサイクルショップと専門買取業者の違い
 
@@ -214,15 +214,15 @@ H2: 古いフィルムカメラの買取に関してよくある質問
 特定商取引法により、業者は消費者が事前に承諾した物品以外（例：貴金属など）の査定や勧誘を突然行うことは禁止されています（参考：[消費者庁「訪問購入」](https://www.no-trouble.caa.go.jp/what/doortodoorpurchases/)）。万が一のために、「査定対象外の品は見せない」「その場で無理に即決しない」「できるだけ家族が同席する」といった自衛を心がけましょう。また、対象取引であれば一定期間クーリング・オフ制度を利用することも可能です。
 
 > [!CMS担当者へ：ここに画像を挿入]
-> - 種類：情景イラスト
-> - 画像の目的：出張買取の手軽さと安心感を伝える
+> - 種類：イラスト図解
+> - 画像の目的：店舗への持ち込みと出張買取の違い（手軽さと安心感）を比較で伝える
 > - 読者に伝えたい感情：これなら親も安心できる、重いものを運ばなくて済んで助かる
-> - 画像のアイデア（情景・図解の具体案）：実家の玄関先や和室で、誠実そうな査定員がカメラバッグごと機材を査定している様子。横で子世代と親が安心して見守っている。
-> - 避けたい表現：画像内へのテキスト（文字）の生成、威圧感のある業者の描写
-> - ALT：実家のカメラを出張買取で査定してもらう様子
+> - 画像のアイデア（情景・図解の具体案）：画面分割の対比図。「店舗持ち込み」は重いカメラバッグを背負って汗をかく高齢の親（×）。「出張買取」は実家の和室でプロが査定し、親子が安心してお茶を飲んでいる様子（〇）。
+> - 避けたい表現：威圧感のある業者の描写
+> - ALT：カメラの出張買取と店舗持ち込みの比較
 > - キャプション候補：重い機材もそのままプロに見てもらえる「出張買取」が、大量の機材がある片付けには一番便利です。
 > - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style illustration. Scene: At the entrance of a Japanese house, a sincere-looking professional appraiser is evaluating a bag full of old cameras and lenses. An elderly parent (70s-80s) and their adult child (40s-50s) are watching them with relieved smiles. Style: warm, clean, Japanese domestic everyday life, slightly lived-in, like a gentle picture book. Tone: reassuring. Minimal text. No logos. Aspect ratio 16:9.
+>   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. Layout: Split-screen comparison. Left side: An elderly parent (70s-80s) struggling and sweating while carrying a heavy bag full of cameras to a store, marked with a red "X" and text label "持ち込みは大変". Right side: A sincere professional appraiser evaluating the cameras at the entrance of a Japanese house, while the elderly parent and adult child (40s-50s) watch comfortably, marked with a green "〇" and text label "出張買取はラク". Style: warm, clean, like a gentle picture book, highly structural and easy to understand as a diagram. Aspect ratio 16:9.
 
 ### 値段がつかなかった・買取不可だった場合の処分方法
 
@@ -271,8 +271,10 @@ H2: 古いフィルムカメラの買取に関してよくある質問
 > - 読者に伝えたい感情：これなら簡単に整理できそう、捨てる前に気づいてよかった
 > - 構図：中央にカメラバッグと古いカメラ、横にホッとした表情の親子
 > - 入れたい人物・物：40〜50代の子世代と70代の親世代、古いフィルムカメラ、レンズ、革のカメラバッグ
-> - 避けたい表現：画像内へのテキスト（文字）の生成、背景の描画
+> - 避けたい表現：画像内への大量のテキスト（合成時のスペースを確保するため）
 > - タイトル文言：（※画像内には生成せず合成時に追加）実家のフィルムカメラは売れる？
+> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
+>   画像を1枚だけ生成してください。: Picture book style illustration for a blog eyecatch. Scene: An adult child in their 40s-50s and an elderly parent in their 70s-80s looking with relief at a collection of vintage film cameras, lenses, and a leather camera bag placed in the center. Ensure there is negative space around them for adding text later. Style: warm, clean, Japanese domestic everyday life, like a gentle picture book. Tone: reassuring and hopeful. No logos, minimal text. Aspect ratio 16:9.
 > - サブタイトル文言：（※同上）査定前の確認ポイントと売却方法
 > - ALT：実家の古いカメラを整理する親子
 > - ファイル名：sell-film-camera-eyecatch.png
