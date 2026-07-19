@@ -60,15 +60,16 @@ def check_canva_material_role(config: dict) -> None:
     assert result.size == "1200 x 675", result.size
     assert result.aspect_ratio == "16:9", result.aspect_ratio
     assert result.file_name == "fixture-cutout.png", result.file_name
-    assert result.local_composition["engine"] == "Pillow", result.local_composition
+    assert result.local_composition["engine"] == "Canva手動仕上げ", result.local_composition
     assert result.local_composition["logo_required"] is True, result.local_composition
-    assert result.local_composition["canva_role"].startswith("任意"), result.local_composition
+    assert result.local_composition["canva_role"].startswith("アイキャッチ完成版はCanva"), result.local_composition
     assert "no text" in result.final_prompt, result.final_prompt
     assert "no logo" in result.final_prompt, result.final_prompt
     assert "Do not include a room, wall, floor" in result.final_prompt, result.final_prompt
     assert "Do not reuse" in result.final_prompt, result.final_prompt
     assert result.canva_instructions["logo_required"] is True, result.canva_instructions
-    assert "アイキャッチ完成版とCanva仕上げ画像" in result.canva_instructions["logo_rule"], result.canva_instructions
+    assert "アイキャッチ完成版はCanvaで人間が仕上げる" in result.canva_instructions["logo_rule"], result.canva_instructions
+    assert "本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する" in result.canva_instructions["logo_rule"], result.canva_instructions
 
 
 def check_regular_eyecatch_has_generation_limits(config: dict) -> None:
@@ -90,10 +91,10 @@ def check_regular_eyecatch_has_generation_limits(config: dict) -> None:
     [result] = image_plan.enrich_briefs(meta, [brief], config, mode="standard")
 
     assert result.role == "アイキャッチ", result.role
-    assert result.method == "背景なし画像生成素材 + ローカル合成（Pillow）", result.method
+    assert result.method == "画像生成素材 + Canva手動仕上げ", result.method
     assert result.size == "1200 x 675", result.size
     assert result.aspect_ratio == "16:9", result.aspect_ratio
-    assert result.local_composition["engine"] == "Pillow", result.local_composition
+    assert result.local_composition["engine"] == "Canva手動仕上げ", result.local_composition
     assert result.local_composition["output_size"] == "1200 x 675", result.local_composition
     assert result.local_composition["logo_required"] is True, result.local_composition
     prompt = result.final_prompt.lower()
@@ -101,7 +102,7 @@ def check_regular_eyecatch_has_generation_limits(config: dict) -> None:
     assert "no logo" in prompt, result.final_prompt
     assert "background-free" in prompt, result.final_prompt
     assert "Do not include a room, wall, floor" in result.final_prompt, result.final_prompt
-    assert "finished later with the local Seiribu Pillow compositor" in result.final_prompt, result.final_prompt
+    assert "manual Canva eyecatch template" in result.final_prompt, result.final_prompt
     assert result.canva_instructions["logo_required"] is True, result.canva_instructions
 
 
@@ -159,7 +160,7 @@ def check_light_mode_keeps_first_pass_small(config: dict) -> None:
     assert plan["engine"]["mode"] == "light", plan["engine"]
     storage = plan["engine"]["storage_policy"]
     assert storage["generation_tool"] == "imagegen", storage
-    assert storage["diagram_tool"] == "visualize / Pillow / SVG", storage
+    assert storage["diagram_tool"] == "imagegen illustration base + Pillow / SVG / Canva label and logo overlay", storage
     assert storage["draft_dir"].endswith("/fixture"), storage
     assert storage["final_dir"].endswith("/assets/images/fixture"), storage
     assert storage["archive_root"] == "/private/tmp/seiribu-image-archive", storage
@@ -187,9 +188,13 @@ def check_diagram_is_not_image_generation_prompt(config: dict) -> None:
     assert result.role == "記事内図解", result.role
     assert result.size == "1200 x 675", result.size
     assert result.aspect_ratio == "16:9", result.aspect_ratio
-    assert "画像生成AIには渡さない" in result.final_prompt, result.final_prompt
+    assert "illustrated infographic diagram" in result.final_prompt, result.final_prompt
+    assert "rounded bordered panels" in result.final_prompt, result.final_prompt
+    assert "Do not create empty placeholder boxes" in result.final_prompt, result.final_prompt
     assert "自治体、寄付、不用品回収業者の比較表" in result.final_prompt, result.final_prompt
-    assert "本文画像・本文図解は標準ではロゴなし" in result.final_prompt, result.final_prompt
+    assert "Do not create abstract line art" in result.final_prompt, result.final_prompt
+    assert "本文画像・本文図解はブランド帰属表示としてロゴ必須" in result.final_prompt, result.final_prompt
+    assert result.logo_overlay["required"] is True, result.logo_overlay
 
 
 def check_diagram_asset_can_be_generated(config: dict) -> None:
@@ -233,6 +238,29 @@ def check_scene_illustration_is_not_misclassified_as_diagram(config: dict) -> No
     assert result.size == "1200 x 675", result.size
     assert result.aspect_ratio == "16:9", result.aspect_ratio
     assert "Create a warm text-free editorial illustration" in result.final_prompt, result.final_prompt
+
+
+def check_explicit_illustrated_diagram_wins_over_scene_words(config: dict) -> None:
+    article = """# 不用品回収と買取の違い
+
+> [!CMS担当者へ：ここに画像を挿入]
+> 種類：イラスト図解
+> 画像の目的：残す、売る、処分する順番をフローチャートで伝える
+> 画像のアイデア（情景・図解の具体案）：Step 1:「残す」アルバムを手にする様子。Step 2:「売る」古いカメラを査定員に見せる様子。Step 3:「処分する」壊れたテレビをスタッフが運ぶ様子。
+> ALT：実家の不用品を無駄なく片付ける順番のフローチャート
+"""
+    meta = image_plan.ArticleMeta(
+        path=Path("fixture.md"),
+        title="不用品回収と買取の違い",
+        slug="fixture",
+    )
+    [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config, mode="standard")
+
+    assert result.role == "記事内図解", result.role
+    assert "illustrated infographic diagram" in result.final_prompt, result.final_prompt
+    assert "rounded bordered panels" in result.final_prompt, result.final_prompt
+    assert "Do not create abstract line art" in result.final_prompt, result.final_prompt
+    assert result.logo_overlay["required"] is True, result.logo_overlay
 
 
 def check_duplicate_file_names_are_disambiguated(config: dict) -> None:
@@ -350,6 +378,7 @@ def main() -> None:
     check_diagram_is_not_image_generation_prompt(config)
     check_diagram_asset_can_be_generated(config)
     check_scene_illustration_is_not_misclassified_as_diagram(config)
+    check_explicit_illustrated_diagram_wins_over_scene_words(config)
     check_duplicate_file_names_are_disambiguated(config)
     check_cleanup_finds_non_recommended_assets()
     check_cleanup_accepts_completed_image_sections()

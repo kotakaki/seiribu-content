@@ -1,0 +1,55 @@
+{
+  "plan": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/image-briefs/buying-or-collecting-image-plan.json",
+  "images": [
+    {
+      "role": "アイキャッチ素材",
+      "file_name": "buying-or-collecting-eyecatch.png",
+      "source": "/private/tmp/seiribu-image-work/buying-or-collecting/buying-or-collecting-eyecatch.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/buying-or-collecting/buying-or-collecting-eyecatch.png",
+      "logo_mode": "none",
+      "alt": "不用品回収と買取の違いと実家の片付けでの基本の順番を示すイラスト",
+      "caption": "",
+      "position": "アイキャッチ合成用素材"
+    },
+    {
+      "role": "記事内図解",
+      "file_name": "buying-or-collecting-inline-flow.png",
+      "source": "/private/tmp/seiribu-image-work/buying-or-collecting/buying-or-collecting-inline-flow.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/buying-or-collecting/buying-or-collecting-inline-flow.png",
+      "logo_mode": "white-backed:右下; labels:支払う（払う）,受け取る（もらう）",
+      "alt": "不用品回収と買取のお金の流れの違い",
+      "caption": "不用品回収は「払う」、買取は「もらう」という正反対のサービスです。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "buying-or-collecting-inline-02.png",
+      "source": "/private/tmp/seiribu-image-work/buying-or-collecting/buying-or-collecting-inline-02.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/buying-or-collecting/buying-or-collecting-inline-02.png",
+      "logo_mode": "white-backed:右上",
+      "alt": "査定対象になる物をゴミとして処分してしまうリスク",
+      "caption": "専門知識がないと、査定対象になる物まで処分対象として扱われてしまうことも。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "buying-or-collecting-inline-three-boxes.png",
+      "source": "/private/tmp/seiribu-image-work/buying-or-collecting/buying-or-collecting-inline-three-boxes.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/buying-or-collecting/buying-or-collecting-inline-three-boxes.png",
+      "logo_mode": "white-backed:右上",
+      "alt": "売るものと捨てるものを仕分ける親子の様子",
+      "caption": "古いから価値がないと自己判断せず、まずは査定対象になるか確認しましょう。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内図解",
+      "file_name": "buying-or-collecting-inline-steps.png",
+      "source": "/private/tmp/seiribu-image-work/buying-or-collecting/buying-or-collecting-inline-steps.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/buying-or-collecting/buying-or-collecting-inline-steps.png",
+      "logo_mode": "white-backed:左下; labels:残す,売る,処分する",
+      "alt": "実家の不用品を無駄なく片付ける順番のフローチャート",
+      "caption": "残すものを分けた後、買取で価値を確認してから処分を進めると、見落としを減らしやすくなります。",
+      "position": "本文中のCMSブリーフ位置"
+    }
+  ]
+}

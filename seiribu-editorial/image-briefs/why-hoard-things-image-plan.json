@@ -1,16 +1,14 @@
 {
   "engine": {
-    "mode": "light",
+    "mode": "standard",
     "mode_settings": {
-      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
-      "max_eyecatches": 1,
-      "max_inline_images": 1,
-      "compact_prompts": true,
-      "omit_canva_detail": true
+      "description": "記事内のCMS画像指定をすべて展開する標準モード。アイキャッチ素材1件と本文画像・図解4件を基本にする",
+      "compact_prompts": false,
+      "omit_canva_detail": false
     },
     "storage_policy": {
       "generation_tool": "imagegen",
-      "diagram_tool": "visualize / Pillow / SVG",
+      "diagram_tool": "imagegen illustration base + Pillow / SVG / Canva label and logo overlay",
       "canva_tool": "optional_manual",
       "draft_dir": "/private/tmp/seiribu-image-work/why-hoard-things",
       "final_dir": "seiribu-editorial/assets/images/why-hoard-things",
@@ -40,20 +38,20 @@
         "アイキャッチ完成版",
         "Canva仕上げ画像"
       ],
-      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
-      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
+      "non_eyecatch_default": "本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。"
     },
     "local_composition": {
-      "standard": true,
-      "engine": "Pillow",
-      "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+      "standard": false,
+      "engine": "Canva手動仕上げ",
+      "script": "",
       "eyecatch_output_size": "1200 x 675",
       "background": "#FAF3EA",
       "title_color": "#7A3454",
       "subtitle_color": "#24304A",
       "logo_width": 160,
       "logo_position": "左上",
-      "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+      "canva_role": "アイキャッチ完成版はCanvaで人間がタイトル、サブタイトル、ロゴ、Canva専用フォントを手動合成する。"
     }
   },
   "images": [
@@ -65,7 +63,7 @@
       "file_name": "why-hoard-things-eyecatch-material.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）",
+      "method": "画像生成素材 + Canva手動仕上げ",
       "wp_title": "物を捨てられない父親と寄り添う家族のイラスト",
       "alt": "物を捨てられない父親と寄り添う家族のイラスト",
       "position": "アイキャッチ合成用素材",
@@ -82,26 +80,41 @@
         "ALT": "物を捨てられない父親と寄り添う家族のイラスト",
         "ファイル名": "why-hoard-things-eyecatch-material"
       },
-      "final_prompt": "Text-free Seiribu eyecatch cutout asset. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Subject: 50〜60代の親、30代の子世代、古い本棚・思い出の品々（※背景は描かず、人物の周りに小物を配置する）. Purpose: 記事のファーストインプレッション。SNSシェア時のサムネイル. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Transparent background, or single flat light background for easy removal. No room, wall, floor, shadow, title area, logo area, frame. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、背景の描画、ゴミ屋敷、汚部屋、散らかり放題の極端な描写、暗いトーン、孤独感. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
+      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '物を捨てられない男性の心理とは？夫や父親に多い5つの理由と家族の接し方'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 50〜60代の親、30代の子世代、古い本棚・思い出の品々（※背景は描かず、人物の周りに小物を配置する）. Purpose: 記事のファーストインプレッション。SNSシェア時のサムネイル. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、背景の描画、ゴミ屋敷、汚部屋、散らかり放題の極端な描写、暗いトーン、孤独感. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
       "local_composition": {
-        "standard": true,
-        "engine": "Pillow",
-        "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+        "standard": false,
+        "engine": "Canva手動仕上げ",
+        "script": "",
         "title": "物を捨てられない男性の心理とは？（※画像内には生成せず、後からCanvaで追加する想定）",
         "subtitle": "夫や父親に多い理由と接し方（※同上）",
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
         "logo_required": true,
         "logo_position": "左上",
-        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。",
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。",
         "output_size": "1200 x 675",
         "source_material_file": "why-hoard-things-eyecatch-material.png",
         "output_file": "why-hoard-things-eyecatch-branded.png",
         "headline_font": "UDモトヤアポロ 太字",
         "fallback_headline_font": "Noto Sans JP Bold",
         "subtitle_font": "Noto Sans JP Regular",
-        "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+        "canva_role": "アイキャッチ完成版はCanvaで人間がタイトル、サブタイトル、ロゴ、Canva専用フォントを手動合成する。"
       },
-      "canva_instructions": {}
+      "canva_instructions": {
+        "status": "optional_manual",
+        "template_url": "https://canva.link/mqlqak3adj01g1i",
+        "title": "物を捨てられない男性の心理とは？（※画像内には生成せず、後からCanvaで追加する想定）",
+        "subtitle": "夫や父親に多い理由と接し方（※同上）",
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。",
+        "logo_position": "左上",
+        "headline_font": "UDモトヤアポロ 太字",
+        "subtitle_font": "Noto Sans JP Regular"
+      },
+      "logo_overlay": {
+        "required": false,
+        "reason": "アイキャッチ完成版はCanvaで人間がタイトルとロゴを合成する。"
+      }
     },
     {
       "role": "記事内図解",
@@ -111,7 +124,7 @@
       "file_name": "why-hoard-things-inline-psychology.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "Pillow、SVG、または任意のCanva手動微調整など、文字とレイアウトを制御できる方法で作る",
+      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
       "wp_title": "物を捨てられない男性の心理に隠された5つの理由の概念図",
       "alt": "物を捨てられない男性の心理に隠された5つの理由の概念図",
       "position": "本文中のCMSブリーフ位置",
@@ -124,34 +137,149 @@
         "ALT": "物を捨てられない男性の心理に隠された5つの理由の概念図",
         "キャプション候補": "物を捨てられない心理は、1つの原因ではなく複数のメカニズムが絡み合っている"
       },
-      "final_prompt": "画像生成AIには渡さない。1200 x 675 / 16:9 の図解として、Pillow・SVG・Canvaなどで制作。内容: ①損失回避バイアス（「捨てたら損するかも」）②拡張自己（「物は自分の一部」）③アニミズム的思考（「物に魂が宿る」）④判断疲れ（「決める気力がない」）⑤孤独感・不安（「物に囲まれると安心」）を中心の「物を捨てられない」から放射状に配置。目的: 5つの心理パターンを俯瞰し、記事の全体像を掴ませる。日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。ロゴ: 本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
+      "final_prompt": "Create a text-free illustrated diagram base for a Seiribu article. Aspect ratio: 16:9. Style: warm Japanese picture-book style illustrated diagram, scene-based panels with people, household items, rooms, boxes, kimono, books, cameras or other concrete objects, not abstract line art, not plain geometric shapes. Content to show as warm scene-based panels or a comparison illustration: ①損失回避バイアス（「捨てたら損するかも」）②拡張自己（「物は自分の一部」）③アニミズム的思考（「物に魂が宿る」）④判断疲れ（「決める気力がない」）⑤孤独感・不安（「物に囲まれると安心」）を中心の「物を捨てられない」から放射状に配置. Purpose: 5つの心理パターンを俯瞰し、記事の全体像を掴ませる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 学術論文のような堅苦しいダイアグラム、ネガティブな色使い. Do not create abstract line art, a generic flowchart, wireframe boxes, plain circles, arrows-only diagrams, or free-icon-style graphics. Use concrete scenes with people, household items, rooms, boxes, kimono, books, cameras, documents, or other article-specific objects. Do not include readable text, Japanese labels, numbers, logo, watermark, signage, or speech bubbles in the generated image; short Japanese labels and captions will be added later with Pillow, SVG, or Canva. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
       "local_composition": {},
-      "canva_instructions": {}
-    }
-  ],
-  "omitted_images": [
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    },
     {
       "role": "記事内イメージ",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "why-hoard-things-inline-male-memory.png",
-      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
-      "position": "本文中のCMSブリーフ位置"
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "物に思い出を重ねる男性のイラスト。古いギターや工具を手に、過去の記憶が浮かんでいる",
+      "alt": "物に思い出を重ねる男性のイラスト。古いギターや工具を手に、過去の記憶が浮かんでいる",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "物には、言葉にできない感情が託されている",
+      "fields": {
+        "目的": "「物に感情を託す」という抽象的な心理を視覚的に伝える",
+        "読者に伝えたい感情": "「ああ、たしかにそうだ」という共感。物を大切にしている姿を肯定的に描く",
+        "入れたい要素": "古いギターや工具箱、思い出の写真立てなどを手に取っている父親世代の男性。物のまわりに、うっすらとその思い出のシーンが浮かんでいるイメージ",
+        "避けたい表現": "暗い部屋、汚い描写、だらしなさ。あくまで「大切にしている姿」として描く",
+        "ALT": "物に思い出を重ねる男性のイラスト。古いギターや工具を手に、過去の記憶が浮かんでいる",
+        "キャプション候補": "物には、言葉にできない感情が託されている"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '物を捨てられない男性の心理とは？夫や父親に多い5つの理由と家族の接し方'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 古いギターや工具箱、思い出の写真立てなどを手に取っている父親世代の男性。物のまわりに、うっすらとその思い出のシーンが浮かんでいるイメージ. Purpose: 「物に感情を託す」という抽象的な心理を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 暗い部屋、汚い描写、だらしなさ。あくまで「大切にしている姿」として描く.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
     },
     {
       "role": "記事内図解",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "why-hoard-things-inline-spectrum.png",
-      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
-      "position": "本文中のCMSブリーフ位置"
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
+      "wp_title": "「ただの物持ち」から「ためこみ症」までの段階を示すスペクトラムチャート",
+      "alt": "「ただの物持ち」から「ためこみ症」までの段階を示すスペクトラムチャート",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "物の多さだけでなく「生活への影響」が境界線になる",
+      "fields": {
+        "目的": "通常の物持ちとためこみ症の違いを、スペクトラム（段階）として可視化する",
+        "読者に伝えたい感情": "「病気かどうか」の不安を整理できる安心感",
+        "入れたい要素": "左端「個人の価値観の範囲（趣味の部屋に物が多い、共有スペースは整理）」→中央「注意ゾーン（共有スペースに侵食、家族が困り始めている）」→右端「専門家への相談を検討（生活動線がふさがれている、基本動作に支障）」のグラデーションスペクトラム",
+        "避けたい表現": "「正常/異常」の二分法、病気へのスティグマを感じさせる表現",
+        "ALT": "「ただの物持ち」から「ためこみ症」までの段階を示すスペクトラムチャート",
+        "キャプション候補": "物の多さだけでなく「生活への影響」が境界線になる"
+      },
+      "final_prompt": "Create a text-free illustrated diagram base for a Seiribu article. Aspect ratio: 16:9. Style: warm Japanese picture-book style illustrated diagram, scene-based panels with people, household items, rooms, boxes, kimono, books, cameras or other concrete objects, not abstract line art, not plain geometric shapes. Content to show as warm scene-based panels or a comparison illustration: 左端「個人の価値観の範囲（趣味の部屋に物が多い、共有スペースは整理）」→中央「注意ゾーン（共有スペースに侵食、家族が困り始めている）」→右端「専門家への相談を検討（生活動線がふさがれている、基本動作に支障）」のグラデーションスペクトラム. Purpose: 通常の物持ちとためこみ症の違いを、スペクトラム（段階）として可視化する. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 「正常/異常」の二分法、病気へのスティグマを感じさせる表現. Do not create abstract line art, a generic flowchart, wireframe boxes, plain circles, arrows-only diagrams, or free-icon-style graphics. Use concrete scenes with people, household items, rooms, boxes, kimono, books, cameras, documents, or other article-specific objects. Do not include readable text, Japanese labels, numbers, logo, watermark, signage, or speech bubbles in the generated image; short Japanese labels and captions will be added later with Pillow, SVG, or Canva. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
     },
     {
       "role": "記事内図解",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "why-hoard-things-inline-ng-ok.png",
-      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
-      "position": "本文中のCMSブリーフ位置"
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
+      "wp_title": "物を捨てられない家族への接し方NG対応とOK対応の比較チャート",
+      "alt": "物を捨てられない家族への接し方NG対応とOK対応の比較チャート",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "「捨てて」を「選んで」に変えるだけで、相手の反応は大きく変わる",
+      "fields": {
+        "目的": "やってはいけない対応と、代わりにやるべき対応を一目で比較する",
+        "読者に伝えたい感情": "「具体的に何を変えればいいか」がすぐわかる実用感",
+        "入れたい要素": "左にNG（✕ 勝手に捨てる / ✕ 責める / ✕ 比較する）、右にOK（◯「選んで」と聞く / ◯ 保留箱を使う / ◯ 聖域ルール / ◯ 売る・譲る）を対比配置",
+        "避けたい表現": "指差し・説教調、怒っている家族の表情",
+        "ALT": "物を捨てられない家族への接し方NG対応とOK対応の比較チャート",
+        "キャプション候補": "「捨てて」を「選んで」に変えるだけで、相手の反応は大きく変わる"
+      },
+      "final_prompt": "Create a text-free illustrated diagram base for a Seiribu article. Aspect ratio: 16:9. Style: warm Japanese picture-book style illustrated diagram, scene-based panels with people, household items, rooms, boxes, kimono, books, cameras or other concrete objects, not abstract line art, not plain geometric shapes. Content to show as warm scene-based panels or a comparison illustration: 左にNG（✕ 勝手に捨てる / ✕ 責める / ✕ 比較する）、右にOK（◯「選んで」と聞く / ◯ 保留箱を使う / ◯ 聖域ルール / ◯ 売る・譲る）を対比配置. Purpose: やってはいけない対応と、代わりにやるべき対応を一目で比較する. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 指差し・説教調、怒っている家族の表情. Do not create abstract line art, a generic flowchart, wireframe boxes, plain circles, arrows-only diagrams, or free-icon-style graphics. Use concrete scenes with people, household items, rooms, boxes, kimono, books, cameras, documents, or other article-specific objects. Do not include readable text, Japanese labels, numbers, logo, watermark, signage, or speech bubbles in the generated image; short Japanese labels and captions will be added later with Pillow, SVG, or Canva. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
     }
   ],
+  "omitted_images": [],
   "quality_notes": [
-    "ローカル合成で仕上げるためのアイキャッチ素材指定を利用しています。",
-    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
-    "lightモードのため、初回制作は2件に絞り、3件を保留しました。"
+    "Canvaで仕上げるためのアイキャッチ素材指定を利用しています。",
+    "本文画像・図解は4枚構成です。記事内の全CMSブリーフを標準制作対象にします。"
   ]
 }

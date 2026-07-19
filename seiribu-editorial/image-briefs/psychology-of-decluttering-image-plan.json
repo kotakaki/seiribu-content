@@ -1,16 +1,14 @@
 {
   "engine": {
-    "mode": "light",
+    "mode": "standard",
     "mode_settings": {
-      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
-      "max_eyecatches": 1,
-      "max_inline_images": 1,
-      "compact_prompts": true,
-      "omit_canva_detail": true
+      "description": "記事内のCMS画像指定をすべて展開する標準モード。アイキャッチ素材1件と本文画像・図解4件を基本にする",
+      "compact_prompts": false,
+      "omit_canva_detail": false
     },
     "storage_policy": {
       "generation_tool": "imagegen",
-      "diagram_tool": "visualize / Pillow / SVG",
+      "diagram_tool": "imagegen illustration base + Pillow / SVG / Canva label and logo overlay",
       "canva_tool": "optional_manual",
       "draft_dir": "/private/tmp/seiribu-image-work/psychology-of-decluttering",
       "final_dir": "seiribu-editorial/assets/images/psychology-of-decluttering",
@@ -40,20 +38,20 @@
         "アイキャッチ完成版",
         "Canva仕上げ画像"
       ],
-      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
-      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
+      "non_eyecatch_default": "本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。"
     },
     "local_composition": {
-      "standard": true,
-      "engine": "Pillow",
-      "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+      "standard": false,
+      "engine": "Canva手動仕上げ",
+      "script": "",
       "eyecatch_output_size": "1200 x 675",
       "background": "#FAF3EA",
       "title_color": "#7A3454",
       "subtitle_color": "#24304A",
       "logo_width": 160,
       "logo_position": "左上",
-      "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+      "canva_role": "アイキャッチ完成版はCanvaで人間がタイトル、サブタイトル、ロゴ、Canva専用フォントを手動合成する。"
     }
   },
   "images": [
@@ -65,43 +63,51 @@
       "file_name": "psychology-of-decluttering-eyecatch.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）",
+      "method": "画像生成素材 + Canva手動仕上げ",
       "wp_title": "「全部捨てたい」という衝動に駆られる心理のアイキャッチ画像",
       "alt": "「全部捨てたい」という衝動に駆られる心理のアイキャッチ画像",
       "position": "アイキャッチ合成用素材",
       "caption": "",
       "fields": {
         "種類": "アイキャッチ素材（文字や背景を含まない、人物と小物のイラスト素材のみ）",
-        "目的": "記事の顔として「物を全部捨てたい衝動」と「心理的アプローチ」を直感的に伝える",
-        "読者に伝えたい感情": "自分の衝動への共感と、解決への希望",
-        "構図": "ゴミ袋や散らかった物に囲まれて悩む人物の横顔と、その頭の中に浮かぶ「スッキリした空間」の対比",
-        "入れたい人物・物": "悩む女性（30〜40代）、山積みの段ボールや不用品、明るい光",
-        "避けたい表現": "画像内へのテキスト（文字）の生成、背景の描画、暗すぎるトーンや過度なホラーテイスト",
-        "タイトル文言": "「全部捨てたい…」急に物を減らしたくなる心理と対処法（※画像内には生成せず合成時に追加）",
-        "サブタイトル文言": "その衝動、実は心のSOSかもしれません（※同上）",
         "ALT": "「全部捨てたい」という衝動に駆られる心理のアイキャッチ画像",
         "ファイル名": "psychology-of-decluttering-eyecatch"
       },
-      "final_prompt": "Text-free Seiribu eyecatch cutout asset. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Subject: 悩む女性（30〜40代）、山積みの段ボールや不用品、明るい光. Purpose: 記事の顔として「物を全部捨てたい衝動」と「心理的アプローチ」を直感的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Transparent background, or single flat light background for easy removal. No room, wall, floor, shadow, title area, logo area, frame. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、背景の描画、暗すぎるトーンや過度なホラーテイスト. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
+      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '急に物を減らしたくなる心理とは？「全部捨てたい」衝動の裏にあるSOSと対処法'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 記事内容に合う人物と物. Purpose: . Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置、抽象的な線、丸、四角、矢印だけで構成された低品質な図解、無料素材風の薄いアイコン図解. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
       "local_composition": {
-        "standard": true,
-        "engine": "Pillow",
-        "script": "seiribu-editorial/scripts/compose_eyecatch.py",
-        "title": "「全部捨てたい…」急に物を減らしたくなる心理と対処法（※画像内には生成せず合成時に追加）",
-        "subtitle": "その衝動、実は心のSOSかもしれません（※同上）",
+        "standard": false,
+        "engine": "Canva手動仕上げ",
+        "script": "",
+        "title": "急に物を減らしたくなる心理とは？",
+        "subtitle": "「全部捨てたい」衝動の裏にあるSOSと対処法",
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
         "logo_required": true,
         "logo_position": "左上",
-        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。",
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。",
         "output_size": "1200 x 675",
         "source_material_file": "psychology-of-decluttering-eyecatch.png",
         "output_file": "psychology-of-decluttering-eyecatch-branded.png",
         "headline_font": "UDモトヤアポロ 太字",
         "fallback_headline_font": "Noto Sans JP Bold",
         "subtitle_font": "Noto Sans JP Regular",
-        "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+        "canva_role": "アイキャッチ完成版はCanvaで人間がタイトル、サブタイトル、ロゴ、Canva専用フォントを手動合成する。"
       },
-      "canva_instructions": {}
+      "canva_instructions": {
+        "status": "optional_manual",
+        "template_url": "https://canva.link/mqlqak3adj01g1i",
+        "title": "急に物を減らしたくなる心理とは？",
+        "subtitle": "「全部捨てたい」衝動の裏にあるSOSと対処法",
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。",
+        "logo_position": "左上",
+        "headline_font": "UDモトヤアポロ 太字",
+        "subtitle_font": "Noto Sans JP Regular"
+      },
+      "logo_overlay": {
+        "required": false,
+        "reason": "アイキャッチ完成版はCanvaで人間がタイトルとロゴを合成する。"
+      }
     },
     {
       "role": "記事内イメージ",
@@ -111,48 +117,232 @@
       "file_name": "psychology-of-decluttering-inline-01.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成素材",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
       "wp_title": "部屋の物を全部捨てたい衝動に駆られている様子",
       "alt": "部屋の物を全部捨てたい衝動に駆られている様子",
       "position": "本文中のCMSブリーフ位置",
       "caption": "急に物を減らしたくなる背景には心のSOSが隠れています",
       "fields": {
         "種類": "記事内イメージ素材",
-        "目的": "読者の「全部捨ててしまいたい」という衝動とストレスへの共感",
-        "読者に伝えたい感情": "物に対するイライラや限界を迎えた心の状態への理解",
-        "入れたい要素": "散らかった部屋の真ん中で、頭を抱えて座り込んでいる女性（30〜40代）。周囲のごちゃごちゃした物をすべてゴミ袋に突っ込みたいという衝動に駆られている様子。",
-        "避けたい表現": "画像内へのテキスト（文字）の生成、狂気的な表情や過度なホラーテイスト",
         "ALT": "部屋の物を全部捨てたい衝動に駆られている様子",
         "キャプション候補": "急に物を減らしたくなる背景には心のSOSが隠れています"
       },
-      "final_prompt": "Warm text-free Seiribu editorial illustration for '急に物を減らしたくなる心理とは？「全部捨てたい」衝動の裏にあるSOSと対処法'. Aspect ratio: 16:9. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 散らかった部屋の真ん中で、頭を抱えて座り込んでいる女性（30〜40代）。周囲のごちゃごちゃした物をすべてゴミ袋に突っ込みたいという衝動に駆られている様子。. Purpose: 読者の「全部捨ててしまいたい」という衝動とストレスへの共感. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、狂気的な表情や過度なホラーテイスト. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '急に物を減らしたくなる心理とは？「全部捨てたい」衝動の裏にあるSOSと対処法'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 記事内容に合う人物と物. Purpose: . Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置、抽象的な線、丸、四角、矢印だけで構成された低品質な図解、無料素材風の薄いアイコン図解.",
       "local_composition": {},
-      "canva_instructions": {}
-    }
-  ],
-  "omitted_images": [
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    },
     {
       "role": "記事内イメージ",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "psychology-of-decluttering-inline-02.png",
-      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
-      "position": "本文中のCMSブリーフ位置"
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "心の状態によって物の見え方が変わるイメージ",
+      "alt": "心の状態によって物の見え方が変わるイメージ",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "同じ物でも、心の状態によって「宝物」にも「ガラクタ」にも見える",
+      "fields": {
+        "種類": "記事内イメージ素材",
+        "ALT": "心の状態によって物の見え方が変わるイメージ",
+        "キャプション候補": "同じ物でも、心の状態によって「宝物」にも「ガラクタ」にも見える"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '急に物を減らしたくなる心理とは？「全部捨てたい」衝動の裏にあるSOSと対処法'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 記事内容に合う人物と物. Purpose: . Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置、抽象的な線、丸、四角、矢印だけで構成された低品質な図解、無料素材風の薄いアイコン図解.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
     },
     {
       "role": "記事内イメージ",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "psychology-of-decluttering-inline-03.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "イライラして手当たり次第に物をゴミ袋に詰める様子",
+      "alt": "イライラして手当たり次第に物をゴミ袋に詰める様子",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "ストレスが限界に達すると、大切なものまで勢いで捨ててしまい、後で激しく後悔することになります。",
+      "fields": {
+        "種類": "情景イラスト",
+        "目的": "ストレスで「ヤケクソ」になり、大切なものまで捨ててしまう危険性を伝える",
+        "読者に伝えたい感情": "自分もこういう状態になっているかもしれない、という気づき",
+        "入れたい要素": "40〜50代の人物が、イライラしてヤケクソになり、手当たり次第に部屋の物をゴミ袋に詰め込んでいる様子。",
+        "避けたい表現": "過度な暴力性やホラーチックな表現",
+        "ALT": "イライラして手当たり次第に物をゴミ袋に詰める様子",
+        "キャプション候補": "ストレスが限界に達すると、大切なものまで勢いで捨ててしまい、後で激しく後悔することになります。"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '急に物を減らしたくなる心理とは？「全部捨てたい」衝動の裏にあるSOSと対処法'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 40〜50代の人物が、イライラしてヤケクソになり、手当たり次第に部屋の物をゴミ袋に詰め込んでいる様子。. Purpose: ストレスで「ヤケクソ」になり、大切なものまで捨ててしまう危険性を伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 過度な暴力性やホラーチックな表現.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    },
+    {
+      "role": "記事内イメージ",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "psychology-of-decluttering-inline-ng-ok.png",
-      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
-      "position": "本文中のCMSブリーフ位置"
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "親の物を勝手に捨ててトラブルになる親子のイメージ",
+      "alt": "親の物を勝手に捨ててトラブルになる親子のイメージ",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "他人の物を勝手に捨てると、信頼関係が崩れて片付けが完全にストップしてしまいます",
+      "fields": {
+        "種類": "記事内イメージ素材",
+        "ALT": "親の物を勝手に捨ててトラブルになる親子のイメージ",
+        "キャプション候補": "他人の物を勝手に捨てると、信頼関係が崩れて片付けが完全にストップしてしまいます"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '急に物を減らしたくなる心理とは？「全部捨てたい」衝動の裏にあるSOSと対処法'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 記事内容に合う人物と物. Purpose: . Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置、抽象的な線、丸、四角、矢印だけで構成された低品質な図解、無料素材風の薄いアイコン図解.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
     },
     {
       "role": "記事内イメージ",
-      "file_name": "psychology-of-decluttering-inline-04.png",
-      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
-      "position": "本文中のCMSブリーフ位置"
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "psychology-of-decluttering-inline-three-boxes.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "実家の片付けを成功させる3つのステップ図解",
+      "alt": "実家の片付けを成功させる3つのステップ図解",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "勢いで捨てる前に、この3つのステップに沿って進めることで後悔やトラブルを防げます。",
+      "fields": {
+        "種類": "イラスト図解",
+        "目的": "片付けを失敗しないための3つのステップを読者に直感的に伝える",
+        "読者に伝えたい感情": "この順番なら無理なく進められそうという安心感",
+        "入れたい要素": "1つの画面が3つのステップに分かれた図解。ステップ1は自分の部屋（机や棚）を整理している場面（自分のテリトリー）、ステップ2は段ボールに「ゴミ」「残す」「迷う」と仕分けている場面、ステップ3は専門の査定員に見せている場面。各場面に短い日本語の補足テキストを入れても良い。",
+        "避けたい表現": "長文の解説テキスト、複雑すぎるレイアウト",
+        "ALT": "実家の片付けを成功させる3つのステップ図解",
+        "キャプション候補": "勢いで捨てる前に、この3つのステップに沿って進めることで後悔やトラブルを防げます。"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '急に物を減らしたくなる心理とは？「全部捨てたい」衝動の裏にあるSOSと対処法'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 1つの画面が3つのステップに分かれた図解。ステップ1は自分の部屋（机や棚）を整理している場面（自分のテリトリー）、ステップ2は段ボールに「ゴミ」「残す」「迷う」と仕分けている場面、ステップ3は専門の査定員に見せている場面。各場面に短い日本語の補足テキストを入れても良い。. Purpose: 片付けを失敗しないための3つのステップを読者に直感的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 長文の解説テキスト、複雑すぎるレイアウト.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    },
+    {
+      "role": "記事内イメージ",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "psychology-of-decluttering-inline-06.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "古い品物の価値を確認する買取査定のイメージ",
+      "alt": "古い品物の価値を確認する買取査定のイメージ",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "捨てる前に価値を確認することで、手放す決心がつきます",
+      "fields": {
+        "種類": "記事内イメージ素材",
+        "ALT": "古い品物の価値を確認する買取査定のイメージ",
+        "キャプション候補": "捨てる前に価値を確認することで、手放す決心がつきます"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '急に物を減らしたくなる心理とは？「全部捨てたい」衝動の裏にあるSOSと対処法'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 記事内容に合う人物と物. Purpose: . Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置、抽象的な線、丸、四角、矢印だけで構成された低品質な図解、無料素材風の薄いアイコン図解.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
     }
   ],
+  "omitted_images": [],
   "quality_notes": [
-    "ローカル合成で仕上げるためのアイキャッチ素材指定を利用しています。",
-    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
-    "lightモードのため、初回制作は2件に絞り、3件を保留しました。"
+    "Canvaで仕上げるためのアイキャッチ素材指定を利用しています。",
+    "本文画像が多めです。標準は本文画像・図解4枚です。"
   ]
 }

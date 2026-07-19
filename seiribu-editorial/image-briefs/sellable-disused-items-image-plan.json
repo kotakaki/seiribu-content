@@ -1,16 +1,14 @@
 {
   "engine": {
-    "mode": "light",
+    "mode": "standard",
     "mode_settings": {
-      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
-      "max_eyecatches": 1,
-      "max_inline_images": 1,
-      "compact_prompts": true,
-      "omit_canva_detail": true
+      "description": "記事内のCMS画像指定をすべて展開する標準モード。アイキャッチ素材1件と本文画像・図解4件を基本にする",
+      "compact_prompts": false,
+      "omit_canva_detail": false
     },
     "storage_policy": {
       "generation_tool": "imagegen",
-      "diagram_tool": "visualize / Pillow / SVG",
+      "diagram_tool": "imagegen illustration base + Pillow / SVG / Canva label and logo overlay",
       "canva_tool": "optional_manual",
       "draft_dir": "/private/tmp/seiribu-image-work/sellable-disused-items",
       "final_dir": "seiribu-editorial/assets/images/sellable-disused-items",
@@ -40,20 +38,20 @@
         "アイキャッチ完成版",
         "Canva仕上げ画像"
       ],
-      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
-      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
+      "non_eyecatch_default": "本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。"
     },
     "local_composition": {
-      "standard": true,
-      "engine": "Pillow",
-      "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+      "standard": false,
+      "engine": "Canva手動仕上げ",
+      "script": "",
       "eyecatch_output_size": "1200 x 675",
       "background": "#FAF3EA",
       "title_color": "#7A3454",
       "subtitle_color": "#24304A",
       "logo_width": 160,
       "logo_position": "左上",
-      "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+      "canva_role": "アイキャッチ完成版はCanvaで人間がタイトル、サブタイトル、ロゴ、Canva専用フォントを手動合成する。"
     }
   },
   "images": [
@@ -65,7 +63,7 @@
       "file_name": "sellable-disused-items-inline-01.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成素材",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
       "wp_title": "実家の片付けで出てきた古い本やカメラ、レコード、ブランド品を親子で確認している様子",
       "alt": "実家の片付けで出てきた古い本やカメラ、レコード、ブランド品を親子で確認している様子",
       "position": "導入文の直後（最初のH2の上）",
@@ -79,22 +77,70 @@
         "ALT": "実家の片付けで出てきた古い本やカメラ、レコード、ブランド品を親子で確認している様子",
         "キャプション候補": "実家には、捨ててしまうにはもったいない品物がたくさん眠っています。"
       },
-      "final_prompt": "Warm text-free Seiribu editorial illustration for '実家の片付けで売れるもの一覧｜捨てる前に確認する品物と整理手順'. Aspect ratio: 16:9. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 親子（40代の子と70代の親）、段ボール、カメラ、レコード、ブランド品. Purpose: 実家の片付けで出てきた様々な「売れるかもしれない物」を確認している様子をイメージさせる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 暗い雰囲気、ゴミ屋敷のような散らかりすぎた部屋. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '実家の片付けで売れるもの一覧｜捨てる前に確認する品物と整理手順'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 親子（40代の子と70代の親）、段ボール、カメラ、レコード、ブランド品. Purpose: 実家の片付けで出てきた様々な「売れるかもしれない物」を確認している様子をイメージさせる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 暗い雰囲気、ゴミ屋敷のような散らかりすぎた部屋.",
       "local_composition": {},
-      "canva_instructions": {}
-    }
-  ],
-  "omitted_images": [
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    },
     {
       "role": "記事内図解",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "sellable-disused-items-inline-three-boxes.png",
-      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
-      "position": "H2「実家の片付けで売れるものは、捨てる前の確認で見つかる」の直下"
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
+      "wp_title": "実家の荷物を売れる可能性がある物、確認してから判断する物、処分方法を確認する物に分ける図",
+      "alt": "実家の荷物を売れる可能性がある物、確認してから判断する物、処分方法を確認する物に分ける図",
+      "position": "H2「実家の片付けで売れるものは、捨てる前の確認で見つかる」の直下",
+      "caption": "まずは「売る・確認する・処分する」の3つに分けることから始めましょう。",
+      "fields": {
+        "目的": "荷物をすぐに捨てず、3つの選択肢に分ける基本フローを視覚的に理解させる",
+        "設置位置": "H2「実家の片付けで売れるものは、捨てる前の確認で見つかる」の直下",
+        "伝えたい内容": "実家の荷物を「売れる可能性がある物」「確認してから判断する物」「処分方法を確認する物」の3つの箱に分ける考え方",
+        "入れたい要素": "3つの箱（左から緑色・黄色・グレーの順）、各箱の下に代表的な品物の小さなイラスト、フロー図",
+        "避けたい表現": "文字が多すぎる複雑な図解",
+        "ALT": "実家の荷物を売れる可能性がある物、確認してから判断する物、処分方法を確認する物に分ける図",
+        "キャプション候補": "まずは「売る・確認する・処分する」の3つに分けることから始めましょう。"
+      },
+      "final_prompt": "Create a text-free illustrated diagram base for a Seiribu article. Aspect ratio: 16:9. Style: warm Japanese picture-book style illustrated diagram, scene-based panels with people, household items, rooms, boxes, kimono, books, cameras or other concrete objects, not abstract line art, not plain geometric shapes. Content to show as warm scene-based panels or a comparison illustration: 3つの箱（左から緑色・黄色・グレーの順）、各箱の下に代表的な品物の小さなイラスト、フロー図. Purpose: 荷物をすぐに捨てず、3つの選択肢に分ける基本フローを視覚的に理解させる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 文字が多すぎる複雑な図解. Do not create abstract line art, a generic flowchart, wireframe boxes, plain circles, arrows-only diagrams, or free-icon-style graphics. Use concrete scenes with people, household items, rooms, boxes, kimono, books, cameras, documents, or other article-specific objects. Do not include readable text, Japanese labels, numbers, logo, watermark, signage, or speech bubbles in the generated image; short Japanese labels and captions will be added later with Pillow, SVG, or Canva. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
     }
   ],
+  "omitted_images": [],
   "quality_notes": [
     "アイキャッチまたはアイキャッチ合成用素材の指定がありません。自動補完はしません。",
-    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
-    "lightモードのため、初回制作は1件に絞り、1件を保留しました。"
+    "本文画像の枚数は適正範囲です。"
   ]
 }

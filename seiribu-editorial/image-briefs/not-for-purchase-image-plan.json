@@ -1,16 +1,14 @@
 {
   "engine": {
-    "mode": "light",
+    "mode": "standard",
     "mode_settings": {
-      "description": "初回制作をアイキャッチ系1件と本文画像1件までに絞る軽量モード",
-      "max_eyecatches": 1,
-      "max_inline_images": 1,
-      "compact_prompts": true,
-      "omit_canva_detail": true
+      "description": "記事内のCMS画像指定をすべて展開する標準モード。アイキャッチ素材1件と本文画像・図解4件を基本にする",
+      "compact_prompts": false,
+      "omit_canva_detail": false
     },
     "storage_policy": {
       "generation_tool": "imagegen",
-      "diagram_tool": "visualize / Pillow / SVG",
+      "diagram_tool": "imagegen illustration base + Pillow / SVG / Canva label and logo overlay",
       "canva_tool": "optional_manual",
       "draft_dir": "/private/tmp/seiribu-image-work/not-for-purchase",
       "final_dir": "seiribu-editorial/assets/images/not-for-purchase",
@@ -40,20 +38,20 @@
         "アイキャッチ完成版",
         "Canva仕上げ画像"
       ],
-      "non_eyecatch_default": "本文画像・本文図解は標準ではロゴなし。明示依頼やテンプレ上のブランド表記が必要な場合だけ、後工程で小さく配置する。",
-      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。"
+      "non_eyecatch_default": "本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。"
     },
     "local_composition": {
-      "standard": true,
-      "engine": "Pillow",
-      "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+      "standard": false,
+      "engine": "Canva手動仕上げ",
+      "script": "",
       "eyecatch_output_size": "1200 x 675",
       "background": "#FAF3EA",
       "title_color": "#7A3454",
       "subtitle_color": "#24304A",
       "logo_width": 160,
       "logo_position": "左上",
-      "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+      "canva_role": "アイキャッチ完成版はCanvaで人間がタイトル、サブタイトル、ロゴ、Canva専用フォントを手動合成する。"
     }
   },
   "images": [
@@ -65,7 +63,7 @@
       "file_name": "not-for-purchase_eyecatch.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成素材 + 背景透過（ローカル合成で仕上げ）",
+      "method": "画像生成素材 + Canva手動仕上げ",
       "wp_title": "買取基準に満たないと言われて戸惑う女性のイラスト",
       "alt": "買取基準に満たないと言われて戸惑う女性のイラスト",
       "position": "アイキャッチ合成用素材",
@@ -82,71 +80,169 @@
         "ALT": "買取基準に満たないと言われて戸惑う女性のイラスト",
         "ファイル名": "not-for-purchase_eyecatch"
       },
-      "final_prompt": "Text-free Seiribu eyecatch cutout asset. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Subject: 少し困り顔の女性、ブランド品らしいバッグや時計. Purpose: 記事の顔として「買取を断られて戸惑う様子」を視覚化する. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Transparent background, or single flat light background for easy removal. No room, wall, floor, shadow, title area, logo area, frame. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、背景の描画、過度にショックを受けている（泣いている等）ネガティブすぎる表現. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
+      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '「買取基準に満たない」＝偽物？査定員が言わない本当の理由と3つの対策'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 少し困り顔の女性、ブランド品らしいバッグや時計. Purpose: 記事の顔として「買取を断られて戸惑う様子」を視覚化する. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、背景の描画、過度にショックを受けている（泣いている等）ネガティブすぎる表現. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
       "local_composition": {
-        "standard": true,
-        "engine": "Pillow",
-        "script": "seiribu-editorial/scripts/compose_eyecatch.py",
+        "standard": false,
+        "engine": "Canva手動仕上げ",
+        "script": "",
         "title": "（※画像内には生成せず合成時に追加）",
         "subtitle": "（※同上）",
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
         "logo_required": true,
         "logo_position": "左上",
-        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版とCanva仕上げ画像では、ローカル合成または手動調整でセイリ部ロゴを小さなブランド署名として配置する。本文画像・本文図解は標準ではロゴなしで軽く保つ。",
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。",
         "output_size": "1200 x 675",
         "source_material_file": "not-for-purchase_eyecatch.png",
         "output_file": "not-for-purchase-eyecatch-branded.png",
         "headline_font": "UDモトヤアポロ 太字",
         "fallback_headline_font": "Noto Sans JP Bold",
         "subtitle_font": "Noto Sans JP Regular",
-        "canva_role": "任意の手動微調整。Canva API連携を本番前提にしない。"
+        "canva_role": "アイキャッチ完成版はCanvaで人間がタイトル、サブタイトル、ロゴ、Canva専用フォントを手動合成する。"
       },
-      "canva_instructions": {}
+      "canva_instructions": {
+        "status": "optional_manual",
+        "template_url": "https://canva.link/mqlqak3adj01g1i",
+        "title": "（※画像内には生成せず合成時に追加）",
+        "subtitle": "（※同上）",
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。",
+        "logo_position": "左上",
+        "headline_font": "UDモトヤアポロ 太字",
+        "subtitle_font": "Noto Sans JP Regular"
+      },
+      "logo_overlay": {
+        "required": false,
+        "reason": "アイキャッチ完成版はCanvaで人間がタイトルとロゴを合成する。"
+      }
     },
     {
-      "role": "記事内イメージ",
+      "role": "記事内図解",
       "generated": false,
       "included": true,
       "omitted_reason": "",
       "file_name": "not-for-purchase-inline-reasons.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成素材",
-      "wp_title": "口元に人差し指を当てて秘密のポーズをする査定員",
-      "alt": "口元に人差し指を当てて秘密のポーズをする査定員",
+      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
+      "wp_title": "「買取基準に満たない」という言葉の裏にある2つの理由の図解",
+      "alt": "「買取基準に満たない」という言葉の裏にある2つの理由の図解",
       "position": "本文中のCMSブリーフ位置",
-      "caption": "業者がハッキリ理由を言わないのには「裏の事情」があります",
+      "caption": "業者がハッキリ理由を言わないのには、業界特有の事情があります",
       "fields": {
-        "種類": "記事内イメージ素材",
-        "目的": "業者が本音（偽物とは言えない事情）を隠している構図を視覚的に伝える",
-        "読者に伝えたい感情": "納得感（「なるほど、裏にそういう事情があるのか」）",
-        "入れたい要素": "査定員が口元に人差し指を当てて「内緒（言えない事情がある）」のポーズをしているイラスト",
-        "避けたい表現": "画像内へのテキスト（文字）の生成、悪徳業者に見えるような人相の悪い査定員",
-        "ALT": "口元に人差し指を当てて秘密のポーズをする査定員",
-        "キャプション候補": "業者がハッキリ理由を言わないのには「裏の事情」があります"
+        "種類": "記事内図解",
+        "目的": "「買取基準に満たない」という言葉の裏にある2つの本当の理由を分解して伝える",
+        "読者に伝えたい感情": "納得感（「なるほど、業界の構造的な事情があるのか」）",
+        "入れたい要素": "「買取基準に満たない」という吹き出し・バッジを中心に配置し、矢印で2つの理由に分岐する図解。① 法律上、偽物と断言できない ② クレーム回避のための接客用語",
+        "ALT": "「買取基準に満たない」という言葉の裏にある2つの理由の図解",
+        "キャプション候補": "業者がハッキリ理由を言わないのには、業界特有の事情があります",
+        "Clean editorial diagram illustration for a Japanese web article. Layout": "A speech bubble or badge in the center containing the text 「買取基準に満たない」, with an arrow splitting into two labeled boxes on the right: ① 法律上、偽物と断言できない ② クレーム回避のための接客用語. Style: flat, minimal, warm color palette (beige, muted teal, soft orange accent). Small simple icons for each reason (e.g., a gavel/law icon for ①, a speech bubble with a smile for ②). Clean Japanese text labels, kept minimal. White or very light background. No characters, no people needed. No logos, no watermarks. Aspect ratio 16:9."
       },
-      "final_prompt": "Warm text-free Seiribu editorial illustration for '「買取基準に満たない」＝偽物？査定員が言わない本当の理由と3つの対策'. Aspect ratio: 16:9. Style: warm flat editorial illustration, high-quality 2D vector art, soft shapes, minimal or no outlines, gentle natural colors, contemporary Japanese everyday home, clean but lived-in. Main visual: 査定員が口元に人差し指を当てて「内緒（言えない事情がある）」のポーズをしているイラスト. Purpose: 業者が本音（偽物とは言えない事情）を隠している構図を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles; 画像内へのテキスト（文字）の生成、悪徳業者に見えるような人相の悪い査定員. Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images.",
+      "final_prompt": "Create a text-free illustrated diagram base for a Seiribu article. Aspect ratio: 16:9. Style: warm Japanese picture-book style illustrated diagram, scene-based panels with people, household items, rooms, boxes, kimono, books, cameras or other concrete objects, not abstract line art, not plain geometric shapes. Content to show as warm scene-based panels or a comparison illustration: 「買取基準に満たない」という吹き出し・バッジを中心に配置し、矢印で2つの理由に分岐する図解。① 法律上、偽物と断言できない ② クレーム回避のための接客用語. Purpose: 「買取基準に満たない」という言葉の裏にある2つの本当の理由を分解して伝える. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置、抽象的な線、丸、四角、矢印だけで構成された低品質な図解、無料素材風の薄いアイコン図解. Do not create abstract line art, a generic flowchart, wireframe boxes, plain circles, arrows-only diagrams, or free-icon-style graphics. Use concrete scenes with people, household items, rooms, boxes, kimono, books, cameras, documents, or other article-specific objects. Do not include readable text, Japanese labels, numbers, logo, watermark, signage, or speech bubbles in the generated image; short Japanese labels and captions will be added later with Pillow, SVG, or Canva. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
       "local_composition": {},
-      "canva_instructions": {}
-    }
-  ],
-  "omitted_images": [
-    {
-      "role": "記事内イメージ",
-      "file_name": "not-for-purchase-inline-reasons-2.png",
-      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
-      "position": "本文中のCMSブリーフ位置"
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
     },
     {
       "role": "記事内イメージ",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "not-for-purchase-inline-reasons-2.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "買取を断られる3つのケース",
+      "alt": "買取を断られる3つのケース（状態不良・在庫過多・対象外）",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "本物であっても、お店の事情で買取不可になるケースは多々あります",
+      "fields": {
+        "種類": "記事内イメージ素材",
+        "目的": "偽物以外で断られる3つのケース（状態不良、在庫過多、対象外）を1枚で直感的に伝える",
+        "読者に伝えたい感情": "安心感（「なんだ、偽物だからってわけじゃないんだ」）",
+        "入れたい要素": "ボロボロのバッグ（状態不良）、山積みの段ボール（在庫過多）、時計専門店の看板とバッグ（対象外）を並べた3分割のイメージイラスト",
+        "避けたい表現": "画像内へのテキスト（文字）の生成",
+        "ALT": "買取を断られる3つのケース（状態不良・在庫過多・対象外）",
+        "キャプション候補": "本物であっても、お店の事情で買取不可になるケースは多々あります"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '「買取基準に満たない」＝偽物？査定員が言わない本当の理由と3つの対策'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: ボロボロのバッグ（状態不良）、山積みの段ボール（在庫過多）、時計専門店の看板とバッグ（対象外）を並べた3分割のイメージイラスト. Purpose: 偽物以外で断られる3つのケース（状態不良、在庫過多、対象外）を1枚で直感的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    },
+    {
+      "role": "記事内イメージ",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "not-for-purchase-inline-checklist.png",
-      "reason": "lightモードでは本文画像を1件までに絞ります。必要なら --mode standard で出力します。",
-      "position": "本文中のCMSブリーフ位置"
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "虫眼鏡でブランド品のステッチを確認するイラスト",
+      "alt": "虫眼鏡でブランド品のステッチを確認するイラスト",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "付属品の有無や、細部の縫製をチェックしてみましょう",
+      "fields": {
+        "種類": "記事内イメージ素材",
+        "目的": "セルフチェックの具体的なポイントを視覚的にナビゲートする",
+        "読者に伝えたい感情": "実用性（「自分でも見分けられそう！」という実感）",
+        "入れたい要素": "虫眼鏡でブランドバッグの縫い目（ステッチ）やロゴ部分を拡大して見ているイラスト",
+        "避けたい表現": "画像内へのテキスト（文字）の生成、本物のブランドロゴを精巧に描きすぎること（商標リスク回避）",
+        "ALT": "虫眼鏡でブランド品のステッチを確認するイラスト",
+        "キャプション候補": "付属品の有無や、細部の縫製をチェックしてみましょう"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '「買取基準に満たない」＝偽物？査定員が言わない本当の理由と3つの対策'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 虫眼鏡でブランドバッグの縫い目（ステッチ）やロゴ部分を拡大して見ているイラスト. Purpose: セルフチェックの具体的なポイントを視覚的にナビゲートする. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成、本物のブランドロゴを精巧に描きすぎること（商標リスク回避）.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
     }
   ],
+  "omitted_images": [],
   "quality_notes": [
-    "ローカル合成で仕上げるためのアイキャッチ素材指定を利用しています。",
-    "本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。",
-    "lightモードのため、初回制作は2件に絞り、2件を保留しました。"
+    "Canvaで仕上げるためのアイキャッチ素材指定を利用しています。",
+    "本文画像の枚数は適正範囲です。"
   ]
 }

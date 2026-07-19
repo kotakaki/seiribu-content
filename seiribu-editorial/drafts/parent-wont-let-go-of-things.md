@@ -68,8 +68,6 @@ CTA：必要に応じて専門買取への導線。
 > - 避けたい表現：過度に怒っている、または悲壮感のあるネガティブすぎる表現。
 > - ALT：親が物を捨てさせてくれない悩みを解決する
 > - キャプション候補：なし（アイキャッチのため）
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style illustration. Scene: An adult child in their 40s-50s looking slightly troubled but finding a checklist and a smartphone in a room full of various old items at their elderly parent's house, feeling a sense of relief and finding a solution. Style: warm, clean, Japanese domestic everyday life, slightly lived-in, like a gentle picture book. Tone: empathetic, reassuring, not scary. Minimal text only if essential. No logos, no watermarks. Aspect ratio 16:9.
 
 実家に帰るたびに増えていく荷物の山。親が元気なうちに片付けておきたいけれど、いざ片付けを提案すると「まだ使う」「私が死んでからにして」と激しく抵抗され、一向に整理が進まない状態に陥るケースは少なくありません。
 
@@ -110,8 +108,6 @@ CTA：必要に応じて専門買取への導線。
 > - 避けたい表現：過度に怒っている、または悲壮感のあるネガティブすぎる表現
 > - ALT：物を捨てようと説得する子どもと意固地になる親
 > - キャプション候補：親を理詰めで説得しようとするほど、相手は心を閉ざしてしまいます。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style illustration. Scene: An adult child in their 40s-50s holding a garbage bag, trying to persuade their elderly parent to throw things away. The elderly parent in their 70s-80s is defensively holding onto old items with a stubborn expression. Style: warm, clean, Japanese domestic everyday life, slightly lived-in, like a gentle picture book. Tone: cautionary, empathetic, not overly negative or scary. Minimal text only if essential. No logos, no watermarks. Aspect ratio 16:9.
 
 ## 親が物を捨てさせてくれない時の「角が立たない」話し方と言い換え
 
@@ -143,8 +139,6 @@ CTA：必要に応じて専門買取への導線。
 > - 避けたい表現：文字が多すぎる複雑な図、無機質なビジネス風のグラフ
 > - ALT：親が納得する角が立たない言い換え術
 > - キャプション候補：目的を「捨てる」から「安全」や「価値の確認」にすり替えるだけで、親の態度は大きく軟化します。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style infographic illustration. Scene: A warm, visual comparison of two approaches. On one side, a "cross" (X) showing the word "Discard" (捨てる) causing conflict. On the other side, a "circle" (O) showing the words "Safety" (安全) and "Appraisal" (査定) bringing peace. Include gentle icons of an elderly parent in their 70s-80s and an adult child in their 40s-50s smiling together. Style: warm, clean, Japanese domestic everyday life, like a gentle picture book. Tone: informative, reassuring, not like a B2B presentation. Minimal Japanese text for labels. No logos, no watermarks. Aspect ratio 16:9.
 
 ## 勝手に捨てて揉めないための具体的な進め方（3つのステップ）
 
@@ -182,8 +176,6 @@ CTA：必要に応じて専門買取への導線。
 > - 避けたい表現：査定士が中央で主役になっている絵、現金、トラック、買取成立といった広告的な業者感。
 > - ALT：親の合意を得ながら進める実家の整理ステップ
 > - キャプション候補：保留箱や写真確認、第三者による価値確認を活用することで、後々のトラブルを未然に防ぐことができます。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style infographic illustration. Scene: A warm, visual explanation of 3 steps for decluttering without conflict: 1. A "Pending Box" (保留箱), 2. Taking a photo with a smartphone for agreement, 3. "Value Check" (価値確認). For step 3, show the elderly parent (70s-80s) and adult child (40s-50s) as the main focus gently consulting with a small, supporting professional figure about an old item. Do NOT show money, trucks, or aggressive sales vibes. Style: warm, clean, Japanese domestic everyday life, like a gentle picture book. Tone: informative, practical, reassuring, not like a B2B presentation. Minimal Japanese text for step numbers and labels. No logos, no watermarks. Aspect ratio 16:9.
 
 ## 親が物を捨てさせてくれない時のよくある質問
 

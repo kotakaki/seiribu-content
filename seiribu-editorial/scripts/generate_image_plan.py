@@ -79,6 +79,7 @@ class ImageBrief:
     final_prompt: str = ""
     local_composition: dict[str, Any] = field(default_factory=dict)
     canva_instructions: dict[str, Any] = field(default_factory=dict)
+    logo_overlay: dict[str, Any] = field(default_factory=dict)
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -159,12 +160,20 @@ def article_meta(path: Path, text: str) -> ArticleMeta:
 
 
 def normalize_key(key: str) -> str:
-    key = key.strip().strip("-").strip()
+    key = strip_markdown(key.strip().strip("-").strip())
     if key.startswith("画像のアイデア"):
         return "入れたい要素"
     if key.startswith("入れたい要素"):
         return "入れたい要素"
     return FIELD_ALIASES.get(key, key)
+
+
+def is_legacy_generation_prompt_key(key: str) -> bool:
+    return (
+        "ChatGPT用プロンプト" in key
+        or "DALL-E" in key
+        or key.startswith("画像を1枚だけ生成")
+    )
 
 
 def parse_cms_blocks(text: str) -> list[ImageBrief]:
@@ -188,7 +197,10 @@ def parse_cms_blocks(text: str) -> list[ImageBrief]:
                 body = body[2:].strip() if body.startswith("- ") else body
                 match = re.match(r"([^：:]+)[：:]\s*(.*)$", body)
                 if match:
-                    fields[normalize_key(match.group(1))] = match.group(2).strip()
+                    key = normalize_key(match.group(1))
+                    if is_legacy_generation_prompt_key(key):
+                        continue
+                    fields[key] = match.group(2).strip()
             blocks.append(
                 ImageBrief(
                     role="",
@@ -231,13 +243,13 @@ def infer_role(block: ImageBrief) -> str:
         return "図解用小物素材"
     if "写真" in explicit or "写真風" in text:
         return "写真風素材"
-    if "記事内イメージ" in explicit or re.search(r"情景|情景イラスト|風景|様子|場面", text):
-        return "記事内イメージ"
     if "図解" in explicit or re.search(
         r"図解|比較表|フロー|ステップ図|手順図|分類図|チェックリスト|マトリクス|早見表|3択比較|比較軸|チャート",
         text,
     ):
         return "記事内図解"
+    if "記事内イメージ" in explicit or re.search(r"情景|情景イラスト|風景|様子|場面", text):
+        return "記事内イメージ"
     return "記事内イメージ"
 
 
@@ -310,6 +322,26 @@ def forbidden_generation_text(config: dict[str, Any]) -> str:
     return ", ".join(config.get("generation_forbidden", []))
 
 
+def diagram_forbidden_generation_text(config: dict[str, Any]) -> str:
+    text_forbidden = {
+        "no text",
+        "no letters",
+        "no numbers",
+        "no Japanese characters",
+        "no English words",
+        "no labels",
+    }
+    items = [item for item in config.get("generation_forbidden", []) if item not in text_forbidden]
+    items.extend(
+        [
+            "no garbled Japanese",
+            "no random extra labels",
+            "no font specification",
+        ]
+    )
+    return ", ".join(items)
+
+
 def generation_style(config: dict[str, Any], key: str) -> str:
     return config.get("generation_style", {}).get(key, "")
 
@@ -333,7 +365,7 @@ def logo_required_targets(config: dict[str, Any]) -> list[str]:
 def non_eyecatch_logo_rule(config: dict[str, Any]) -> str:
     return brand_signature(config).get(
         "non_eyecatch_default",
-        "本文画像・本文図解は標準ではロゴなし。明示依頼がある場合だけ後工程で小さく配置する。",
+        "本文画像・本文図解はブランド帰属表示としてロゴ必須。背景に応じて透過ロゴまたは薄い白背景付きロゴを余白に小さく配置する。",
     )
 
 
@@ -365,6 +397,31 @@ def image_storage_policy(meta: ArticleMeta, config: dict[str, Any]) -> dict[str,
         "archive_root": retention.get("archive_root", "/private/tmp/seiribu-image-archive"),
         "archive_script": retention.get("archive_script", "seiribu-editorial/scripts/clean_image_assets.py"),
     }
+
+
+def build_logo_overlay(block: ImageBrief, config: dict[str, Any]) -> dict[str, Any]:
+    if block.role in {"アイキャッチ", "アイキャッチ素材"}:
+        return {
+            "required": False,
+            "reason": "アイキャッチ完成版はCanvaで人間がタイトルとロゴを合成する。",
+        }
+    return {
+        "required": True,
+        "logo": config.get("logo_path", ""),
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": ["左上", "右上", "右下", "左下"],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。",
+    }
+
+
+def diagram_style(config: dict[str, Any]) -> str:
+    return config.get("generation_style", {}).get(
+        "illustrated_diagram",
+        "warm Japanese picture-book style illustrated diagram with people, household items, rooms, and concrete objects; not abstract line art",
+    )
 
 
 def mode_settings(config: dict[str, Any], mode: str) -> dict[str, Any]:
@@ -437,7 +494,7 @@ def build_local_composition(block: ImageBrief, meta: ArticleMeta, config: dict[s
         "headline_font": config["eyecatch"].get("headline_font", ""),
         "fallback_headline_font": config["eyecatch"].get("fallback_headline_font", ""),
         "subtitle_font": config["eyecatch"].get("subtitle_font", ""),
-        "canva_role": composition.get("canva_role", "任意の手動微調整"),
+        "canva_role": composition.get("canva_role", "アイキャッチ完成版はCanvaで人間が手動仕上げ"),
     }
 
 
@@ -450,13 +507,31 @@ def compact_prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, A
 
     if block.role == "記事内図解":
         labels = block.fields.get("入れたい要素") or block.fields.get("伝えたい内容") or block.fields.get("指示") or "未指定"
+        kind = block.fields.get("種類", "")
+        diagram_forbidden = diagram_forbidden_generation_text(config)
+        
+        diagram_instruction = (
+            f"Content to show as a structured infographic diagram: {labels}. "
+            "Layout: Use a clean, solid background. Structure the steps using clear bordered boxes and connecting arrows. "
+            "Do NOT make full-bleed comic panels or full-screen immersive scenes. Keep ample margin space. "
+            "You can use spot illustrations of characters and items inside the boxes. "
+            "Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. "
+            "Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. "
+            "Do not specify a font; let the image model choose a clean natural label style. "
+        )
+        if "アイコン" in kind or "人物不要" in labels:
+            diagram_instruction += "Use ONLY item icons (NO characters/people) for this specific diagram. "
+
         return (
-            f"画像生成AIには渡さない。{block.size} / {block.aspect_ratio} の図解として、Pillow・SVG・Canvaなどで制作。"
-            f"内容: {labels}。目的: {block.fields.get('目的', '')}。"
-            "日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。"
+            f"Illustrated infographic diagram for a Seiribu article. Aspect ratio: {block.aspect_ratio}. "
+            f"Style: {diagram_style(config)}. "
+            f"{diagram_instruction}"
+            f"Purpose: {block.fields.get('目的', '')}. "
+            f"Must avoid: {diagram_forbidden}. "
+            "Avoid: full-screen scenes, comic-book edge-to-edge layouts, abstract line art. "
+            "Leave quiet margin space for a small Seiribu brand logo overlay. "
             f"ロゴ: {non_eyecatch_logo_rule(config)}"
         )
-
     if block.role == "アイキャッチ素材":
         return (
             f"Text-free Seiribu eyecatch cutout asset. Aspect ratio: {block.aspect_ratio}. "
@@ -474,7 +549,7 @@ def compact_prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, A
             f"Purpose: {purpose}. Tone: {generation_tone(config)}. "
             "Transparent background, or single flat light background for easy removal. "
             "No room, wall, floor, shadow, title area, logo area, frame. "
-            "This background-free material will be finished later with the local Seiribu Pillow compositor. "
+            "This background-free material will be finished later in the manual Canva eyecatch template. "
             f"Avoid: {forbidden}; {avoid}. {reuse_guard}"
         )
 
@@ -530,7 +605,7 @@ def prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any], mod
             f"Style: {generation_style(config, 'cutout')}. "
             "Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. "
             "Do not include a room, wall, floor, cast shadow, title area, logo area, decorative frame, placeholder card, or text panel. "
-            "This background-free material will be finished later with the local Seiribu Pillow compositor. "
+            "This background-free material will be finished later in the manual Canva eyecatch template. "
             f"Main visual: {brief_visual(block)}. "
             f"Purpose: {block.fields.get('目的', '')}. "
             f"Tone: {generation_tone(config)}. "
@@ -540,13 +615,30 @@ def prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any], mod
         )
     if block.role == "記事内図解":
         labels = block.fields.get("入れたい要素") or block.fields.get("伝えたい内容") or block.fields.get("指示") or "未指定"
+        kind = block.fields.get("種類", "")
+        diagram_forbidden = diagram_forbidden_generation_text(config)
+        
+        diagram_instruction = (
+            f"Content to show as a structured infographic diagram: {labels}. "
+            "Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. "
+            "Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. "
+            "It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. "
+            "Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. "
+            "Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. "
+            "Do not specify a font; let the image model choose a clean natural label style. "
+        )
+        if "アイコン" in kind or "人物不要" in labels:
+            diagram_instruction += "Use ONLY item icons (NO characters/people) for this specific diagram. "
+
         return (
-            "画像生成AIには渡さない。Canva、Pillow、SVGなど、文字とレイアウトを制御できる方法で記事内図解を制作する。"
-            f"最終サイズ: {block.size}。アスペクト比: {block.aspect_ratio}。"
-            f"入れる内容: {labels}。"
-            f"目的: {block.fields.get('目的', '')}。"
-            f"避ける表現: {block.fields.get('避けたい表現', avoid)}。"
-            "日本語ラベル、表、矢印、比較軸は後工程で正確に配置する。"
+            f"Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: {block.aspect_ratio}. "
+            f"Style: {diagram_style(config)}. "
+            f"{diagram_instruction}"
+            f"Purpose: {block.fields.get('目的', '')}. "
+            f"Must avoid: {diagram_forbidden}. "
+            f"Also avoid: {block.fields.get('避けたい表現', avoid)}. "
+            "Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. "
+            "Leave quiet margin space for a small Seiribu brand logo overlay. "
             f"ロゴ: {non_eyecatch_logo_rule(config)}"
         )
     if block.role == "図解用小物素材":
@@ -597,7 +689,7 @@ def enrich_briefs(
     for block in briefs:
         block.role = infer_role(block)
         if block.role == "アイキャッチ素材":
-            block.method = config.get("eyecatch_material", {}).get("method", "画像生成素材 + 背景透過（ローカル合成で仕上げ）")
+            block.method = config.get("eyecatch_material", {}).get("method", "画像生成素材 + Canva手動仕上げ")
             block.size = config.get("eyecatch_material", {}).get("size", "1200 x 675")
             block.aspect_ratio = config.get("eyecatch_material", {}).get("aspect_ratio", "16:9")
             block.file_name = ensure_png_filename(
@@ -617,7 +709,7 @@ def enrich_briefs(
                 "subtitle_font": config["eyecatch"].get("subtitle_font", ""),
             }
         elif block.role == "アイキャッチ":
-            block.method = "背景なし画像生成素材 + ローカル合成（Pillow）"
+            block.method = config.get("eyecatch_material", {}).get("method", "画像生成素材 + Canva手動仕上げ")
             block.size = config["eyecatch"]["size"]
             block.aspect_ratio = config["eyecatch"].get("aspect_ratio", "16:9")
             block.file_name = ensure_png_filename(
@@ -644,6 +736,7 @@ def enrich_briefs(
             block.file_name = ensure_png_filename(
                 block.fields.get("ファイル名") or f"{meta.slug}-inline-{infer_suffix(block)}.png"
             )
+            block.logo_overlay = build_logo_overlay(block, config)
         elif block.role == "図解用小物素材":
             inline_count += 1
             material_config = config.get("diagram_asset", {})
@@ -653,6 +746,7 @@ def enrich_briefs(
             block.file_name = ensure_png_filename(
                 block.fields.get("ファイル名") or f"{meta.slug}-diagram-asset-{infer_suffix(block)}.png"
             )
+            block.logo_overlay = {}
         else:
             inline_count += 1
             material_config = config.get("photo_material", {}) if block.role == "写真風素材" else config.get("inline_image", {})
@@ -661,6 +755,7 @@ def enrich_briefs(
             block.aspect_ratio = material_config.get("aspect_ratio", "16:9")
             suffix = "photo" if block.role == "写真風素材" else f"inline-{infer_suffix(block)}"
             block.file_name = ensure_png_filename(block.fields.get("ファイル名") or f"{meta.slug}-{suffix}.png")
+            block.logo_overlay = build_logo_overlay(block, config)
 
         block.alt = block.fields.get("ALT") or f"{meta.title}に関する{block.role}"
         block.wp_title = infer_wp_title(block, meta)
@@ -669,6 +764,7 @@ def enrich_briefs(
     for block in briefs:
         if block.role in {"アイキャッチ", "アイキャッチ素材"}:
             block.local_composition = build_local_composition(block, meta, config)
+            block.logo_overlay = build_logo_overlay(block, config)
 
         if not canva_detail_enabled(config, mode):
             block.canva_instructions = {}
@@ -695,7 +791,7 @@ def quality_notes(briefs: list[ImageBrief], mode: str = "standard") -> list[str]
     if not eyecatches:
         notes.append("アイキャッチまたはアイキャッチ合成用素材の指定がありません。自動補完はしません。")
     elif eyecatches[0].role == "アイキャッチ素材":
-        notes.append("ローカル合成で仕上げるためのアイキャッチ素材指定を利用しています。")
+        notes.append("Canvaで仕上げるためのアイキャッチ素材指定を利用しています。")
     else:
         notes.append("記事内のアイキャッチ指定を利用しています。")
 
@@ -703,8 +799,10 @@ def quality_notes(briefs: list[ImageBrief], mode: str = "standard") -> list[str]
         notes.append("本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。")
     elif len(inline) < 2:
         notes.append("本文画像が少なめです。ピラー記事では図解をもう1枚検討してください。")
-    elif len(inline) > 3:
-        notes.append("本文画像が多めです。公開時は重要な2〜3枚に絞ることも検討してください。")
+    elif len(inline) == 4:
+        notes.append("本文画像・図解は4枚構成です。記事内の全CMSブリーフを標準制作対象にします。")
+    elif len(inline) > 4:
+        notes.append("本文画像が多めです。標準は本文画像・図解4枚です。")
     else:
         notes.append("本文画像の枚数は適正範囲です。")
 
@@ -731,7 +829,7 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
         f"- スラッグ: `{meta.slug}`",
         f"- メインKW: {meta.main_kw or '未設定'}",
         f"- 出力モード: {mode}（{settings.get('description', '標準出力')}）",
-        f"- 標準仕上げ: ローカル合成（{local_composition_config(config).get('engine', 'Pillow')}）",
+        f"- アイキャッチ仕上げ: {local_composition_config(config).get('engine', 'Canva手動仕上げ')}",
         f"- Canvaテンプレ: {config.get('canva_template_url', '未設定')}（任意・手動微調整）",
         f"- ロゴ: `{config.get('logo_path', '')}`",
         f"- ロゴ必須対象: {', '.join(logo_required_targets(config)) or '未設定'}",
@@ -792,9 +890,9 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
         ]
         if brief.local_composition:
             lines += [
-                "#### ローカル合成",
+                "#### アイキャッチCanva仕上げ",
                 "",
-                f"- 合成スクリプト: `{brief.local_composition.get('script', '')}`",
+                f"- 仕上げ方法: {brief.local_composition.get('engine', '')}",
                 f"- タイトル: {brief.local_composition.get('title', '')}",
                 f"- サブタイトル: {brief.local_composition.get('subtitle', '')}",
                 f"- 出力サイズ: {brief.local_composition.get('output_size', '')}",
@@ -808,7 +906,7 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
             ]
         if brief.canva_instructions:
             lines += [
-                "#### Canva任意微調整",
+                "#### Canva仕上げ",
                 "",
                 f"- 状態: {brief.canva_instructions.get('status', 'optional_manual')}",
                 f"- テンプレートURL: {brief.canva_instructions.get('template_url', '')}",
@@ -822,13 +920,28 @@ def markdown_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str,
                 f"- サブタイトルフォント: {brief.canva_instructions.get('subtitle_font', '')}",
                 "",
             ]
+        if brief.logo_overlay.get("required"):
+            lines += [
+                "#### ブランド帰属ロゴ",
+                "",
+                f"- ロゴ必須: {'はい' if brief.logo_overlay.get('required') else 'いいえ'}",
+                f"- ロゴ: `{brief.logo_overlay.get('logo', '')}`",
+                f"- 表示モード: {brief.logo_overlay.get('mode', '')}",
+                f"- 透過ロゴ: {brief.logo_overlay.get('transparent_logo_when', '')}",
+                f"- 白背景付きロゴ: {brief.logo_overlay.get('white_backed_logo_when', '')}",
+                f"- 配置候補: {', '.join(brief.logo_overlay.get('preferred_positions', []))}",
+                f"- 配置ルール: {brief.logo_overlay.get('placement_rule', '')}",
+                f"- 理由: {brief.logo_overlay.get('reason', '')}",
+                "",
+            ]
 
     lines += ["## 品質チェック", ""]
     lines += [f"- {note}" for note in quality_notes(briefs, mode)]
     lines += [
         "- 画像生成AIに文字、日本語ラベル、ロゴ、透かし、看板を描かせない。",
         "- 日本語ラベルがある図解は、画像生成AIに文字を任せずレイアウト生成で作る。",
-        "- アイキャッチのロゴとタイトルは標準ではローカル合成（Pillow）、必要に応じてSVGやCanvaの手動微調整で配置する。",
+        "- 図解は抽象的な線や図形だけにせず、サンプルのような人物・品物・実家の場面を含むイラスト図解ベースで作る。",
+        "- アイキャッチのロゴとタイトルはCanvaで人間が最終合成する。",
         f"- ロゴ必須対象: {', '.join(logo_required_targets(config)) or '未設定'}。",
         f"- 本文画像・本文図解のロゴ: {non_eyecatch_logo_rule(config)}",
         "- 暗い遺品整理、ゴミ屋敷、高額査定広告の印象を避ける。",
@@ -881,6 +994,7 @@ def json_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str, Any
                 "final_prompt": b.final_prompt,
                 "local_composition": b.local_composition,
                 "canva_instructions": b.canva_instructions,
+                "logo_overlay": b.logo_overlay,
             }
             for b in active_briefs(briefs)
         ],

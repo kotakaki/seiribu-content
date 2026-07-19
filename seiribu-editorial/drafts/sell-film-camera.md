@@ -1,5 +1,5 @@
 ---
-title: 実家のフィルムカメラは売れる？査定前の確認ポイントと売却方法
+title: 古いフィルムカメラは売れる？査定前に絶対にやってはいけないこと
 slug: sell-film-camera
 status: draft
 category: 売れる物の整理
@@ -18,7 +18,7 @@ human_review_required: true
 - 記事タイプ: 教育型（売れる物の整理・買取判断）
 
 【採用タイトル】
-実家のフィルムカメラは売れる？査定前の確認ポイントと売却方法
+古いフィルムカメラは売れる？査定前に絶対にやってはいけないこと
 
 【ターゲット読者】
 実家の片付け中に、親が昔使っていた古いフィルムカメラ・レンズ・周辺機器を見つけた子世代。カメラの知識はない。
@@ -68,7 +68,7 @@ H2: 古いフィルムカメラの買取に関してよくある質問
 - Next Step：押し入れにあるカメラバッグごと、細かい付属品も含めてまとめて査定の申し込みをする。
 === END === -->
 
-# 実家のフィルムカメラは売れる？査定前の確認ポイントと売却方法
+# 古いフィルムカメラは売れる？査定前に絶対にやってはいけないこと
 
 実家の片付けや遺品整理をしていると、押し入れの奥から古びたフィルムカメラやレンズの山が出てくることがあります。
 
@@ -133,8 +133,6 @@ H2: 古いフィルムカメラの買取に関してよくある質問
 > - 避けたい表現：極端にボロボロで不潔な印象を与える描写、複雑すぎる文字情報
 > - ALT：壊れたカメラでも部品に価値がある図解
 > - キャプション候補：動かなくても内部の部品やレンズとしての価値があるため、捨てずに査定に出しましょう。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. A clear visual diagram showing why a broken camera has value. Layout: A broken, dusty vintage camera in the center, with arrows pointing from it to valuable parts like "レンズ" (Lens) and "内部部品" (Internal parts), being evaluated by a professional appraiser. Use clear text labels in Japanese ("レンズ", "内部部品", "価値あり") to explain the structure. Style: warm, clean, like a gentle picture book, highly structural and easy to understand as a diagram. Aspect ratio 16:9.
 
 ## 査定額アップ？実家の古いカメラを売る前に確認すべき4つのポイント
 
@@ -188,8 +186,6 @@ H2: 古いフィルムカメラの買取に関してよくある質問
 > - 避けたい表現：ホラーのような怖い警告
 > - ALT：古いカメラの無理な掃除はNG
 > - キャプション候補：レンズを拭いたり無理に動かしたりすると価値が下がるため、汚れたまま査定に出すのが基本です。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. A clear visual diagram showing the correct and incorrect way to handle an old camera. Layout: Split-screen comparing A and B. Left side (incorrect): Hands trying to scrub a camera lens with a towel and spray, marked with a clear red "X" mark and the text label "NG: 無理な掃除". Right side (correct): The dirty camera being gently handed over to a professional, marked with a clear green "〇" mark and the text label "OK: そのまま査定へ". Use clear visual symbols and Japanese text labels to explain the structure. Style: warm, clean, like a gentle picture book, highly structural and easy to understand as a diagram. Aspect ratio 16:9.
 
 ## 実家のカメラはどこに売るべき？リサイクルショップと専門買取業者の違い
 
@@ -221,8 +217,6 @@ H2: 古いフィルムカメラの買取に関してよくある質問
 > - 避けたい表現：威圧感のある業者の描写
 > - ALT：カメラの出張買取と店舗持ち込みの比較
 > - キャプション候補：重い機材もそのままプロに見てもらえる「出張買取」が、大量の機材がある片付けには一番便利です。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. Layout: Split-screen comparison. Left side: An elderly parent (70s-80s) struggling and sweating while carrying a heavy bag full of cameras to a store, marked with a red "X" and text label "持ち込みは大変". Right side: A sincere professional appraiser evaluating the cameras at the entrance of a Japanese house, while the elderly parent and adult child (40s-50s) watch comfortably, marked with a green "〇" and text label "出張買取はラク". Style: warm, clean, like a gentle picture book, highly structural and easy to understand as a diagram. Aspect ratio 16:9.
 
 ### 値段がつかなかった・買取不可だった場合の処分方法
 
@@ -273,10 +267,6 @@ H2: 古いフィルムカメラの買取に関してよくある質問
 > - 入れたい人物・物：40〜50代の子世代と70代の親世代、古いフィルムカメラ、レンズ、革のカメラバッグ
 > - 避けたい表現：画像内への大量のテキスト（合成時のスペースを確保するため）
 > - タイトル文言：（※画像内には生成せず合成時に追加）実家のフィルムカメラは売れる？
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style illustration for a blog eyecatch. Scene: An adult child in their 40s-50s and an elderly parent in their 70s-80s looking with relief at a collection of vintage film cameras, lenses, and a leather camera bag placed in the center. Ensure there is negative space around them for adding text later. Style: warm, clean, Japanese domestic everyday life, like a gentle picture book. Tone: reassuring and hopeful. No logos, minimal text. Aspect ratio 16:9.
 > - サブタイトル文言：（※同上）査定前の確認ポイントと売却方法
 > - ALT：実家の古いカメラを整理する親子
 > - ファイル名：sell-film-camera-eyecatch.png
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style illustration. Scene: In the center, a leather camera bag and old film cameras and lenses. Next to it, an elderly parent (70s-80s) and their adult child (40s-50s) looking relieved. Style: warm, clean, like a gentle picture book. White background (no background drawn). Minimal text. No logos. Aspect ratio 16:9.

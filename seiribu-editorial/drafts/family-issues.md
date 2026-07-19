@@ -120,8 +120,6 @@ CTA：
 > - 避けたい表現：文字が多すぎる複雑な図、無機質なビジネス風のグラフ
 > - ALT：親が物を捨てられない3つの心理的要因
 > - キャプション候補：親が物を捨てられない背景には、これら3つの心理的要因が複雑に絡み合っています。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style infographic illustration. Scene: A warm, visual explanation of 3 psychological reasons why elderly parents can't throw things away: 1. Value of not wasting (mottainai), 2. Attachment to past memories, 3. Decision fatigue due to aging. Include a gentle illustration of an elderly parent in their 70s-80s in the center or alongside the 3 points. Style: warm, clean, Japanese domestic everyday life, like a gentle picture book. Tone: informative, empathetic, reassuring. Include short explanatory Japanese text for the 3 points. No logos, no watermarks. Aspect ratio 16:9.
 
 ## どうしても物を捨てられない家族に対する絶対NG行動
 
@@ -143,8 +141,6 @@ CTA：
 > - 避けたい表現：過度に暴力的な描写、ギャグ漫画すぎる表現
 > - ALT：勝手に物を捨てて親と喧嘩になるリスク
 > - キャプション候補：良かれと思って勝手に捨てると、信頼関係が崩れて片付けが進まなくなります。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style illustration. Scene: An adult child in their 40s-50s holding a garbage bag trying to throw things away, while an elderly parent in their 70s-80s looks upset and tries to stop them or take the items back. Style: warm, clean, Japanese domestic everyday life, slightly lived-in, like a gentle picture book. Tone: cautionary but not overly violent or comedic. Minimal text only if essential. No logos, no watermarks. Aspect ratio 16:9.
 
 ## 【悩み別】物を捨てられない家族の心理と片付けの対処法
 
@@ -156,8 +152,6 @@ CTA：
 > - 種類：情景イラスト
 > - ALT：実家の片付けにおける4つの代表的な悩み
 > - キャプション候補：状況に合わせた正しいアプローチを知ることで、衝突を避けて片付けを進められます。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style illustration. Scene: An adult child in their 40s-50s standing in front of a large pile of various old items (clothes, books, hobby items), looking slightly overwhelmed but a warm light is shining on them, suggesting hope and a way forward. Style: warm, clean, Japanese domestic everyday life, slightly lived-in, like a gentle picture book. Tone: empathetic, hopeful, reassuring, not scary. Minimal text only if essential. No logos, no watermarks. Aspect ratio 16:9.
 
 ### 親が頑なに捨てさせてくれない時
 
@@ -225,8 +219,6 @@ CTA：
 > - 避けたい表現：テキストだけの無機質な図表、複雑すぎる分岐
 > - ALT：家族と揉めずに実家整理を進める3つの実務ステップ
 > - キャプション候補：家族の意志を尊重しつつ、第三者であるプロの目も借りながら仕分けを進めましょう。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style infographic illustration. Scene: A visual representation of 3 steps: 1. Sorting items into boxes (Keep, Sell, Dispose), 2. An adult child sending a photo of an item via smartphone message to check with their elderly parent, 3. Checking the value of an old item with a professional. Style: warm, clean, Japanese domestic everyday life, slightly lived-in, like a gentle picture book. Tone: informative, reassuring. Include short explanatory Japanese text for each step. No logos, no watermarks. Aspect ratio 16:9.
 
 ## 物を捨てられない心理に関するよくある質問
 
@@ -268,5 +260,3 @@ CTA：
 > - サブタイトル文言：家族と揉めずに実家の整理を進める3つの実務ステップ
 > - ALT：物を捨てられない家族と話し合う様子
 > - ファイル名：family-issues-eyecatch
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Flat editorial illustration. Scene: An adult child in their 40s-50s and an elderly parent in their 70s-80s sitting together, calmly looking at old items and discussing them. Style: warm, clean vector art, like a gentle picture book. IMPORTANT: Must have a pure white or very simple solid background for easy cutout. Draw ONLY the characters and the items in front of them. Do NOT generate the title or any text. Tone: empathetic, cooperative, reassuring. No logos. Aspect ratio 16:9.

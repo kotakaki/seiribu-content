@@ -1,0 +1,291 @@
+{
+  "engine": {
+    "mode": "standard",
+    "mode_settings": {
+      "description": "記事内のCMS画像指定をすべて展開する標準モード。アイキャッチ素材1件と本文画像・図解4件を基本にする",
+      "compact_prompts": false,
+      "omit_canva_detail": false
+    },
+    "storage_policy": {
+      "generation_tool": "imagegen",
+      "diagram_tool": "imagegen illustration base + Pillow / SVG / Canva label and logo overlay",
+      "canva_tool": "optional_manual",
+      "draft_dir": "/private/tmp/seiribu-image-work/buying-or-collecting",
+      "final_dir": "seiribu-editorial/assets/images/buying-or-collecting",
+      "generation_rule": "imagegenで作った候補やvisualizeで作った図解素材は一時置き場に保存し、QAを通した採用画像だけ公開用assets/imagesへ移す。",
+      "public_assets_policy": "assets/imagesにはREADMEの推奨画像・完成画像として使うfinalだけを残す。素材候補、旧版、不採用画像はarchive_scriptで退避する。",
+      "archive_root": "/private/tmp/seiribu-image-archive",
+      "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
+    }
+  },
+  "article": {
+    "path": "drafts/buying-or-collecting.md",
+    "title": "不用品回収と買取の違い｜実家の片付けではどちらを先に使う？",
+    "slug": "buying-or-collecting",
+    "main_kw": "不用品回収 買取 違い",
+    "target_reader": "実家の荷物が多く、不用品回収を呼ぶべきか、売れるものは買取に出すべきか迷っている40〜60代の子世代。",
+    "search_intent": "不用品回収と買取の違いを知り、自分の実家の状況では「どっち」を使うべきか、また「どちらを先に」手配すれば見落としを減らせるかを知りたい。"
+  },
+  "brand": {
+    "name": "セイリ部",
+    "canva_template_url": "https://canva.link/mqlqak3adj01g1i",
+    "canva_mode": "optional_manual",
+    "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+    "brand_signature": {
+      "required_in_final_outputs": true,
+      "generation_assets_must_not_include_logo": true,
+      "logo_required_targets": [
+        "アイキャッチ完成版",
+        "Canva仕上げ画像",
+        "本文画像",
+        "本文図解"
+      ],
+      "non_eyecatch_default": "本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。"
+    },
+    "local_composition": {
+      "standard": false,
+      "engine": "Canva手動仕上げ",
+      "script": "",
+      "eyecatch_output_size": "1200 x 675",
+      "background": "#FAF3EA",
+      "title_color": "#7A3454",
+      "subtitle_color": "#24304A",
+      "logo_width": 160,
+      "logo_position": "左上",
+      "canva_role": "アイキャッチ完成版はCanvaで人間がタイトル、サブタイトル、ロゴ、Canva専用フォントを手動合成する。"
+    }
+  },
+  "images": [
+    {
+      "role": "アイキャッチ素材",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "buying-or-collecting-eyecatch.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + Canva手動仕上げ",
+      "wp_title": "不用品回収と買取の違いと実家の片付けでの基本の順番を示すイラスト",
+      "alt": "不用品回収と買取の違いと実家の片付けでの基本の順番を示すイラスト",
+      "position": "アイキャッチ合成用素材",
+      "caption": "",
+      "fields": {
+        "種類": "アイキャッチ素材（文字や背景を含まない、人物と小物のイラスト素材のみ）",
+        "目的": "不用品回収と買取の違い、基本の順番を視覚的に伝える",
+        "読者に伝えたい感情": "順番を決めればスムーズに進み、見落としを減らせるという安心感",
+        "構図": "左側に「査定（お金になる）」、右側に「回収（片付く）」を意味するアイテムやアイコンを配置し、矢印で順番を示す構図",
+        "入れたい人物・物": "古いカメラや着物を査定する様子（買取）、段ボールや古い家具を運ぶ様子（回収）",
+        "避けたい表現": "画像内へのテキスト（文字）の生成（※情景イラストのため）、複雑すぎる背景",
+        "タイトル文言": "不用品回収と買取の違い",
+        "サブタイトル文言": "実家の片付けではどちらが先？",
+        "ALT": "不用品回収と買取の違いと実家の片付けでの基本の順番を示すイラスト",
+        "ファイル名": "buying-or-collecting-eyecatch"
+      },
+      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '不用品回収と買取の違い｜実家の片付けではどちらを先に使う？'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 古いカメラや着物を査定する様子（買取）、段ボールや古い家具を運ぶ様子（回収）. Purpose: 不用品回収と買取の違い、基本の順番を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成（※情景イラストのため）、複雑すぎる背景. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "local_composition": {
+        "standard": false,
+        "engine": "Canva手動仕上げ",
+        "script": "",
+        "title": "不用品回収と買取の違い",
+        "subtitle": "実家の片付けではどちらが先？",
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_position": "左上",
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。",
+        "output_size": "1200 x 675",
+        "source_material_file": "buying-or-collecting-eyecatch.png",
+        "output_file": "buying-or-collecting-eyecatch-branded.png",
+        "headline_font": "UDモトヤアポロ 太字",
+        "fallback_headline_font": "Noto Sans JP Bold",
+        "subtitle_font": "Noto Sans JP Regular",
+        "canva_role": "アイキャッチ完成版はCanvaで人間がタイトル、サブタイトル、ロゴ、Canva専用フォントを手動合成する。"
+      },
+      "canva_instructions": {
+        "status": "optional_manual",
+        "template_url": "https://canva.link/mqlqak3adj01g1i",
+        "title": "不用品回収と買取の違い",
+        "subtitle": "実家の片付けではどちらが先？",
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "logo_required": true,
+        "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。",
+        "logo_position": "左上",
+        "headline_font": "UDモトヤアポロ 太字",
+        "subtitle_font": "Noto Sans JP Regular"
+      },
+      "logo_overlay": {
+        "required": false,
+        "reason": "アイキャッチ完成版はCanvaで人間がタイトルとロゴを合成する。"
+      }
+    },
+    {
+      "role": "記事内図解",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "buying-or-collecting-inline-flow.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
+      "wp_title": "不用品回収と買取のお金の流れの違い",
+      "alt": "不用品回収と買取のお金の流れの違い",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "不用品回収は「払う」、買取は「もらう」という正反対のサービスです。",
+      "fields": {
+        "種類": "イラスト図解",
+        "目的": "不用品回収と買取のお金の流れの違い（払う vs もらう）を視覚的に整理し、お金の流れが真逆であることを納得させる",
+        "読者に伝えたい感情": "サービスの性質が全く異なることへの理解と納得感",
+        "入れたい要素": "左右に分割されたシンプルな図解。左側（不用品回収）は40〜50代の子供世代が作業スタッフにお金を「支払う（払う）」矢印、右側（買取）は査定員からお金を「受け取る（もらう）」矢印を描く。",
+        "避けたい表現": "文字の詰め込みすぎ（短いラベルは積極的に使用する）",
+        "ALT": "不用品回収と買取のお金の流れの違い",
+        "キャプション候補": "不用品回収は「払う」、買取は「もらう」という正反対のサービスです。"
+      },
+      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: simple warm Japanese editorial infographic, light cream background, rounded bordered panels, sparse spot illustrations of people and household items, clean arrows, ample negative space, easy to scan, not full-scene manga, not abstract line art. Content to show as a structured infographic diagram: 左右に分割されたシンプルな図解。左側（不用品回収）は40〜50代の子供世代が作業スタッフにお金を「支払う（払う）」矢印、右側（買取）は査定員からお金を「受け取る（もらう）」矢印を描く。. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 不用品回収と買取のお金の流れの違い（払う vs もらう）を視覚的に整理し、お金の流れが真逆であることを納得させる. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: 文字の詰め込みすぎ（短いラベルは積極的に使用する）. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    },
+    {
+      "role": "写真風素材",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "buying-or-collecting-photo.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "写真風生成素材",
+      "wp_title": "査定対象になる物をゴミとして処分してしまうリスク",
+      "alt": "査定対象になる物をゴミとして処分してしまうリスク",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "専門知識がないと、査定対象になる物まで処分対象として扱われてしまうことも。",
+      "fields": {
+        "種類": "写真風素材",
+        "目的": "「査定対象になる物をゴミとして捨ててしまうリスク」を視覚的に伝える",
+        "読者に伝えたい感情": "もったいない、見落としたくないという警戒心",
+        "入れたい要素": "アンティークの時計や年代物のフィルムカメラが、無造作にゴミ袋の束と一緒に床に置かれているリアルな様子（人物は不要、物だけで状況を伝える）",
+        "避けたい表現": "暗すぎるゴミ屋敷感、ホラー感、広告のフリー素材感",
+        "ALT": "査定対象になる物をゴミとして処分してしまうリスク",
+        "キャプション候補": "専門知識がないと、査定対象になる物まで処分対象として扱われてしまうことも。"
+      },
+      "final_prompt": "Create a bright realistic editorial photo-style visual for the Seiribu article '不用品回収と買取の違い｜実家の片付けではどちらを先に使う？'. Aspect ratio: 16:9. Style: bright realistic editorial photo, natural daylight, clean lived-in Japanese home, not gritty, not luxury advertising, not dramatic. Main visual: アンティークの時計や年代物のフィルムカメラが、無造作にゴミ袋の束と一緒に床に置かれているリアルな様子（人物は不要、物だけで状況を伝える）. Purpose: 「査定対象になる物をゴミとして捨ててしまうリスク」を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 暗すぎるゴミ屋敷感、ホラー感、広告のフリー素材感.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    },
+    {
+      "role": "記事内イメージ",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "buying-or-collecting-inline-three-boxes.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "売るものと捨てるものを仕分ける親子の様子",
+      "alt": "売るものと捨てるものを仕分ける親子の様子",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "古いから価値がないと自己判断せず、まずは査定対象になるか確認しましょう。",
+      "fields": {
+        "種類": "情景イラスト",
+        "目的": "実家の片付けで親子が協力しながら「売るもの」「捨てるもの」を仕分けする温かい様子を描く",
+        "読者に伝えたい感情": "親と一緒に協力して整理を進められるという前向きな感情",
+        "入れたい要素": "70〜80代の親と、40〜50代の子供世代が並んで座り、古いアルバムやカメラ、時計などを手に取りながら、笑顔で話し合っている様子。",
+        "避けたい表現": "画像内へのテキスト（文字）の生成（※情景イラストのため）、散らかりすぎた暗い部屋",
+        "ALT": "売るものと捨てるものを仕分ける親子の様子",
+        "キャプション候補": "古いから価値がないと自己判断せず、まずは査定対象になるか確認しましょう。"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '不用品回収と買取の違い｜実家の片付けではどちらを先に使う？'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 70〜80代の親と、40〜50代の子供世代が並んで座り、古いアルバムやカメラ、時計などを手に取りながら、笑顔で話し合っている様子。. Purpose: 実家の片付けで親子が協力しながら「売るもの」「捨てるもの」を仕分けする温かい様子を描く. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成（※情景イラストのため）、散らかりすぎた暗い部屋.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    },
+    {
+      "role": "記事内図解",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "buying-or-collecting-inline-steps.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
+      "wp_title": "実家の不用品を無駄なく片付ける順番のフローチャート",
+      "alt": "実家の不用品を無駄なく片付ける順番のフローチャート",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "残すものを分けた後、買取で価値を確認してから処分を進めると、見落としを減らしやすくなります。",
+      "fields": {
+        "種類": "イラスト図解",
+        "目的": "実家の不用品整理における正しい手順（残す→売る→処分する）を視覚的なフローチャートで分かりやすく伝える",
+        "読者に伝えたい感情": "順番を守れば費用や手間の無駄がなくなり、安心して進められるという確信",
+        "入れたい要素": "スッキリした背景に、枠線つきのボックスを並べたインフォグラフィック風レイアウト。Step 1:「残す」アルバムを手にする様子。Step 2:「売る」古いカメラを査定員に見せる様子。Step 3:「処分する」壊れたテレビをスタッフが運ぶ様子。各ステップが矢印でつながれている。",
+        "避けたい表現": "全画面に広がる漫画のようなコマ割り、複雑な背景（文字説明のラベルなどを図表内にしっかり入れるため、余白を確保する）",
+        "ALT": "実家の不用品を無駄なく片付ける順番のフローチャート",
+        "キャプション候補": "残すものを分けた後、買取で価値を確認してから処分を進めると、見落としを減らしやすくなります。"
+      },
+      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: simple warm Japanese editorial infographic, light cream background, rounded bordered panels, sparse spot illustrations of people and household items, clean arrows, ample negative space, easy to scan, not full-scene manga, not abstract line art. Content to show as a structured infographic diagram: スッキリした背景に、枠線つきのボックスを並べたインフォグラフィック風レイアウト。Step 1:「残す」アルバムを手にする様子。Step 2:「売る」古いカメラを査定員に見せる様子。Step 3:「処分する」壊れたテレビをスタッフが運ぶ様子。各ステップが矢印でつながれている。. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 実家の不用品整理における正しい手順（残す→売る→処分する）を視覚的なフローチャートで分かりやすく伝える. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: 全画面に広がる漫画のようなコマ割り、複雑な背景（文字説明のラベルなどを図表内にしっかり入れるため、余白を確保する）. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    }
+  ],
+  "omitted_images": [],
+  "quality_notes": [
+    "Canvaで仕上げるためのアイキャッチ素材指定を利用しています。",
+    "本文画像・図解は4枚構成です。記事内の全CMSブリーフを標準制作対象にします。"
+  ]
+}

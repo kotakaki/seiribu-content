@@ -120,8 +120,6 @@ H2: 実家の出張買取に関してよくある質問
 > - 画像のアイデア（情景・図解の具体案）：チェックリスト形式の図解。バインダーを持つ専門家の横に、「古物商許可」「専門査定士」「クーリング・オフ」の3つのチェックボックスがあり、すべてに緑色のチェックマークが入っているデザイン。
 > - 避けたい表現：威圧的な人物、複雑すぎる文字情報
 > - ALT：優良な出張買取業者を選ぶ3つのポイント
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. A clear visual checklist diagram for choosing a trustworthy visiting buyer. Layout: A friendly professional appraiser standing next to a large clipboard. The clipboard has three items, each with a clear green checkmark (✓). Use clear Japanese text labels for the three items: "古物商許可", "専門査定士", and "クーリング・オフ". Style: warm, clean, like a gentle picture book, highly structural and easy to understand as a diagram. Aspect ratio 16:9.
 
 ## 【品物別】実家の片付けにおすすめの出張買取業者・専門査定
 
@@ -180,8 +178,6 @@ H2: 実家の出張買取に関してよくある質問
 > - 画像のアイデア（情景・図解の具体案）：実家の品物がジャンルごとに分かれている図解。着物には「着物のプロ」、骨董品には「骨董のプロ」、カメラには「カメラのプロ」がそれぞれ査定に向かっている様子を描き分ける。
 > - 避けたい表現：すべて同じ業者が適当に扱っている描写
 > - ALT：実家の品物を専門査定士が丁寧に確認する様子
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. Layout: A diagram showing that different items need different specialists. Top left: A beautiful kimono with the Japanese text label "着物" and an appraiser examining it. Top right: An antique vase with the Japanese text label "骨董品" and a different appraiser examining it. Bottom: An old film camera with the Japanese text label "カメラ" and another appraiser. Style: warm, clean, slightly lived-in, like a gentle picture book. Tone: reassuring and professional. Aspect ratio 16:9.
 
 ## トラブル回避！出張買取を安全に利用する3つの自衛策
 
@@ -215,8 +211,6 @@ H2: 実家の出張買取に関してよくある質問
 > - 避けたい表現：威圧的すぎるホラーのような業者の描写
 > - ALT：出張買取で即決を避ける自衛策
 > - キャプション候補：相見積もりを前提にしておけば、断るための強力な口実になります。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. A clear visual diagram showing how to avoid being pushed into selling. Layout: Split-screen comparing A and B. Left side (incorrect): An elderly parent sweating and looking pressured by an appraiser, marked with a red "X" and text label "NG: その場で即決". Right side (correct): The elderly parent and adult child smiling confidently and calmly telling the appraiser to wait, marked with a green "〇" and text label "OK: 他社と比較". Use clear visual symbols. Style: warm, clean, like a gentle picture book, highly structural and easy to understand as a diagram. Aspect ratio 16:9.
 
 ## 専門業者でも買取不可だった不用品の処分方法
 
@@ -244,8 +238,6 @@ H2: 実家の出張買取に関してよくある質問
 > - 避けたい表現：複雑すぎる文字情報
 > - ALT：買取不可だった場合の処分方法
 > - キャプション候補：買取を断られた品は、費用優先なら自治体へ、手間優先なら不用品回収業者へ依頼しましょう。
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style INFOGRAPHIC. A flowchart showing what to do with unpurchased items. Layout: Top center says "買取不可" (Unpurchased). Two arrows point down. Left arrow leads to a trash bag with the Japanese text "自治体のゴミ (安価)" (Local trash - cheap). Right arrow leads to a professional loading items into a truck with the Japanese text "不用品回収業者 (ラク)" (Waste collector - easy). Style: warm, clean, like a gentle picture book, highly structural and easy to understand as a diagram. Aspect ratio 16:9.
 
 > [!CMS担当者へ：内部リンク]
 > ここで「不用品回収業者の選び方・比較」のハブ記事へ誘導してください。
@@ -279,5 +271,3 @@ H2: 実家の出張買取に関してよくある質問
 > - 入れたい人物・物：40〜50代の子世代と70代の親世代、誠実なプロの査定員、実家によくある高価値品（着物、掛け軸、古いカメラなど）
 > - 避けたい表現：画像内への大量のテキスト（合成時のスペースを確保するため）
 > - タイトル文言：（※画像内には生成せず合成時に追加）実家の片付けにおすすめの出張買取業者
-> - **ChatGPT用プロンプト（DALL-E 3 推奨）**：
->   画像を1枚だけ生成してください。: Picture book style illustration for a blog eyecatch. Scene: An adult child in their 40s-50s and an elderly parent in their 70s-80s looking with relief as a friendly professional appraiser examines a collection of vintage items (a kimono, a hanging scroll, and a film camera) in the center. Ensure there is negative space around them for adding text later. Style: warm, clean, Japanese domestic everyday life, like a gentle picture book. Tone: reassuring and hopeful. No logos, minimal text. Aspect ratio 16:9.
