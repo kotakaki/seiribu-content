@@ -8,7 +8,7 @@
     },
     "storage_policy": {
       "generation_tool": "imagegen",
-      "diagram_tool": "imagegen illustration base + Pillow / SVG / Canva label and logo overlay",
+      "diagram_tool": "imagegen complete illustrated infographic with model-native short Japanese text + logo overlay",
       "canva_tool": "optional_manual",
       "draft_dir": "/private/tmp/seiribu-image-work/parent-wont-let-go-of-things",
       "final_dir": "seiribu-editorial/assets/images/parent-wont-let-go-of-things",
@@ -19,7 +19,7 @@
     }
   },
   "article": {
-    "path": "seiribu-editorial/drafts/parent-wont-let-go-of-things.md",
+    "path": "drafts/parent-wont-let-go-of-things.md",
     "title": "親が物を捨てさせてくれないときの話し方｜実家整理で揉めない進め方",
     "slug": "parent-wont-let-go-of-things",
     "main_kw": "親が物を捨てさせてくれない",
@@ -36,7 +36,9 @@
       "generation_assets_must_not_include_logo": true,
       "logo_required_targets": [
         "アイキャッチ完成版",
-        "Canva仕上げ画像"
+        "Canva仕上げ画像",
+        "本文画像",
+        "本文図解"
       ],
       "non_eyecatch_default": "本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
       "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。"
@@ -122,20 +124,20 @@
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
       "method": "画像生成素材 + ブランド帰属ロゴ合成",
-      "wp_title": "物を捨てようと説得する子どもと意固地になる親",
-      "alt": "物を捨てようと説得する子どもと意固地になる親",
+      "wp_title": "物を捨てようと説得する子どもとかたくなになる親",
+      "alt": "物を捨てようと説得する子どもとかたくなになる親",
       "position": "本文中のCMSブリーフ位置",
       "caption": "親を理詰めで説得しようとするほど、相手は心を閉ざしてしまいます。",
       "fields": {
         "種類": "情景イラスト",
-        "目的": "説得しようとすると親が意固地になるという「最大の罠（あるある）」を視覚的に伝える",
+        "目的": "説得しようとすると親がかたくなになるという「よくあるつまずき」を視覚的に伝える",
         "読者に伝えたい感情": "共感（「うちもまさにこの状態だ」という気付き）",
         "入れたい要素": "ゴミ袋を持って「捨てたら？」と提案している子世代に対して、親が古い品物を両手で抱え込んで頑なに拒否している情景。",
         "避けたい表現": "過度に怒っている、または悲壮感のあるネガティブすぎる表現",
-        "ALT": "物を捨てようと説得する子どもと意固地になる親",
+        "ALT": "物を捨てようと説得する子どもとかたくなになる親",
         "キャプション候補": "親を理詰めで説得しようとするほど、相手は心を閉ざしてしまいます。"
       },
-      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '親が物を捨てさせてくれないときの話し方｜実家整理で揉めない進め方'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: ゴミ袋を持って「捨てたら？」と提案している子世代に対して、親が古い品物を両手で抱え込んで頑なに拒否している情景。. Purpose: 説得しようとすると親が意固地になるという「最大の罠（あるある）」を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 過度に怒っている、または悲壮感のあるネガティブすぎる表現.",
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '親が物を捨てさせてくれないときの話し方｜実家整理で揉めない進め方'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: ゴミ袋を持って「捨てたら？」と提案している子世代に対して、親が古い品物を両手で抱え込んで頑なに拒否している情景。. Purpose: 説得しようとすると親がかたくなになるという「よくあるつまずき」を視覚的に伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 過度に怒っている、または悲壮感のあるネガティブすぎる表現.",
       "local_composition": {},
       "canva_instructions": {},
       "logo_overlay": {
@@ -162,21 +164,21 @@
       "file_name": "parent-wont-let-go-of-things-inline-03.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
+      "method": "画像生成でサンプルのような文字入りイラスト図解を作り、後工程ではロゴだけを小さく合成する",
       "wp_title": "親が納得する角が立たない言い換え術",
       "alt": "親が納得する角が立たない言い換え術",
       "position": "本文中のCMSブリーフ位置",
-      "caption": "目的を「捨てる」から「安全」や「価値の確認」にすり替えるだけで、親の態度は大きく軟化します。",
+      "caption": "目的を「捨てる」から「安全」や「価値の確認」に変えるだけで、親の態度がやわらぐことがあります。",
       "fields": {
         "種類": "イラスト図解",
-        "目的": "「捨てる（対立）」ではなく、「安全確保」や「査定（価値の確認）」に目的をすり替える言い換え術を図解する。",
+        "目的": "「捨てる（対立）」ではなく、「安全確保」や「価値の確認」に目的を変えて伝える言い換え術を図解する。",
         "読者に伝えたい感情": "なるほど、そういう言い方なら揉めないという納得感。",
         "入れたい要素": "「× 捨てる（対立）」と「○ 安全確保 / 価値の確認（共感）」の対比を、温かいアイコンや人物イラストを用いてわかりやすく表現した図解。",
         "避けたい表現": "文字が多すぎる複雑な図、無機質なビジネス風のグラフ",
         "ALT": "親が納得する角が立たない言い換え術",
-        "キャプション候補": "目的を「捨てる」から「安全」や「価値の確認」にすり替えるだけで、親の態度は大きく軟化します。"
+        "キャプション候補": "目的を「捨てる」から「安全」や「価値の確認」に変えるだけで、親の態度がやわらぐことがあります。"
       },
-      "final_prompt": "Create a text-free illustrated diagram base for a Seiribu article. Aspect ratio: 16:9. Style: warm Japanese picture-book style illustrated diagram, scene-based panels with people, household items, rooms, boxes, kimono, books, cameras or other concrete objects, not abstract line art, not plain geometric shapes. Content to show as warm scene-based panels or a comparison illustration: 「× 捨てる（対立）」と「○ 安全確保 / 価値の確認（共感）」の対比を、温かいアイコンや人物イラストを用いてわかりやすく表現した図解。. Purpose: 「捨てる（対立）」ではなく、「安全確保」や「査定（価値の確認）」に目的をすり替える言い換え術を図解する。. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 文字が多すぎる複雑な図、無機質なビジネス風のグラフ. Do not create abstract line art, a generic flowchart, wireframe boxes, plain circles, arrows-only diagrams, or free-icon-style graphics. Use concrete scenes with people, household items, rooms, boxes, kimono, books, cameras, documents, or other article-specific objects. Do not include readable text, Japanese labels, numbers, logo, watermark, signage, or speech bubbles in the generated image; short Japanese labels and captions will be added later with Pillow, SVG, or Canva. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: simple warm Japanese editorial infographic, light cream background, rounded bordered panels, sparse spot illustrations of people and household items, clean arrows, ample negative space, easy to scan, not full-scene manga, not abstract line art. Content to show as a structured infographic diagram: 「× 捨てる（対立）」と「○ 安全確保 / 価値の確認（共感）」の対比を、温かいアイコンや人物イラストを用いてわかりやすく表現した図解。. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 「捨てる（対立）」ではなく、「安全確保」や「価値の確認」に目的を変えて伝える言い換え術を図解する。. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: 文字が多すぎる複雑な図、無機質なビジネス風のグラフ. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
       "local_composition": {},
       "canva_instructions": {},
       "logo_overlay": {
@@ -203,11 +205,11 @@
       "file_name": "parent-wont-let-go-of-things-inline-ng-ok.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
+      "method": "画像生成でサンプルのような文字入りイラスト図解を作り、後工程ではロゴだけを小さく合成する",
       "wp_title": "親の合意を得ながら進める実家の整理ステップ",
       "alt": "親の合意を得ながら進める実家の整理ステップ",
       "position": "本文中のCMSブリーフ位置",
-      "caption": "保留箱や写真確認、第三者による価値確認を活用することで、後々のトラブルを未然に防ぐことができます。",
+      "caption": "保留箱や写真確認、第三者による価値確認を活用することで、後々のトラブルを防ぎやすくなります。",
       "fields": {
         "種類": "イラスト図解",
         "目的": "勝手に捨てないための「保留箱」「写真確認」「価値確認」という3つのステップをわかりやすく視覚化する。",
@@ -215,9 +217,9 @@
         "入れたい要素": "1. 保留箱、2. スマホで写真確認、3. 価値確認の3ステップを並べる。3つ目では、親子が古い品物を前にして、専門家らしき人物に穏やかに相談している。査定士は補助的な存在として小さめに描き、現金や売却の表現は入れない。",
         "避けたい表現": "査定士が中央で主役になっている絵、現金、トラック、買取成立といった広告的な業者感。",
         "ALT": "親の合意を得ながら進める実家の整理ステップ",
-        "キャプション候補": "保留箱や写真確認、第三者による価値確認を活用することで、後々のトラブルを未然に防ぐことができます。"
+        "キャプション候補": "保留箱や写真確認、第三者による価値確認を活用することで、後々のトラブルを防ぎやすくなります。"
       },
-      "final_prompt": "Create a text-free illustrated diagram base for a Seiribu article. Aspect ratio: 16:9. Style: warm Japanese picture-book style illustrated diagram, scene-based panels with people, household items, rooms, boxes, kimono, books, cameras or other concrete objects, not abstract line art, not plain geometric shapes. Content to show as warm scene-based panels or a comparison illustration: 1. 保留箱、2. スマホで写真確認、3. 価値確認の3ステップを並べる。3つ目では、親子が古い品物を前にして、専門家らしき人物に穏やかに相談している。査定士は補助的な存在として小さめに描き、現金や売却の表現は入れない。. Purpose: 勝手に捨てないための「保留箱」「写真確認」「価値確認」という3つのステップをわかりやすく視覚化する。. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 査定士が中央で主役になっている絵、現金、トラック、買取成立といった広告的な業者感。. Do not create abstract line art, a generic flowchart, wireframe boxes, plain circles, arrows-only diagrams, or free-icon-style graphics. Use concrete scenes with people, household items, rooms, boxes, kimono, books, cameras, documents, or other article-specific objects. Do not include readable text, Japanese labels, numbers, logo, watermark, signage, or speech bubbles in the generated image; short Japanese labels and captions will be added later with Pillow, SVG, or Canva. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: simple warm Japanese editorial infographic, light cream background, rounded bordered panels, sparse spot illustrations of people and household items, clean arrows, ample negative space, easy to scan, not full-scene manga, not abstract line art. Content to show as a structured infographic diagram: 1. 保留箱、2. スマホで写真確認、3. 価値確認の3ステップを並べる。3つ目では、親子が古い品物を前にして、専門家らしき人物に穏やかに相談している。査定士は補助的な存在として小さめに描き、現金や売却の表現は入れない。. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 勝手に捨てないための「保留箱」「写真確認」「価値確認」という3つのステップをわかりやすく視覚化する。. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: 査定士が中央で主役になっている絵、現金、トラック、買取成立といった広告的な業者感。. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
       "local_composition": {},
       "canva_instructions": {},
       "logo_overlay": {
