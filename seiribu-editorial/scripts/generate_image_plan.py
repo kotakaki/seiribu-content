@@ -247,7 +247,9 @@ def infer_role(block: ImageBrief) -> str:
         r"図解|比較表|フロー|ステップ図|手順図|分類図|チェックリスト|マトリクス|早見表|3択比較|比較軸|チャート",
         text,
     ):
-        return "記事内図解"
+        if re.search(r"ステップ|手順|比較|判断表|チェックリスト|フロー|分類|NG/OK|3つのポイント|4ステップ|早見表", text):
+            return "記事内図解_slide"
+        return "記事内図解_scene"
     if "記事内イメージ" in explicit or re.search(r"情景|情景イラスト|風景|様子|場面", text):
         return "記事内イメージ"
     return "記事内イメージ"
@@ -417,10 +419,15 @@ def build_logo_overlay(block: ImageBrief, config: dict[str, Any]) -> dict[str, A
     }
 
 
-def diagram_style(config: dict[str, Any]) -> str:
+def diagram_style(config: dict[str, Any], role: str = "") -> str:
+    if role == "記事内図解_slide":
+        return config.get("generation_style", {}).get(
+            "illustrated_diagram_slide",
+            "simple slide-style flat 2D vector infographic"
+        )
     return config.get("generation_style", {}).get(
-        "illustrated_diagram",
-        "warm Japanese picture-book style illustrated diagram with people, household items, rooms, and concrete objects; not abstract line art",
+        "illustrated_diagram_scene",
+        "warm flat editorial illustration diagram with simple scene panels"
     )
 
 
@@ -505,33 +512,45 @@ def compact_prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, A
     purpose = block.fields.get("目的", "")
     reuse_guard = "Do not reuse composition, character placement, object placement, or background concept from existing Seiribu article images."
 
-    if block.role == "記事内図解":
+    if block.role.startswith("記事内図解"):
         labels = block.fields.get("入れたい要素") or block.fields.get("伝えたい内容") or block.fields.get("指示") or "未指定"
         kind = block.fields.get("種類", "")
         diagram_forbidden = diagram_forbidden_generation_text(config)
         
-        diagram_instruction = (
-            f"Content to show as a structured infographic diagram: {labels}. "
-            "Layout: Use a clean, solid background. Structure the steps using clear bordered boxes and connecting arrows. "
-            "Do NOT make full-bleed comic panels or full-screen immersive scenes. Keep ample margin space. "
-            "You can use spot illustrations of characters and items inside the boxes. "
-            "Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. "
-            "Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. "
-            "Do not specify a font; let the image model choose a clean natural label style. "
-        )
-        if "アイコン" in kind or "人物不要" in labels:
-            diagram_instruction += "Use ONLY item icons (NO characters/people) for this specific diagram. "
+        if block.role == "記事内図解_slide":
+            return (
+                f"Create a simple {block.aspect_ratio} Japanese slide-style infographic.\n\n"
+                f"Style:\n{diagram_style(config, block.role)}\n\n"
+                "Important:\nThis must look like a simple slide diagram, not a photo, not a realistic scene, not watercolor, not manga, not a full room illustration. Use minimal icon-like people only if needed. No realistic lighting, no camera perspective, no detailed faces.\n\n"
+                f"Content:\n{block.fields.get('目的', '')}\n\n"
+                "Layout:\nClean presentation layout with cards and arrows.\n\n"
+                f"Use only these Japanese labels:\n{labels}\n\n"
+                f"Avoid:\nno extra text, no garbled Japanese, no logo, no watermark, no speech bubbles, no money unless explicitly required, no truck unless explicitly required, no sales scene, {diagram_forbidden}. {block.fields.get('避けたい表現', avoid)}.\n"
+                "Leave a quiet corner for a small logo overlay."
+            )
+        else:
+            diagram_instruction = (
+                f"Content to show as a structured infographic diagram: {labels}. "
+                "Layout: Use a clean, solid background. Structure the steps using clear bordered boxes and connecting arrows. "
+                "Do NOT make full-bleed comic panels or full-screen immersive scenes. Keep ample margin space. "
+                "You can use spot illustrations of characters and items inside the boxes. "
+                "Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. "
+                "Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. "
+                "Do not specify a font; let the image model choose a clean natural label style. "
+            )
+            if "アイコン" in kind or "人物不要" in labels:
+                diagram_instruction += "Use ONLY item icons (NO characters/people) for this specific diagram. "
 
-        return (
-            f"Illustrated infographic diagram for a Seiribu article. Aspect ratio: {block.aspect_ratio}. "
-            f"Style: {diagram_style(config)}. "
-            f"{diagram_instruction}"
-            f"Purpose: {block.fields.get('目的', '')}. "
-            f"Must avoid: {diagram_forbidden}. "
-            "Avoid: full-screen scenes, comic-book edge-to-edge layouts, abstract line art. "
-            "Leave quiet margin space for a small Seiribu brand logo overlay. "
-            f"ロゴ: {non_eyecatch_logo_rule(config)}"
-        )
+            return (
+                f"Illustrated infographic diagram for a Seiribu article. Aspect ratio: {block.aspect_ratio}. "
+                f"Style: {diagram_style(config, block.role)}. "
+                f"{diagram_instruction}"
+                f"Purpose: {block.fields.get('目的', '')}. "
+                f"Must avoid: {diagram_forbidden}. "
+                "Avoid: full-screen scenes, comic-book edge-to-edge layouts, abstract line art. "
+                "Leave quiet margin space for a small Seiribu brand logo overlay. "
+                f"ロゴ: {non_eyecatch_logo_rule(config)}"
+            )
     if block.role == "アイキャッチ素材":
         return (
             f"Text-free Seiribu eyecatch cutout asset. Aspect ratio: {block.aspect_ratio}. "
@@ -613,34 +632,46 @@ def prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any], mod
             f"Also avoid: {block.fields.get('避けたい表現', avoid)}. "
             "Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image."
         )
-    if block.role == "記事内図解":
+    if block.role.startswith("記事内図解"):
         labels = block.fields.get("入れたい要素") or block.fields.get("伝えたい内容") or block.fields.get("指示") or "未指定"
         kind = block.fields.get("種類", "")
         diagram_forbidden = diagram_forbidden_generation_text(config)
         
-        diagram_instruction = (
-            f"Content to show as a structured infographic diagram: {labels}. "
-            "Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. "
-            "Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. "
-            "It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. "
-            "Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. "
-            "Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. "
-            "Do not specify a font; let the image model choose a clean natural label style. "
-        )
-        if "アイコン" in kind or "人物不要" in labels:
-            diagram_instruction += "Use ONLY item icons (NO characters/people) for this specific diagram. "
+        if block.role == "記事内図解_slide":
+            return (
+                f"Create a simple {block.aspect_ratio} Japanese slide-style infographic.\n\n"
+                f"Style:\n{diagram_style(config, block.role)}\n\n"
+                "Important:\nThis must look like a simple slide diagram, not a photo, not a realistic scene, not watercolor, not manga, not a full room illustration. Use minimal icon-like people only if needed. No realistic lighting, no camera perspective, no detailed faces.\n\n"
+                f"Content:\n{block.fields.get('目的', '')}\n\n"
+                "Layout:\nClean presentation layout with cards and arrows.\n\n"
+                f"Use only these Japanese labels:\n{labels}\n\n"
+                f"Avoid:\nno extra text, no garbled Japanese, no logo, no watermark, no speech bubbles, no money unless explicitly required, no truck unless explicitly required, no sales scene, {diagram_forbidden}. {block.fields.get('避けたい表現', avoid)}.\n"
+                "Leave a quiet corner for a small Seiribu brand logo overlay."
+            )
+        else:
+            diagram_instruction = (
+                f"Content to show as a structured infographic diagram: {labels}. "
+                "Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. "
+                "Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. "
+                "It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. "
+                "Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. "
+                "Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. "
+                "Do not specify a font; let the image model choose a clean natural label style. "
+            )
+            if "アイコン" in kind or "人物不要" in labels:
+                diagram_instruction += "Use ONLY item icons (NO characters/people) for this specific diagram. "
 
-        return (
-            f"Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: {block.aspect_ratio}. "
-            f"Style: {diagram_style(config)}. "
-            f"{diagram_instruction}"
-            f"Purpose: {block.fields.get('目的', '')}. "
-            f"Must avoid: {diagram_forbidden}. "
-            f"Also avoid: {block.fields.get('避けたい表現', avoid)}. "
-            "Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. "
-            "Leave quiet margin space for a small Seiribu brand logo overlay. "
-            f"ロゴ: {non_eyecatch_logo_rule(config)}"
-        )
+            return (
+                f"Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: {block.aspect_ratio}. "
+                f"Style: {diagram_style(config, block.role)}. "
+                f"{diagram_instruction}"
+                f"Purpose: {block.fields.get('目的', '')}. "
+                f"Must avoid: {diagram_forbidden}. "
+                f"Also avoid: {block.fields.get('避けたい表現', avoid)}. "
+                "Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. "
+                "Leave quiet margin space for a small Seiribu brand logo overlay. "
+                f"ロゴ: {non_eyecatch_logo_rule(config)}"
+            )
     if block.role == "図解用小物素材":
         return (
             f"Create a small supporting visual asset for a Seiribu article diagram. "

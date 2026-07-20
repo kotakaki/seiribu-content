@@ -5,7 +5,7 @@
   "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
   "generation_tool": {
     "primary": "imagegen",
-    "diagram": "imagegen illustration base + Pillow / SVG / Canva label and logo overlay",
+    "diagram": "imagegen complete illustrated infographic with model-native short Japanese text + logo overlay",
     "canva": "optional_manual",
     "draft_root": "/private/tmp/seiribu-image-work",
     "final_root": "seiribu-editorial/assets/images",
@@ -84,7 +84,7 @@
     "size": "1200 x 675",
     "aspect_ratio": "16:9",
     "logo_policy": "ロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを余白に小さく配置する。",
-    "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する"
+    "method": "画像生成でサンプルのような文字入りイラスト図解を作り、後工程ではロゴだけを小さく合成する"
   },
   "inline_image": {
     "size": "1200 x 675",
@@ -103,7 +103,8 @@
   },
   "generation_style": {
     "illustration": "warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in",
-    "illustrated_diagram": "simple warm Japanese editorial infographic, light cream background, rounded bordered panels, sparse spot illustrations of people and household items, clean arrows, ample negative space, easy to scan, not full-scene manga, not abstract line art",
+    "illustrated_diagram_slide": "simple slide-style flat 2D vector infographic, icon-based diagram, clean presentation slide, light cream background, rounded cards, simple arrows, large readable Japanese labels, limited warm colors, minimal icon-like people only if necessary, no photorealism, no realistic lighting, no camera perspective, no detailed room scene",
+    "illustrated_diagram_scene": "warm flat editorial illustration diagram with simple scene panels, soft colors, no photorealism, no realistic lighting, no camera perspective",
     "photo": "bright realistic editorial photo, natural daylight, clean lived-in Japanese home, not gritty, not luxury advertising, not dramatic",
     "cutout": "warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background"
   },

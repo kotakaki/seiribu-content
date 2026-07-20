@@ -157,14 +157,14 @@
       }
     },
     {
-      "role": "記事内図解",
+      "role": "記事内図解_scene",
       "generated": false,
       "included": true,
       "omitted_reason": "",
       "file_name": "parent-wont-let-go-of-things-inline-03.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成でサンプルのような文字入りイラスト図解を作り、後工程ではロゴだけを小さく合成する",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
       "wp_title": "親が納得する角が立たない言い換え術",
       "alt": "親が納得する角が立たない言い換え術",
       "position": "本文中のCMSブリーフ位置",
@@ -178,7 +178,7 @@
         "ALT": "親が納得する角が立たない言い換え術",
         "キャプション候補": "目的を「捨てる」から「安全」や「価値の確認」に変えるだけで、親の態度がやわらぐことがあります。"
       },
-      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: simple warm Japanese editorial infographic, light cream background, rounded bordered panels, sparse spot illustrations of people and household items, clean arrows, ample negative space, easy to scan, not full-scene manga, not abstract line art. Content to show as a structured infographic diagram: 「× 捨てる（対立）」と「○ 安全確保 / 価値の確認（共感）」の対比を、温かいアイコンや人物イラストを用いてわかりやすく表現した図解。. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 「捨てる（対立）」ではなく、「安全確保」や「価値の確認」に目的を変えて伝える言い換え術を図解する。. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: 文字が多すぎる複雑な図、無機質なビジネス風のグラフ. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: warm flat editorial illustration diagram with simple scene panels, soft colors, no photorealism, no realistic lighting, no camera perspective. Content to show as a structured infographic diagram: 「× 捨てる（対立）」と「○ 安全確保 / 価値の確認（共感）」の対比を、温かいアイコンや人物イラストを用いてわかりやすく表現した図解。. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 「捨てる（対立）」ではなく、「安全確保」や「価値の確認」に目的を変えて伝える言い換え術を図解する。. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: 文字が多すぎる複雑な図、無機質なビジネス風のグラフ. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
       "local_composition": {},
       "canva_instructions": {},
       "logo_overlay": {
@@ -198,14 +198,14 @@
       }
     },
     {
-      "role": "記事内図解",
+      "role": "記事内図解_slide",
       "generated": false,
       "included": true,
       "omitted_reason": "",
       "file_name": "parent-wont-let-go-of-things-inline-ng-ok.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成でサンプルのような文字入りイラスト図解を作り、後工程ではロゴだけを小さく合成する",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
       "wp_title": "親の合意を得ながら進める実家の整理ステップ",
       "alt": "親の合意を得ながら進める実家の整理ステップ",
       "position": "本文中のCMSブリーフ位置",
@@ -219,7 +219,7 @@
         "ALT": "親の合意を得ながら進める実家の整理ステップ",
         "キャプション候補": "保留箱や写真確認、第三者による価値確認を活用することで、後々のトラブルを防ぎやすくなります。"
       },
-      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: simple warm Japanese editorial infographic, light cream background, rounded bordered panels, sparse spot illustrations of people and household items, clean arrows, ample negative space, easy to scan, not full-scene manga, not abstract line art. Content to show as a structured infographic diagram: 1. 保留箱、2. スマホで写真確認、3. 価値確認の3ステップを並べる。3つ目では、親子が古い品物を前にして、専門家らしき人物に穏やかに相談している。査定士は補助的な存在として小さめに描き、現金や売却の表現は入れない。. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 勝手に捨てないための「保留箱」「写真確認」「価値確認」という3つのステップをわかりやすく視覚化する。. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: 査定士が中央で主役になっている絵、現金、トラック、買取成立といった広告的な業者感。. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "final_prompt": "Create a simple 16:9 Japanese slide-style infographic.\n\nStyle:\nsimple slide-style flat 2D vector infographic, icon-based diagram, clean presentation slide, light cream background, rounded cards, simple arrows, large readable Japanese labels, limited warm colors, minimal icon-like people only if necessary, no photorealism, no realistic lighting, no camera perspective, no detailed room scene\n\nImportant:\nThis must look like a simple slide diagram, not a photo, not a realistic scene, not watercolor, not manga, not a full room illustration. Use minimal icon-like people only if needed. No realistic lighting, no camera perspective, no detailed faces.\n\nContent:\n勝手に捨てないための「保留箱」「写真確認」「価値確認」という3つのステップをわかりやすく視覚化する。\n\nLayout:\nClean presentation layout with cards and arrows.\n\nUse only these Japanese labels:\n1. 保留箱、2. スマホで写真確認、3. 価値確認の3ステップを並べる。3つ目では、親子が古い品物を前にして、専門家らしき人物に穏やかに相談している。査定士は補助的な存在として小さめに描き、現金や売却の表現は入れない。\n\nAvoid:\nno extra text, no garbled Japanese, no logo, no watermark, no speech bubbles, no money unless explicitly required, no truck unless explicitly required, no sales scene, no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. 査定士が中央で主役になっている絵、現金、トラック、買取成立といった広告的な業者感。.\nLeave a quiet corner for a small Seiribu brand logo overlay.",
       "local_composition": {},
       "canva_instructions": {},
       "logo_overlay": {
