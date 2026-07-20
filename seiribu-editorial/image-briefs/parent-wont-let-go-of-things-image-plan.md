@@ -31,8 +31,8 @@
 ### 1. アイキャッチ素材
 
 - ファイル名: `parent-wont-let-go-of-things-eyecatch-cutout.png`
-- WordPress画像タイトル: 親が物を捨てさせてくれない悩みを解決する
-- ALT: 親が物を捨てさせてくれない悩みを解決する
+- WordPress画像タイトル: 物を捨てさせてくれない親と和やかに話し合う子ども
+- ALT: 物を捨てさせてくれない親と和やかに話し合う子ども
 - 最終サイズ: 1200 x 675
 - 生成時の比率: 16:9
 - 制作方法: 画像生成素材 + Canva手動仕上げ
@@ -41,14 +41,14 @@
 
 #### 制作意図
 
-- 目的: 親が物を手放してくれず困っている状況に共感しつつ、解決の希望を持たせる。
-- 読者に伝えたい感情: 実家整理の悩みに寄り添い、平和な解決策がここにあるという安心感。
-- 入れたい要素: 40〜50代の子どもが、たくさんの荷物に囲まれた実家の部屋で少し困った表情をしつつも、解決のヒント（チェックリストやスマホ）を見つけてホッとしている情景。
-- 避けたい表現: 過度に怒っている、または悲壮感のあるネガティブすぎる表現。
+- 目的: 親が物を手放してくれず困っている状況に共感しつつ、「対立ではなく平和なコミュニケーション」で解決の希望を持たせる。
+- 読者に伝えたい感情: 実家整理の悩みに寄り添い、揉めずに話し合う解決策があるという安心感。
+- 入れたい要素: 古い荷物がある実家の部屋で、40〜50代の子どもと70〜80代の親が、対立せずにお茶を飲みながら和やかに話し合い、片付けのプランを相談している情景。
+- 避けたい表現: 過度に怒っている、泣いている、大声で言い争っている、悲壮感のあるネガティブすぎる表現。
 
 #### 生成プロンプト / レイアウト仕様
 
-Create an eyecatch cutout asset for the Seiribu article '親が物を捨てさせてくれないときの話し方｜実家整理で揉めない進め方'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 40〜50代の子どもが、たくさんの荷物に囲まれた実家の部屋で少し困った表情をしつつも、解決のヒント（チェックリストやスマホ）を見つけてホッとしている情景。. Purpose: 親が物を手放してくれず困っている状況に共感しつつ、解決の希望を持たせる。. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 過度に怒っている、または悲壮感のあるネガティブすぎる表現。. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.
+Create an eyecatch cutout asset for the Seiribu article '親が物を捨てさせてくれないときの話し方｜実家整理で揉めない進め方'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 古い荷物がある実家の部屋で、40〜50代の子どもと70〜80代の親が、対立せずにお茶を飲みながら和やかに話し合い、片付けのプランを相談している情景。. Purpose: 親が物を手放してくれず困っている状況に共感しつつ、「対立ではなく平和なコミュニケーション」で解決の希望を持たせる。. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 過度に怒っている、泣いている、大声で言い争っている、悲壮感のあるネガティブすぎる表現。. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.
 
 #### アイキャッチCanva仕上げ
 
