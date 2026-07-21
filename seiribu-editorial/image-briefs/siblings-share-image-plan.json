@@ -8,7 +8,7 @@
     },
     "storage_policy": {
       "generation_tool": "imagegen",
-      "diagram_tool": "imagegen illustration base + Pillow / SVG / Canva label and logo overlay",
+      "diagram_tool": "imagegen complete illustrated infographic with model-native short Japanese text + logo overlay",
       "canva_tool": "optional_manual",
       "draft_dir": "/private/tmp/seiribu-image-work/siblings-share",
       "final_dir": "seiribu-editorial/assets/images/siblings-share",
@@ -19,7 +19,7 @@
     }
   },
   "article": {
-    "path": "seiribu-editorial/drafts/siblings-share.md",
+    "path": "drafts/siblings-share.md",
     "title": "【実家の片付け】兄弟で押し付け合いに？「自分ばかり」を防ぐ分担術と解決策",
     "slug": "siblings-share",
     "main_kw": "実家 片付け 兄弟 (関連: 兄弟 押し付け合い, 自分ばかり, トラブル)",
@@ -36,7 +36,9 @@
       "generation_assets_must_not_include_logo": true,
       "logo_required_targets": [
         "アイキャッチ完成版",
-        "Canva仕上げ画像"
+        "Canva仕上げ画像",
+        "本文画像",
+        "本文図解"
       ],
       "non_eyecatch_default": "本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
       "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。"
@@ -69,11 +71,14 @@
       "position": "アイキャッチ合成用素材",
       "caption": "",
       "fields": {
-        "種類": "アイキャッチ素材（文字や背景を含まない、人物と小物のイラスト素材のみ）",
+        "種類": "アイキャッチ素材",
+        "目的": "実家の片付けで兄弟間で不満を感じている人に向けた記事であることを一目で伝える",
+        "入れたい要素": "実家で一人で片付けをしている人物（疲れた表情）",
+        "避けたい表現": "ゴミ屋敷感",
         "ALT": "実家の片付けを一人で押し付けられて不満を抱えるイメージ",
         "ファイル名": "siblings-share-eyecatch"
       },
-      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '【実家の片付け】兄弟で押し付け合いに？「自分ばかり」を防ぐ分担術と解決策'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 記事内容に合う人物と物. Purpose: . Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置、抽象的な線、丸、四角、矢印だけで構成された低品質な図解、無料素材風の薄いアイコン図解. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '【実家の片付け】兄弟で押し付け合いに？「自分ばかり」を防ぐ分担術と解決策'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 実家で一人で片付けをしている人物（疲れた表情）. Purpose: 実家の片付けで兄弟間で不満を感じている人に向けた記事であることを一目で伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷感. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
       "local_composition": {
         "standard": false,
         "engine": "Canva手動仕上げ",
@@ -123,11 +128,15 @@
       "position": "本文中のCMSブリーフ位置",
       "caption": "どうして自分ばかりがこんなに大変な思いをしなければならないのか、と理不尽に感じるのは当然のことです。",
       "fields": {
-        "種類": "記事内イメージ素材",
+        "種類": "記事内イメージ",
+        "目的": "一人で片付けを背負い込む理不尽さと疲労感を読者に共感させる",
+        "読者に伝えたい感情": "共感、孤独感からの解放",
+        "入れたい要素": "実家で段ボールや袋に囲まれ、一人で疲れて座り込んでいる人物",
+        "避けたい表現": "ゴミ屋敷のようなひどい汚れ、暗すぎる絶望感",
         "ALT": "一人で実家の片付けを背負い込み疲労している様子",
         "キャプション候補": "どうして自分ばかりがこんなに大変な思いをしなければならないのか、と理不尽に感じるのは当然のことです。"
       },
-      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '【実家の片付け】兄弟で押し付け合いに？「自分ばかり」を防ぐ分担術と解決策'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 記事内容に合う人物と物. Purpose: . Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置、抽象的な線、丸、四角、矢印だけで構成された低品質な図解、無料素材風の薄いアイコン図解.",
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '【実家の片付け】兄弟で押し付け合いに？「自分ばかり」を防ぐ分担術と解決策'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 実家で段ボールや袋に囲まれ、一人で疲れて座り込んでいる人物. Purpose: 一人で片付けを背負い込む理不尽さと疲労感を読者に共感させる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のようなひどい汚れ、暗すぎる絶望感.",
       "local_composition": {},
       "canva_instructions": {},
       "logo_overlay": {
@@ -147,24 +156,27 @@
       }
     },
     {
-      "role": "記事内図解",
+      "role": "記事内図解_scene",
       "generated": false,
       "included": true,
       "omitted_reason": "",
       "file_name": "siblings-share-inline-options.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
-      "wp_title": "片付けの負担を「作業・費用・手配」に分ける図解",
-      "alt": "片付けの負担を「作業・費用・手配」に分ける図解",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "片付けの負担を「作業・費用・連絡」に分ける図解",
+      "alt": "片付けの負担を「作業・費用・連絡」に分ける図解",
       "position": "本文中のCMSブリーフ位置",
-      "caption": "負担を3つの要素に切り分けることで、誰もが参加できる「逃げ道のない」公平な分担が可能になります。",
+      "caption": "負担を3つに分けて考えることで、それぞれができる形で関わりやすくなります。",
       "fields": {
-        "種類": "記事内図解素材",
-        "ALT": "片付けの負担を「作業・費用・手配」に分ける図解",
-        "キャプション候補": "負担を3つの要素に切り分けることで、誰もが参加できる「逃げ道のない」公平な分担が可能になります。"
+        "種類": "記事内図解",
+        "目的": "片付けの負担を3つに切り分ける考え方を視覚的に示す",
+        "入れたい要素": "負担の切り分け（作業、費用、連絡）を示す3つの枠とアイコン",
+        "避けたい表現": "抽象的すぎる線や丸だけの図形",
+        "ALT": "片付けの負担を「作業・費用・連絡」に分ける図解",
+        "キャプション候補": "負担を3つに分けて考えることで、それぞれができる形で関わりやすくなります。"
       },
-      "final_prompt": "Create a text-free illustrated diagram base for a Seiribu article. Aspect ratio: 16:9. Style: warm Japanese picture-book style illustrated diagram, scene-based panels with people, household items, rooms, boxes, kimono, books, cameras or other concrete objects, not abstract line art, not plain geometric shapes. Content to show as warm scene-based panels or a comparison illustration: 未指定. Purpose: . Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置、抽象的な線、丸、四角、矢印だけで構成された低品質な図解、無料素材風の薄いアイコン図解. Do not create abstract line art, a generic flowchart, wireframe boxes, plain circles, arrows-only diagrams, or free-icon-style graphics. Use concrete scenes with people, household items, rooms, boxes, kimono, books, cameras, documents, or other article-specific objects. Do not include readable text, Japanese labels, numbers, logo, watermark, signage, or speech bubbles in the generated image; short Japanese labels and captions will be added later with Pillow, SVG, or Canva. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: warm flat editorial illustration diagram with simple scene panels, soft colors, no photorealism, no realistic lighting, no camera perspective. Content to show as a structured infographic diagram: 負担の切り分け（作業、費用、連絡）を示す3つの枠とアイコン. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 片付けの負担を3つに切り分ける考え方を視覚的に示す. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: 抽象的すぎる線や丸だけの図形. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
       "local_composition": {},
       "canva_instructions": {},
       "logo_overlay": {
@@ -195,13 +207,17 @@
       "wp_title": "プロの業者に任せて実家がスムーズに片付く様子",
       "alt": "プロの業者に任せて実家がスムーズに片付く様子",
       "position": "本文中のCMSブリーフ位置",
-      "caption": "家族間で揉めるくらいなら、費用を折半してプロに丸投げするのが一番平和的で確実な方法です。",
+      "caption": "専門業者を入れると、作業量や費用を家族で共有しやすくなります。",
       "fields": {
-        "種類": "記事内イメージ素材",
+        "種類": "記事内イメージ",
+        "目的": "プロの業者が介入することで、家族で話し合いがまとまりやすくなる様子を伝える",
+        "読者に伝えたい感情": "安心感、解決への希望",
+        "入れたい要素": "清潔感のある制服を着た業者と、ホッとした表情で見守る家族",
+        "避けたい表現": "札束の強調、高額請求の恐怖感、乱暴な作業風景",
         "ALT": "プロの業者に任せて実家がスムーズに片付く様子",
-        "キャプション候補": "家族間で揉めるくらいなら、費用を折半してプロに丸投げするのが一番平和的で確実な方法です。"
+        "キャプション候補": "専門業者を入れると、作業量や費用を家族で共有しやすくなります。"
       },
-      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '【実家の片付け】兄弟で押し付け合いに？「自分ばかり」を防ぐ分担術と解決策'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 記事内容に合う人物と物. Purpose: . Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: ゴミ屋敷のような汚さ、暗い遺品整理の雰囲気、札束や高額査定の強調、不用品回収業者だけを推す広告感、既存記事と同じ構図や素材の使い回し、ミニマリスト風の真っ白な部屋、ロゴが見出し・人物の顔・重要な品物を邪魔する配置、抽象的な線、丸、四角、矢印だけで構成された低品質な図解、無料素材風の薄いアイコン図解.",
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '【実家の片付け】兄弟で押し付け合いに？「自分ばかり」を防ぐ分担術と解決策'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 清潔感のある制服を着た業者と、ホッとした表情で見守る家族. Purpose: プロの業者が介入することで、家族で話し合いがまとまりやすくなる様子を伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 札束の強調、高額請求の恐怖感、乱暴な作業風景.",
       "local_composition": {},
       "canva_instructions": {},
       "logo_overlay": {
