@@ -200,6 +200,47 @@
       "generated": false,
       "included": true,
       "omitted_reason": "",
+      "file_name": "siblings-share-inline-03.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "お互いに納得して実家の片付けについて話し合う兄弟",
+      "alt": "お互いに納得して実家の片付けについて話し合う兄弟",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "責め立てるのではなく、相手が納得しやすい伝え方をすることが大切です。",
+      "fields": {
+        "種類": "記事内イメージ",
+        "目的": "兄弟喧嘩を避け、冷静に話し合って解決に向かう様子を伝える",
+        "読者に伝えたい感情": "納得感、前向きな協力",
+        "入れたい要素": "スマホや電話で連絡を取り合い、お互いに納得した表情で協力し合う兄弟の様子",
+        "避けたい表現": "激しく言い争う姿、冷たい雰囲気",
+        "ALT": "お互いに納得して実家の片付けについて話し合う兄弟",
+        "キャプション候補": "責め立てるのではなく、相手が納得しやすい伝え方をすることが大切です。"
+      },
+      "final_prompt": "Create a warm text-free editorial illustration for the Seiribu article '【実家の片付け】兄弟で押し付け合いに？「自分ばかり」を防ぐ分担術と解決策'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: スマホや電話で連絡を取り合い、お互いに納得した表情で協力し合う兄弟の様子. Purpose: 兄弟喧嘩を避け、冷静に話し合って解決に向かう様子を伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 激しく言い争う姿、冷たい雰囲気.",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
+      }
+    },
+    {
+      "role": "記事内イメージ",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
       "file_name": "siblings-share-inline-options-2.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
@@ -240,6 +281,6 @@
   "omitted_images": [],
   "quality_notes": [
     "Canvaで仕上げるためのアイキャッチ素材指定を利用しています。",
-    "本文画像の枚数は適正範囲です。"
+    "本文画像・図解は4枚構成です。記事内の全CMSブリーフを標準制作対象にします。"
   ]
 }
