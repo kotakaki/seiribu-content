@@ -185,15 +185,13 @@ def check_diagram_is_not_image_generation_prompt(config: dict) -> None:
     )
     [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config, mode="standard")
 
-    assert result.role == "記事内図解", result.role
+    assert result.role == "記事内図解_slide", result.role
     assert result.size == "1200 x 675", result.size
     assert result.aspect_ratio == "16:9", result.aspect_ratio
-    assert "illustrated infographic diagram" in result.final_prompt, result.final_prompt
-    assert "rounded bordered panels" in result.final_prompt, result.final_prompt
-    assert "Do not create empty placeholder boxes" in result.final_prompt, result.final_prompt
+    assert "slide-style flat 2D vector infographic" in result.final_prompt, result.final_prompt
+    assert "rounded cards" in result.final_prompt, result.final_prompt
     assert "自治体、寄付、不用品回収業者の比較表" in result.final_prompt, result.final_prompt
-    assert "Do not create abstract line art" in result.final_prompt, result.final_prompt
-    assert "本文画像・本文図解はブランド帰属表示としてロゴ必須" in result.final_prompt, result.final_prompt
+    assert "Leave a quiet corner for a small Seiribu brand logo overlay" in result.final_prompt, result.final_prompt
     assert result.logo_overlay["required"] is True, result.logo_overlay
 
 
@@ -256,10 +254,9 @@ def check_explicit_illustrated_diagram_wins_over_scene_words(config: dict) -> No
     )
     [result] = image_plan.enrich_briefs(meta, image_plan.parse_cms_blocks(article), config, mode="standard")
 
-    assert result.role == "記事内図解", result.role
-    assert "illustrated infographic diagram" in result.final_prompt, result.final_prompt
-    assert "rounded bordered panels" in result.final_prompt, result.final_prompt
-    assert "Do not create abstract line art" in result.final_prompt, result.final_prompt
+    assert result.role == "記事内図解_slide", result.role
+    assert "slide-style flat 2D vector infographic" in result.final_prompt, result.final_prompt
+    assert "rounded cards" in result.final_prompt, result.final_prompt
     assert result.logo_overlay["required"] is True, result.logo_overlay
 
 
