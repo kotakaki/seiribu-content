@@ -1,0 +1,45 @@
+{
+  "plan": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/image-briefs/parent-wont-let-go-of-things-image-plan.json",
+  "images": [
+    {
+      "role": "アイキャッチ素材",
+      "file_name": "parent-wont-let-go-of-things-eyecatch-cutout.png",
+      "source": "/private/tmp/seiribu-image-work/parent-wont-let-go-of-things/parent-wont-let-go-of-things-eyecatch-cutout.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/parent-wont-let-go-of-things/parent-wont-let-go-of-things-eyecatch-cutout.png",
+      "logo_mode": "none",
+      "alt": "物を捨てさせてくれない親と和やかに話し合う子ども",
+      "caption": "なし（アイキャッチのため）",
+      "position": "アイキャッチ合成用素材"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "parent-wont-let-go-of-things-inline-02.png",
+      "source": "/private/tmp/seiribu-image-work/parent-wont-let-go-of-things/parent-wont-let-go-of-things-inline-02.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/parent-wont-let-go-of-things/parent-wont-let-go-of-things-inline-02.png",
+      "logo_mode": "white-backed:右下",
+      "alt": "物を捨てようと説得する子どもとかたくなになる親",
+      "caption": "親を理詰めで説得しようとするほど、相手は心を閉ざしてしまいます。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内図解",
+      "file_name": "parent-wont-let-go-of-things-inline-03.png",
+      "source": "/private/tmp/seiribu-image-work/parent-wont-let-go-of-things/parent-wont-let-go-of-things-inline-03.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/parent-wont-let-go-of-things/parent-wont-let-go-of-things-inline-03.png",
+      "logo_mode": "white-backed:右上; model-native-text",
+      "alt": "親が納得する角が立たない言い換え術",
+      "caption": "目的を「捨てる」から「安全」や「価値の確認」に変えるだけで、親の態度がやわらぐことがあります。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内図解",
+      "file_name": "parent-wont-let-go-of-things-inline-ng-ok.png",
+      "source": "/private/tmp/seiribu-image-work/parent-wont-let-go-of-things/parent-wont-let-go-of-things-inline-ng-ok.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/parent-wont-let-go-of-things/parent-wont-let-go-of-things-inline-ng-ok.png",
+      "logo_mode": "white-backed:左上; model-native-text",
+      "alt": "親の合意を得ながら進める実家の整理ステップ",
+      "caption": "保留箱や写真確認、第三者による価値確認を活用することで、後々のトラブルを防ぎやすくなります。",
+      "position": "本文中のCMSブリーフ位置"
+    }
+  ]
+}

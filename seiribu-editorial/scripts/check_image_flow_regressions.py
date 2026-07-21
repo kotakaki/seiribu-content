@@ -160,7 +160,7 @@ def check_light_mode_keeps_first_pass_small(config: dict) -> None:
     assert plan["engine"]["mode"] == "light", plan["engine"]
     storage = plan["engine"]["storage_policy"]
     assert storage["generation_tool"] == "imagegen", storage
-    assert storage["diagram_tool"] == "imagegen illustration base + Pillow / SVG / Canva label and logo overlay", storage
+    assert storage["diagram_tool"] == "imagegen complete illustrated infographic with model-native short Japanese text + logo overlay", storage
     assert storage["draft_dir"].endswith("/fixture"), storage
     assert storage["final_dir"].endswith("/assets/images/fixture"), storage
     assert storage["archive_root"] == "/private/tmp/seiribu-image-archive", storage
