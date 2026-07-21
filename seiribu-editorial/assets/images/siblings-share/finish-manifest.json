@@ -1,0 +1,55 @@
+{
+  "plan": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/image-briefs/siblings-share-image-plan.json",
+  "images": [
+    {
+      "role": "アイキャッチ素材",
+      "file_name": "siblings-share-eyecatch.png",
+      "source": "/private/tmp/seiribu-image-work/siblings-share/siblings-share-eyecatch.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/siblings-share/siblings-share-eyecatch.png",
+      "logo_mode": "none",
+      "alt": "実家の片付けを一人で押し付けられて不満を抱えるイメージ",
+      "caption": "",
+      "position": "アイキャッチ合成用素材"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "siblings-share-inline-01.png",
+      "source": "/private/tmp/seiribu-image-work/siblings-share/siblings-share-inline-01.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/siblings-share/siblings-share-inline-01.png",
+      "logo_mode": "white-backed:左下",
+      "alt": "一人で実家の片付けを背負い込み疲労している様子",
+      "caption": "どうして自分ばかりがこんなに大変な思いをしなければならないのか、と理不尽に感じるのは当然のことです。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内図解_scene",
+      "file_name": "siblings-share-inline-options.png",
+      "source": "/private/tmp/seiribu-image-work/siblings-share/siblings-share-inline-options.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/siblings-share/siblings-share-inline-options.png",
+      "logo_mode": "white-backed:左下",
+      "alt": "片付けの負担を「作業・費用・連絡」に分ける図解",
+      "caption": "負担を3つに分けて考えることで、それぞれができる形で関わりやすくなります。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "siblings-share-inline-03.png",
+      "source": "/private/tmp/seiribu-image-work/siblings-share/siblings-share-inline-03.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/siblings-share/siblings-share-inline-03.png",
+      "logo_mode": "white-backed:左下",
+      "alt": "お互いに納得して実家の片付けについて話し合う兄弟",
+      "caption": "責め立てるのではなく、相手が納得しやすい伝え方をすることが大切です。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "siblings-share-inline-options-2.png",
+      "source": "/private/tmp/seiribu-image-work/siblings-share/siblings-share-inline-options-2.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/siblings-share/siblings-share-inline-options-2.png",
+      "logo_mode": "white-backed:右上",
+      "alt": "プロの業者に任せて実家がスムーズに片付く様子",
+      "caption": "専門業者を入れると、作業量や費用を家族で共有しやすくなります。",
+      "position": "本文中のCMSブリーフ位置"
+    }
+  ]
+}
