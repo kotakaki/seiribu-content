@@ -8,7 +8,7 @@
     },
     "storage_policy": {
       "generation_tool": "imagegen",
-      "diagram_tool": "imagegen illustration base + Pillow / SVG / Canva label and logo overlay",
+      "diagram_tool": "imagegen complete illustrated infographic with model-native short Japanese text + logo overlay",
       "canva_tool": "optional_manual",
       "draft_dir": "/private/tmp/seiribu-image-work/trusted-buying-services",
       "final_dir": "seiribu-editorial/assets/images/trusted-buying-services",
@@ -36,7 +36,9 @@
       "generation_assets_must_not_include_logo": true,
       "logo_required_targets": [
         "アイキャッチ完成版",
-        "Canva仕上げ画像"
+        "Canva仕上げ画像",
+        "本文画像",
+        "本文図解"
       ],
       "non_eyecatch_default": "本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
       "rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。"
@@ -158,28 +160,28 @@
       }
     },
     {
-      "role": "記事内図解",
+      "role": "記事内図解_slide",
       "generated": false,
       "included": true,
       "omitted_reason": "",
       "file_name": "trusted-buying-services-inline-checklist.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
-      "method": "画像生成でサンプルのようなイラスト図解ベースを作り、Pillow、SVG、またはCanvaで短いラベルとロゴを正確に合成する",
-      "wp_title": "不用品買取の安全な業者を見分ける4つのチェックポイント",
-      "alt": "不用品買取の安全な業者を見分ける4つのチェックポイント",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "不用品買取の安全な業者を見分けるチェックリスト",
+      "alt": "不用品買取の安全な業者を見分けるチェックリスト",
       "position": "本文中のCMSブリーフ位置",
-      "caption": "依頼前に確認したい4つのチェックポイント",
+      "caption": "依頼前と当日のチェックポイント",
       "fields": {
         "種類": "イラスト図解",
-        "目的": "安全な業者を見分ける4つのチェックポイントを一覧できるようにする",
-        "読者に伝えたい感情": "「これさえ確認すれば大丈夫」という安心感",
-        "入れたい要素": "チェックリスト形式で4項目を並べたシンプルな図解（①古物商許可番号 ②料金体系の明示 ③飛び込み訪問でないこと ④相見積もり）。各項目の横にチェックマーク。温かみのあるイラストタッチ。",
-        "避けたい表現": "文字の詰め込みすぎ（短いラベルは積極的に使用する）、過度に装飾的なデザイン",
-        "ALT": "不用品買取の安全な業者を見分ける4つのチェックポイント",
-        "キャプション候補": "依頼前に確認したい4つのチェックポイント"
+        "目的": "安全な業者を見分けるチェックリストを伝える",
+        "読者に伝えたい感情": "確認すべき点がひと目で分かる安心感",
+        "入れたい要素": "業者を呼ぶ前の項目（許可番号、料金条件、相見積もり等）と、当日の項目（身分証、書面等）を分けたチェックリスト図解。",
+        "避けたい表現": "文字の詰め込みすぎ、過度に装飾的なデザイン",
+        "ALT": "不用品買取の安全な業者を見分けるチェックリスト",
+        "キャプション候補": "依頼前と当日のチェックポイント"
       },
-      "final_prompt": "Create a text-free illustrated diagram base for a Seiribu article. Aspect ratio: 16:9. Style: warm Japanese picture-book style illustrated diagram, scene-based panels with people, household items, rooms, boxes, kimono, books, cameras or other concrete objects, not abstract line art, not plain geometric shapes. Content to show as warm scene-based panels or a comparison illustration: チェックリスト形式で4項目を並べたシンプルな図解（①古物商許可番号 ②料金体系の明示 ③飛び込み訪問でないこと ④相見積もり）。各項目の横にチェックマーク。温かみのあるイラストタッチ。. Purpose: 安全な業者を見分ける4つのチェックポイントを一覧できるようにする. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 文字の詰め込みすぎ（短いラベルは積極的に使用する）、過度に装飾的なデザイン. Do not create abstract line art, a generic flowchart, wireframe boxes, plain circles, arrows-only diagrams, or free-icon-style graphics. Use concrete scenes with people, household items, rooms, boxes, kimono, books, cameras, documents, or other article-specific objects. Do not include readable text, Japanese labels, numbers, logo, watermark, signage, or speech bubbles in the generated image; short Japanese labels and captions will be added later with Pillow, SVG, or Canva. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "final_prompt": "Create a simple 16:9 Japanese slide-style infographic.\n\nStyle:\nsimple slide-style flat 2D vector infographic, icon-based diagram, clean presentation slide, light cream background, rounded cards, simple arrows, large readable Japanese labels, limited warm colors, minimal icon-like people only if necessary, no photorealism, no realistic lighting, no camera perspective, no detailed room scene\n\nImportant:\nThis must look like a simple slide diagram, not a photo, not a realistic scene, not watercolor, not manga, not a full room illustration. Use minimal icon-like people only if needed. No realistic lighting, no camera perspective, no detailed faces.\n\nContent:\n安全な業者を見分けるチェックリストを伝える\n\nLayout:\nClean presentation layout with cards and arrows.\n\nUse only these Japanese labels:\n業者を呼ぶ前の項目（許可番号、料金条件、相見積もり等）と、当日の項目（身分証、書面等）を分けたチェックリスト図解。\n\nAvoid:\nno extra text, no garbled Japanese, no logo, no watermark, no speech bubbles, no money unless explicitly required, no truck unless explicitly required, no sales scene, no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. 文字の詰め込みすぎ、過度に装飾的なデザイン.\nLeave a quiet corner for a small Seiribu brand logo overlay.",
       "local_composition": {},
       "canva_instructions": {},
       "logo_overlay": {
