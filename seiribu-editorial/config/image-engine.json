@@ -102,9 +102,9 @@
     "method": "写真風生成素材"
   },
   "generation_style": {
-    "illustration": "warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in",
+    "illustration": "high-quality Japanese editorial illustration, utilizing varied art styles (e.g., soft watercolor, modern flat vector, pastel, clean line art) to avoid visual repetition, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in",
     "illustrated_diagram_slide": "simple slide-style flat 2D vector infographic, icon-based diagram, clean presentation slide, light cream background, rounded cards, simple arrows, large readable Japanese labels, limited warm colors, minimal icon-like people only if necessary, no photorealism, no realistic lighting, no camera perspective, no detailed room scene",
-    "illustrated_diagram_scene": "warm flat editorial illustration diagram with simple scene panels, soft colors, no photorealism, no realistic lighting, no camera perspective",
+    "illustrated_diagram_scene": "high-quality editorial illustration diagram with simple scene panels, utilizing varied art styles (e.g., flat vector, watercolor, pastel, modern line art) to avoid visual repetition, soft colors, no photorealism, no realistic lighting, no camera perspective",
     "photo": "bright realistic editorial photo, natural daylight, clean lived-in Japanese home, not gritty, not luxury advertising, not dramatic",
     "cutout": "warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background"
   },
@@ -137,6 +137,7 @@
     "ミニマリスト風の真っ白な部屋",
     "ロゴが見出し・人物の顔・重要な品物を邪魔する配置",
     "抽象的な線、丸、四角、矢印だけで構成された低品質な図解",
-    "無料素材風の薄いアイコン図解"
+    "無料素材風の薄いアイコン図解",
+    "プロンプトで『親子』『親』等の明示的な指示がないのに、無条件で親と子供を描くこと（指定がない場合は一人だけ、あるいは手元や空間のみを描く）"
   ]
 }

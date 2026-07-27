@@ -1,0 +1,40 @@
+{
+  "plan": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/image-briefs/reduce-things-image-plan.json",
+  "images": [
+    {
+      "role": "アイキャッチ",
+      "file_name": "reduce-things-eyecatch-branded.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/reduce-things/reduce-things-eyecatch-branded.png",
+      "alt": "物を減らすには何から始めるかを考えながら小さな場所から整理する人",
+      "caption": ""
+    },
+    {
+      "role": "記事内図解_scene",
+      "file_name": "reduce-things-inline-01.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/reduce-things/reduce-things-inline-01.png",
+      "alt": "物を減らすことで探し物や掃除の時間が減るメリットの図解",
+      "caption": "物が減ると、掃除や探し物の時間が大きく減ります"
+    },
+    {
+      "role": "記事内図解_slide",
+      "file_name": "reduce-things-inline-options.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/reduce-things/reduce-things-inline-options.png",
+      "alt": "捨てるか残すかだけでなく、売る・譲る・保留を加えた5つの選択肢",
+      "caption": "捨てる以外の選択肢を持つと、判断が楽になります"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "reduce-things-inline-three-boxes.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/reduce-things/reduce-things-inline-three-boxes.png",
+      "alt": "まずは財布など小さな場所から物を減らす様子",
+      "caption": "まずは15分で終わる小さな場所から始めましょう"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "reduce-things-inline-ng-ok.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/reduce-things/reduce-things-inline-ng-ok.png",
+      "alt": "実家の片付けで親と一緒に荷物を確認する親子",
+      "caption": "「捨てる」のではなく「確認する」スタンスで進めましょう"
+    }
+  ]
+}
