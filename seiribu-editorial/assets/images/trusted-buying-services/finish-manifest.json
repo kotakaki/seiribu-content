@@ -1,0 +1,55 @@
+{
+  "plan": "seiribu-editorial/image-briefs/trusted-buying-services-image-plan.json",
+  "images": [
+    {
+      "role": "アイキャッチ素材",
+      "file_name": "trusted-buying-services-eyecatch.png",
+      "source": "/private/tmp/seiribu-image-work/trusted-buying-services/trusted-buying-services-eyecatch.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/trusted-buying-services/trusted-buying-services-eyecatch.png",
+      "logo_mode": "none",
+      "alt": "実家の不用品買取で安全な業者を選ぶためのチェックリストを確認する女性",
+      "caption": "",
+      "position": "アイキャッチ合成用素材"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "trusted-buying-services-inline-01.png",
+      "source": "/private/tmp/seiribu-image-work/trusted-buying-services/trusted-buying-services-inline-01.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/trusted-buying-services/trusted-buying-services-inline-01.png",
+      "logo_mode": "white-backed:右上",
+      "alt": "インターホン越しに飛び込みの訪問買取を断る様子",
+      "caption": "飛び込み訪問はインターホン越しに断るのが最も安全です。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内図解_slide",
+      "file_name": "trusted-buying-services-inline-checklist.png",
+      "source": "/private/tmp/seiribu-image-work/trusted-buying-services/trusted-buying-services-inline-checklist.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/trusted-buying-services/trusted-buying-services-inline-checklist.png",
+      "logo_mode": "white-backed:左上",
+      "alt": "不用品買取の安全な業者を見分けるチェックリスト",
+      "caption": "依頼前と当日のチェックポイント",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "trusted-buying-services-inline-03.png",
+      "source": "/private/tmp/seiribu-image-work/trusted-buying-services/trusted-buying-services-inline-03.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/trusted-buying-services/trusted-buying-services-inline-03.png",
+      "logo_mode": "white-backed:右上",
+      "alt": "家族が立ち会う中で行われる安心な出張査定の様子",
+      "caption": "出張買取の際は、家族が立ち会うことでトラブル防止につながり安心です。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "trusted-buying-services-inline-three-boxes.png",
+      "source": "/private/tmp/seiribu-image-work/trusted-buying-services/trusted-buying-services-inline-three-boxes.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/trusted-buying-services/trusted-buying-services-inline-three-boxes.png",
+      "logo_mode": "white-backed:右上",
+      "alt": "宅配買取用の段ボールに品物を梱包する様子",
+      "caption": "宅配買取なら自分のペースで梱包・発送できる",
+      "position": "本文中のCMSブリーフ位置"
+    }
+  ]
+}

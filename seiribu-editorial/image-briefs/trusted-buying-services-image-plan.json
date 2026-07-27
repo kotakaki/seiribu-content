@@ -59,7 +59,7 @@
   "images": [
     {
       "role": "アイキャッチ素材",
-      "generated": false,
+      "generated": true,
       "included": true,
       "omitted_reason": "",
       "file_name": "trusted-buying-services-eyecatch.png",
@@ -120,7 +120,7 @@
     },
     {
       "role": "記事内イメージ",
-      "generated": false,
+      "generated": true,
       "included": true,
       "omitted_reason": "",
       "file_name": "trusted-buying-services-inline-01.png",
@@ -161,7 +161,7 @@
     },
     {
       "role": "記事内図解_slide",
-      "generated": false,
+      "generated": true,
       "included": true,
       "omitted_reason": "",
       "file_name": "trusted-buying-services-inline-checklist.png",
@@ -202,7 +202,7 @@
     },
     {
       "role": "記事内イメージ",
-      "generated": false,
+      "generated": true,
       "included": true,
       "omitted_reason": "",
       "file_name": "trusted-buying-services-inline-03.png",
@@ -243,7 +243,7 @@
     },
     {
       "role": "記事内イメージ",
-      "generated": false,
+      "generated": true,
       "included": true,
       "omitted_reason": "",
       "file_name": "trusted-buying-services-inline-three-boxes.png",
