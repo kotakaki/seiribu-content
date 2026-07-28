@@ -1,0 +1,55 @@
+{
+  "plan": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/image-briefs/minimalist-personality-image-plan.json",
+  "images": [
+    {
+      "role": "アイキャッチ素材",
+      "file_name": "minimalist-personality-eyecatch.png",
+      "source": "/private/tmp/seiribu-image-work/minimalist-personality/minimalist-personality-eyecatch.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/minimalist-personality/minimalist-personality-eyecatch.png",
+      "logo_mode": "none",
+      "alt": "物を減らせる人と捨てられない人の性格の違いと整理のコツ",
+      "caption": "",
+      "position": "アイキャッチ合成用素材"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "minimalist-personality-inline-01.png",
+      "source": "/private/tmp/seiribu-image-work/minimalist-personality/minimalist-personality-inline-01.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/minimalist-personality/minimalist-personality-inline-01.png",
+      "logo_mode": "white-backed:左上",
+      "alt": "綺麗な部屋に憧れつつも自分には無理だと悩む様子",
+      "caption": "",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内図解_scene",
+      "file_name": "minimalist-personality-inline-options.png",
+      "source": "/private/tmp/seiribu-image-work/minimalist-personality/minimalist-personality-inline-options.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/minimalist-personality/minimalist-personality-inline-options.png",
+      "logo_mode": "white-backed:左上",
+      "alt": "物を減らせる人の判断基準と価値観のフィルター",
+      "caption": "",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "minimalist-personality-inline-03.png",
+      "source": "/private/tmp/seiribu-image-work/minimalist-personality/minimalist-personality-inline-03.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/minimalist-personality/minimalist-personality-inline-03.png",
+      "logo_mode": "white-backed:左上",
+      "alt": "物を捨てる価値観を家族に押し付けて衝突する様子",
+      "caption": "",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "記事内イメージ",
+      "file_name": "minimalist-personality-inline-three-boxes.png",
+      "source": "/private/tmp/seiribu-image-work/minimalist-personality/minimalist-personality-inline-three-boxes.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/minimalist-personality/minimalist-personality-inline-three-boxes.png",
+      "logo_mode": "white-backed:右上",
+      "alt": "売る・残す・処分の3つに仕分ける様子",
+      "caption": "",
+      "position": "本文中のCMSブリーフ位置"
+    }
+  ]
+}
