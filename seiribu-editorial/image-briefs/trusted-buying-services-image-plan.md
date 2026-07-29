@@ -92,12 +92,12 @@ Create an eyecatch cutout asset for the Seiribu article '実家の不用品買�
 
 - 目的: 悪質な訪問買取をインターホン越しにキッパリと断る様子を伝え、自衛意識を持たせる
 - 読者に伝えたい感情: 自分でも毅然と断ればトラブルを防げるという安心感と自衛意識
-- 入れたい要素: 戸建ての玄関で、40〜50代の子供世代がインターホンのモニター越しに、外に立つ見知らぬ業者風の人物に対して、優しくもしっかりと断る身振り（ジェスチャー）をしている様子。
+- 入れたい要素: 戸建てのリビングで、40〜50代の子供世代がインターホンのモニター上で、外にいる見知らぬ業者の姿が映り、画面側から断る意思を示す様子。
 - 避けたい表現: 画像内へのテキスト（文字）の生成（※情景イラストのため）、暴力的な表現、暗すぎるトーン
 
 #### 生成プロンプト / レイアウト仕様
 
-Create a warm text-free editorial illustration for the Seiribu article '実家の不用品買取で失敗しない業者選び｜安全な見分け方とチェックリスト'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 戸建ての玄関で、40〜50代の子供世代がインターホンのモニター越しに、外に立つ見知らぬ業者風の人物に対して、優しくもしっかりと断る身振り（ジェスチャー）をしている様子。. Purpose: 悪質な訪問買取をインターホン越しにキッパリと断る様子を伝え、自衛意識を持たせる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成（※情景イラストのため）、暴力的な表現、暗すぎるトーン.
+Create a warm text-free editorial illustration for the Seiribu article '実家の不用品買取で失敗しない業者選び｜安全な見分け方とチェックリスト'. Aspect ratio: 16:9. Style: warm watercolor-like editorial illustration, high-quality Japanese picture-book style, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in. Main visual: 戸建てのリビングで、40〜50代の子供世代がインターホンのモニター上で、外にいる見知らぬ業者の姿が映り、画面側から断る意思を示す様子。. Purpose: 悪質な訪問買取をインターホン越しにキッパリと断る様子を伝え、自衛意識を持たせる. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内へのテキスト（文字）の生成（※情景イラストのため）、暴力的な表現、暗すぎるトーン.
 
 #### ブランド帰属ロゴ
 
