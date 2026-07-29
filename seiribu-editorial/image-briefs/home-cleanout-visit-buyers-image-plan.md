@@ -1,4 +1,4 @@
-# 画像制作プラン: 実家の片付けで出張買取はどこがいい？捨てる前に売れるもの・おすすめ業者と比較
+# 画像制作プラン: 実家の片付け、出張買取業者はどこがいい？失敗しない選び方
 
 ## 記事情報
 
@@ -31,8 +31,8 @@
 ### 1. アイキャッチ素材
 
 - ファイル名: `home-cleanout-visit-buyers-eyecatch-cutout.png`
-- WordPress画像タイトル: 実家の片付けで出張買取はどこがいい？捨てる前に売れるもの・おすすめ業者と比較の図解
-- ALT: 実家の片付けで出張買取はどこがいい？捨てる前に売れるもの・おすすめ業者と比較に関するアイキャッチ素材
+- WordPress画像タイトル: 実家の片付け、出張買取業者はどこがいい？失敗しない選び方の図解
+- ALT: 実家の片付け、出張買取業者はどこがいい？失敗しない選び方に関するアイキャッチ素材
 - 最終サイズ: 1200 x 675
 - 生成時の比率: 16:9
 - 制作方法: 画像生成素材 + Canva手動仕上げ
@@ -48,13 +48,13 @@
 
 #### 生成プロンプト / レイアウト仕様
 
-Create an eyecatch cutout asset for the Seiribu article '実家の片付けで出張買取はどこがいい？捨てる前に売れるもの・おすすめ業者と比較'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 40〜50代の子世代と70代の親世代、誠実なプロの査定員、実家によくある高価値品（着物、掛け軸、古いカメラなど）. Purpose: 記事の顔として、実家の片付けで出張買取を呼ぶことの安心感・手軽さを伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内への大量のテキスト（合成時のスペースを確保するため）. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.
+Create an eyecatch cutout asset for the Seiribu article '実家の片付け、出張買取業者はどこがいい？失敗しない選び方'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 40〜50代の子世代と70代の親世代、誠実なプロの査定員、実家によくある高価値品（着物、掛け軸、古いカメラなど）. Purpose: 記事の顔として、実家の片付けで出張買取を呼ぶことの安心感・手軽さを伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内への大量のテキスト（合成時のスペースを確保するため）. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.
 
 #### アイキャッチCanva仕上げ
 
 - 仕上げ方法: Canva手動仕上げ
 - タイトル: （※画像内には生成せず合成時に追加）実家の片付けにおすすめの出張買取業者
-- サブタイトル: 捨てる前に売れるもの・おすすめ業者と比較
+- サブタイトル: 失敗しない選び方
 - 出力サイズ: 1200 x 675
 - 出力ファイル: `home-cleanout-visit-buyers-eyecatch-branded.png`
 - ロゴ: `seiribu-editorial/assets/images/brand/seiribu-logo.png`
@@ -68,7 +68,7 @@ Create an eyecatch cutout asset for the Seiribu article '実家の片付けで�
 - 状態: optional_manual
 - テンプレートURL: https://canva.link/mqlqak3adj01g1i
 - タイトル: （※画像内には生成せず合成時に追加）実家の片付けにおすすめの出張買取業者
-- サブタイトル: 捨てる前に売れるもの・おすすめ業者と比較
+- サブタイトル: 失敗しない選び方
 - ロゴ: `seiribu-editorial/assets/images/brand/seiribu-logo.png`
 - ロゴ必須: はい
 - ロゴ位置: 左上
