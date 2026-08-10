@@ -1,0 +1,35 @@
+{
+  "plan": "seiribu-editorial/image-briefs/why-decluttering-seems-crazy-image-plan.json",
+  "images": [
+    {
+      "role": "アイキャッチ素材",
+      "file_name": "why-decluttering-seems-crazy-eyecatch.png",
+      "source": "/private/tmp/seiribu-image-work/why-decluttering-seems-crazy/why-decluttering-seems-crazy-eyecatch.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/why-decluttering-seems-crazy/why-decluttering-seems-crazy-eyecatch.png",
+      "logo_mode": "none",
+      "alt": "家族の急な断捨離に戸惑い、心配する様子",
+      "caption": "",
+      "position": "アイキャッチ合成用素材"
+    },
+    {
+      "role": "記事内図解_scene",
+      "file_name": "why-decluttering-seems-crazy-inline-psychology.png",
+      "source": "/private/tmp/seiribu-image-work/why-decluttering-seems-crazy/why-decluttering-seems-crazy-inline-psychology.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/why-decluttering-seems-crazy/why-decluttering-seems-crazy-inline-psychology.png",
+      "logo_mode": "white-backed:左下",
+      "alt": "ストレスで容量がいっぱいになり、物を減らすことでコントロールを取り戻そうとする心理",
+      "caption": "心の余裕がなくなると、目に見える「物」を減らして安心感を得ようとします。",
+      "position": "本文中のCMSブリーフ位置"
+    },
+    {
+      "role": "図解用小物素材",
+      "file_name": "why-decluttering-seems-crazy-diagram-asset-ng-ok.png",
+      "source": "/private/tmp/seiribu-image-work/why-decluttering-seems-crazy/why-decluttering-seems-crazy-diagram-asset-ng-ok.png",
+      "output": "/Users/dvcong/Documents/Codex/seiribu-content/seiribu-editorial/assets/images/why-decluttering-seems-crazy/why-decluttering-seems-crazy-diagram-asset-ng-ok.png",
+      "logo_mode": "none",
+      "alt": "捨てる前に一時保管する保留箱のイメージ",
+      "caption": "捨てるか迷ったら、まずは「保留箱」で時間を置きましょう。",
+      "position": "本文中のCMSブリーフ位置"
+    }
+  ]
+}

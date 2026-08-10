@@ -59,7 +59,7 @@
   "images": [
     {
       "role": "アイキャッチ素材",
-      "generated": false,
+      "generated": true,
       "included": true,
       "omitted_reason": "",
       "file_name": "why-decluttering-seems-crazy-eyecatch.png",
@@ -120,7 +120,7 @@
     },
     {
       "role": "記事内図解_scene",
-      "generated": false,
+      "generated": true,
       "included": true,
       "omitted_reason": "",
       "file_name": "why-decluttering-seems-crazy-inline-psychology.png",
@@ -161,7 +161,7 @@
     },
     {
       "role": "図解用小物素材",
-      "generated": false,
+      "generated": true,
       "included": true,
       "omitted_reason": "",
       "file_name": "why-decluttering-seems-crazy-diagram-asset-ng-ok.png",
