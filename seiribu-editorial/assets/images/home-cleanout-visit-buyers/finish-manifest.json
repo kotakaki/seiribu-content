@@ -1,22 +1,32 @@
 {
-  "plan": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/image-briefs/home-cleanout-visit-buyers-image-plan.json",
+  "plan": "image-briefs/home-cleanout-visit-buyers-image-plan.json",
   "images": [
     {
       "role": "アイキャッチ素材",
       "file_name": "home-cleanout-visit-buyers-eyecatch-cutout.png",
       "source": "/private/tmp/seiribu-image-work/home-cleanout-visit-buyers/home-cleanout-visit-buyers-eyecatch-cutout.png",
-      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/home-cleanout-visit-buyers/home-cleanout-visit-buyers-eyecatch-cutout.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/home-cleanout-visit-buyers/home-cleanout-visit-buyers-eyecatch-cutout.png",
       "logo_mode": "none",
-      "alt": "実家の片付け、出張買取業者はどこがいい？失敗しない選び方に関するアイキャッチ素材",
+      "alt": "実家の片付けで出張買取業者を選ぶなら｜品物別の依頼先と注意点に関するアイキャッチ素材",
       "caption": "",
       "position": "アイキャッチ合成用素材"
+    },
+    {
+      "role": "記事内図解_scene",
+      "file_name": "home-cleanout-visit-buyers-inline-three-boxes.png",
+      "source": "/private/tmp/seiribu-image-work/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-three-boxes.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-three-boxes.png",
+      "logo_mode": "white-backed:左上",
+      "alt": "査定前にやっておくべき仕分けの実務",
+      "caption": "価値が分からない物は無理に処分せず、スマホで写真を残しておくと事前相談がスムーズです。",
+      "position": "本文中のCMSブリーフ位置"
     },
     {
       "role": "記事内図解_slide",
       "file_name": "home-cleanout-visit-buyers-inline-spectrum.png",
       "source": "/private/tmp/seiribu-image-work/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-spectrum.png",
-      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-spectrum.png",
-      "logo_mode": "white-backed:右上",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-spectrum.png",
+      "logo_mode": "white-backed:右下",
       "alt": "優良な出張買取業者を選ぶ3つのポイント",
       "caption": "",
       "position": "本文中のCMSブリーフ位置"
@@ -25,20 +35,20 @@
       "role": "記事内図解_scene",
       "file_name": "home-cleanout-visit-buyers-inline-spectrum-2.png",
       "source": "/private/tmp/seiribu-image-work/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-spectrum-2.png",
-      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-spectrum-2.png",
-      "logo_mode": "white-backed:左上",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-spectrum-2.png",
+      "logo_mode": "white-backed:左下",
       "alt": "実家の品物を専門査定士が丁寧に確認する様子",
       "caption": "",
       "position": "本文中のCMSブリーフ位置"
     },
     {
       "role": "記事内図解_scene",
-      "file_name": "home-cleanout-visit-buyers-inline-03.png",
-      "source": "/private/tmp/seiribu-image-work/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-03.png",
-      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-03.png",
-      "logo_mode": "white-backed:左下",
+      "file_name": "home-cleanout-visit-buyers-inline-04.png",
+      "source": "/private/tmp/seiribu-image-work/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-04.png",
+      "output": "/Users/kota/Documents/アンチグラビティ/seiribu-content/seiribu-editorial/assets/images/home-cleanout-visit-buyers/home-cleanout-visit-buyers-inline-04.png",
+      "logo_mode": "white-backed:右下",
       "alt": "出張買取で即決を避ける自衛策",
-      "caption": "相見積もりを前提にしておけば、断るための強力な口実になります。",
+      "caption": "高額品や思い入れのある品は、その場で売却を決めずに確認する。",
       "position": "本文中のCMSブリーフ位置"
     }
   ]

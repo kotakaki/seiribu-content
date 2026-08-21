@@ -1,0 +1,4 @@
+interface:
+  display_name: "セイリ部案件選定"
+  short_description: "読者適合・成果条件・否認リスクから案件の採否を判断"
+  default_prompt: "Use $seiribu-affiliate-case-selector to review current affiliate program terms and choose the best Seiribu CTA, test, hold, or rejection."

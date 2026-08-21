@@ -20,7 +20,7 @@
   },
   "article": {
     "path": "drafts/home-cleanout-visit-buyers.md",
-    "title": "実家の片付け、出張買取業者はどこがいい？失敗しない選び方",
+    "title": "実家の片付けで出張買取業者を選ぶなら｜品物別の依頼先と注意点",
     "slug": "home-cleanout-visit-buyers",
     "main_kw": "",
     "target_reader": "",
@@ -66,8 +66,8 @@
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
       "method": "画像生成素材 + Canva手動仕上げ",
-      "wp_title": "実家の片付け、出張買取業者はどこがいい？失敗しない選び方の図解",
-      "alt": "実家の片付け、出張買取業者はどこがいい？失敗しない選び方に関するアイキャッチ素材",
+      "wp_title": "実家の片付けで出張買取業者を選ぶなら｜品物別の依頼先と注意点の図解",
+      "alt": "実家の片付けで出張買取業者を選ぶなら｜品物別の依頼先と注意点に関するアイキャッチ素材",
       "position": "アイキャッチ合成用素材",
       "caption": "",
       "fields": {
@@ -79,13 +79,13 @@
         "避けたい表現": "画像内への大量のテキスト（合成時のスペースを確保するため）",
         "タイトル文言": "（※画像内には生成せず合成時に追加）実家の片付けにおすすめの出張買取業者"
       },
-      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '実家の片付け、出張買取業者はどこがいい？失敗しない選び方'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 40〜50代の子世代と70代の親世代、誠実なプロの査定員、実家によくある高価値品（着物、掛け軸、古いカメラなど）. Purpose: 記事の顔として、実家の片付けで出張買取を呼ぶことの安心感・手軽さを伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内への大量のテキスト（合成時のスペースを確保するため）. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
+      "final_prompt": "Create an eyecatch cutout asset for the Seiribu article '実家の片付けで出張買取業者を選ぶなら｜品物別の依頼先と注意点'. Aspect ratio: 16:9. Style: warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background. Transparent background if possible; if transparency is not available, use a single flat light background that is easy to remove. Do not include a room, wall, floor, cast shadow, title area, logo area, or decorative frame. Main subject: 40〜50代の子世代と70代の親世代、誠実なプロの査定員、実家によくある高価値品（着物、掛け軸、古いカメラなど）. Purpose: 記事の顔として、実家の片付けで出張買取を呼ぶことの安心感・手軽さを伝える. Tone: 日本の実家らしさ、読者が状況を想像しやすい生活感、明るく清潔、不安を煽らない、買取業者っぽくしすぎない、捨てるより確認する・分けるを見せる. Must avoid: no text, no letters, no numbers, no Japanese characters, no English words, no labels, no logo, no watermark, no signage, no speech bubbles. Also avoid: 画像内への大量のテキスト（合成時のスペースを確保するため）. Do not reuse the composition, character placement, object placement, or background concept from any existing Seiribu article image.",
       "local_composition": {
         "standard": false,
         "engine": "Canva手動仕上げ",
         "script": "",
         "title": "（※画像内には生成せず合成時に追加）実家の片付けにおすすめの出張買取業者",
-        "subtitle": "失敗しない選び方",
+        "subtitle": "頼先と注意点",
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
         "logo_required": true,
         "logo_position": "左上",
@@ -102,7 +102,7 @@
         "status": "optional_manual",
         "template_url": "https://canva.link/mqlqak3adj01g1i",
         "title": "（※画像内には生成せず合成時に追加）実家の片付けにおすすめの出張買取業者",
-        "subtitle": "失敗しない選び方",
+        "subtitle": "頼先と注意点",
         "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
         "logo_required": true,
         "logo_rule": "生成AI素材にはロゴを描かせない。アイキャッチ完成版はCanvaで人間が仕上げる。本文画像・本文図解はCodex側でブランド帰属ロゴを必ず合成する。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを使い、人物の顔、重要な品物、図解ラベルを邪魔しない余白に配置する。",
@@ -113,6 +113,47 @@
       "logo_overlay": {
         "required": false,
         "reason": "アイキャッチ完成版はCanvaで人間がタイトルとロゴを合成する。"
+      }
+    },
+    {
+      "role": "記事内図解_scene",
+      "generated": false,
+      "included": true,
+      "omitted_reason": "",
+      "file_name": "home-cleanout-visit-buyers-inline-three-boxes.png",
+      "size": "1200 x 675",
+      "aspect_ratio": "16:9",
+      "method": "画像生成素材 + ブランド帰属ロゴ合成",
+      "wp_title": "査定前にやっておくべき仕分けの実務",
+      "alt": "査定前にやっておくべき仕分けの実務",
+      "position": "本文中のCMSブリーフ位置",
+      "caption": "価値が分からない物は無理に処分せず、スマホで写真を残しておくと事前相談がスムーズです。",
+      "fields": {
+        "種類": "イラスト図解",
+        "目的": "査定前にやっておくべき仕分けのポイントを視覚的に伝える",
+        "読者に伝えたい感情": "これなら難しくない、自分でもできそうという安心感",
+        "入れたい要素": "品物を前にしてスマホで写真を撮る様子や、共箱と一緒に置かれた壺などを並べたスッキリした図解。",
+        "避けたい表現": "ごちゃごちゃしたゴミ屋敷感、過度に面倒な作業に見える描写",
+        "ALT": "査定前にやっておくべき仕分けの実務",
+        "キャプション候補": "価値が分からない物は無理に処分せず、スマホで写真を残しておくと事前相談がスムーズです。"
+      },
+      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: high-quality editorial illustration diagram with simple scene panels, utilizing varied art styles (e.g., flat vector, watercolor, pastel, modern line art) to avoid visual repetition, soft colors, no photorealism, no realistic lighting, no camera perspective. Content to show as a structured infographic diagram: 品物を前にしてスマホで写真を撮る様子や、共箱と一緒に置かれた壺などを並べたスッキリした図解。. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 査定前にやっておくべき仕分けのポイントを視覚的に伝える. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: ごちゃごちゃしたゴミ屋敷感、過度に面倒な作業に見える描写. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "local_composition": {},
+      "canva_instructions": {},
+      "logo_overlay": {
+        "required": true,
+        "logo": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
+        "mode": "auto",
+        "transparent_logo_when": "背景が薄く、ロゴが十分に読める場合",
+        "white_backed_logo_when": "背景が濃い、複雑、またはロゴが沈む場合",
+        "preferred_positions": [
+          "左上",
+          "右上",
+          "右下",
+          "左下"
+        ],
+        "placement_rule": "人物の顔、重要な品物、図解ラベル、キャプションを邪魔しない上部または下部の余白に小さく配置する。",
+        "reason": "Google画像検索、Pinterest、無断転載先で画像が単体流通したときのブランド帰属表示。"
       }
     },
     {
@@ -200,24 +241,24 @@
       "generated": false,
       "included": true,
       "omitted_reason": "",
-      "file_name": "home-cleanout-visit-buyers-inline-03.png",
+      "file_name": "home-cleanout-visit-buyers-inline-04.png",
       "size": "1200 x 675",
       "aspect_ratio": "16:9",
       "method": "画像生成素材 + ブランド帰属ロゴ合成",
       "wp_title": "出張買取で即決を避ける自衛策",
       "alt": "出張買取で即決を避ける自衛策",
       "position": "本文中のCMSブリーフ位置",
-      "caption": "相見積もりを前提にしておけば、断るための強力な口実になります。",
+      "caption": "高額品や思い入れのある品は、その場で売却を決めずに確認する。",
       "fields": {
         "種類": "イラスト図解",
-        "目的": "相見積もりを口実に即決を避ける自衛策を視覚的に伝える",
+        "目的": "契約を急がず、家族と確認してから判断する自衛策を視覚的に伝える",
         "読者に伝えたい感情": "こうやって断ればいいのか、という安心感",
-        "入れたい要素": "画面分割の対比図。左側（×）は業者の勢いに押されて汗をかいている高齢の親。右側（〇）は「他社にも見てもらうので」と余裕の笑顔で答えている親子。",
+        "入れたい要素": "画面分割の対比図。左側（×）は査定額を急いで決めようとして困っている親。右側（〇）は家族と査定内容を確認してから判断している親子。",
         "避けたい表現": "威圧的すぎるホラーのような業者の描写",
         "ALT": "出張買取で即決を避ける自衛策",
-        "キャプション候補": "相見積もりを前提にしておけば、断るための強力な口実になります。"
+        "キャプション候補": "高額品や思い入れのある品は、その場で売却を決めずに確認する。"
       },
-      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: high-quality editorial illustration diagram with simple scene panels, utilizing varied art styles (e.g., flat vector, watercolor, pastel, modern line art) to avoid visual repetition, soft colors, no photorealism, no realistic lighting, no camera perspective. Content to show as a structured infographic diagram: 画面分割の対比図。左側（×）は業者の勢いに押されて汗をかいている高齢の親。右側（〇）は「他社にも見てもらうので」と余裕の笑顔で答えている親子。. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 相見積もりを口実に即決を避ける自衛策を視覚的に伝える. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: 威圧的すぎるホラーのような業者の描写. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
+      "final_prompt": "Create an illustrated infographic diagram for a Seiribu article. Aspect ratio: 16:9. Style: high-quality editorial illustration diagram with simple scene panels, utilizing varied art styles (e.g., flat vector, watercolor, pastel, modern line art) to avoid visual repetition, soft colors, no photorealism, no realistic lighting, no camera perspective. Content to show as a structured infographic diagram: 画面分割の対比図。左側（×）は査定額を急いで決めようとして困っている親。右側（〇）は家族と査定内容を確認してから判断している親子。. Layout: Use a clean, solid background (e.g., white or light beige). Structure the information using bordered boxes for each step and connecting arrows. Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. Do not specify a font; let the image model choose a clean natural label style. Purpose: 契約を急がず、家族と確認してから判断する自衛策を視覚的に伝える. Must avoid: no logo, no watermark, no signage, no speech bubbles, no garbled Japanese, no random extra labels, no font specification. Also avoid: 威圧的すぎるホラーのような業者の描写. Do not create full-screen immersive scenes or manga layouts. Do not create abstract line art only. Leave quiet margin space for a small Seiribu brand logo overlay. ロゴ: 本文画像・本文図解はブランド帰属表示としてロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを、上部または下部の余白に小さく配置する。",
       "local_composition": {},
       "canva_instructions": {},
       "logo_overlay": {
@@ -240,6 +281,6 @@
   "omitted_images": [],
   "quality_notes": [
     "Canvaで仕上げるためのアイキャッチ素材指定を利用しています。",
-    "本文画像の枚数は適正範囲です。"
+    "本文画像・図解は4枚構成です。記事内の全CMSブリーフを標準制作対象にします。"
   ]
 }

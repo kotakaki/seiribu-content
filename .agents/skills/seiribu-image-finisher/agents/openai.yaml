@@ -1,0 +1,4 @@
+interface:
+  display_name: "セイリ部画像仕上げ"
+  short_description: "画像プランJSONから画像生成・図解QA・ロゴ合成・保存・README更新を進める"
+  default_prompt: "画像プランJSONをもとに、セイリ部の記事画像を生成し、図解はスライド資料風に整えて仕上げてください。"

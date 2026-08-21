@@ -1,0 +1,4 @@
+interface:
+  display_name: "セイリ部SEO編集"
+  short_description: "セイリ部記事の検索意図とトピクラ境界を固定する編集ゲート"
+  default_prompt: "Use $seiribu-seo-editor to plan or edit a Seiribu article without drifting from search intent."

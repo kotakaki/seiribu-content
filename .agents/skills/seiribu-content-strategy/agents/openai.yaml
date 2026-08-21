@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seiribu Content Strategy"
+  short_description: "セイリ部の記事役割・読者行動・収益導線を設計するための指針"
+  default_prompt: "Use $seiribu-content-strategy to decide the role, reader action, and CTA strategy for a Seiribu article."

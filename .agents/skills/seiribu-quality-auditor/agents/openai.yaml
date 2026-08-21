@@ -1,0 +1,6 @@
+interface:
+  display_name: "Seiribu Quality Auditor"
+  short_description: "記事品質と検索KWの輪郭・カニバリをまとめて監査する"
+  default_prompt: "Use $seiribu-quality-auditor to audit a Seiribu article for quality, keyword focus, query labels, cannibalization, evidence, and rewrite priorities."
+policy:
+  allow_implicit_invocation: true

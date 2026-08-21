@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seiribu Keyword Signal Auditor"
+  short_description: "リライト後に失われた検索語の輪郭と復元候補を監査する"
+  default_prompt: "Use $seiribu-keyword-signal-auditor to audit whether a Seiribu rewrite has lost its keyword focus and query labels."

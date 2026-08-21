@@ -1,0 +1,4 @@
+interface:
+  display_name: "セイリ部リライト管理"
+  short_description: "リライト計画とインデックス回復を管理"
+  default_prompt: "$seiribu-rewrite-manager を使って、次にリライトするセイリ部の記事を選び、進捗管理を更新してください。"
