@@ -124,24 +124,18 @@
     "cutout": "warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background"
   },
   "generation_forbidden": [
-    "no text",
-    "no letters",
-    "no numbers",
-    "no Japanese characters",
-    "no English words",
-    "no labels",
     "no logo",
     "no watermark",
     "no signage",
-    "no speech bubbles"
+    "no messy background scribbles"
   ],
   "tone": [
-    "日本の実家らしさ",
-    "読者が状況を想像しやすい生活感",
-    "明るく清潔",
+    "読者がパッと見て意味がわかる視覚的なわかりやすさ",
+    "情報を整理して伝えるクリーンなインフォグラフィック調",
+    "清潔感と信頼感",
     "不安を煽らない",
     "買取業者っぽくしすぎない",
-    "捨てるより確認する・分けるを見せる"
+    "過度な感情の押し売りをしないスマートな解説"
   ],
   "avoid": [
     "ゴミ屋敷のような汚さ",
