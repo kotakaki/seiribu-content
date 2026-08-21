@@ -5,7 +5,7 @@
   "logo_path": "seiribu-editorial/assets/images/brand/seiribu-logo.png",
   "generation_tool": {
     "primary": "imagegen",
-    "diagram": "imagegen complete illustrated infographic with model-native short Japanese text + logo overlay",
+    "diagram": "imagegen base when needed + SVG/Pillow/HTML label composition + logo overlay",
     "canva": "optional_manual",
     "draft_root": "/private/tmp/seiribu-image-work",
     "final_root": "seiribu-editorial/assets/images",
@@ -16,7 +16,7 @@
     "archive_root": "/private/tmp/seiribu-image-archive",
     "archive_script": "seiribu-editorial/scripts/clean_image_assets.py"
   },
-  "default_mode": "standard",
+  "default_mode": "adaptive",
   "modes": {
     "light": {
       "description": "確認用にアイキャッチ系1件と本文画像1件までに絞る軽量モード",
@@ -25,8 +25,23 @@
       "compact_prompts": true,
       "omit_canva_detail": true
     },
+    "adaptive": {
+      "description": "記事タイプ別の画像予算に合わせ、必要なCMS画像指定だけを採用する適応モード",
+      "max_total_images": 4,
+      "max_eyecatches": 1,
+      "inline_budget_by_article_type": {
+        "悩み解決記事": 1,
+        "FAQ": 1,
+        "比較・判断記事": 2,
+        "品目別記事": 2,
+        "ピラー記事": 3,
+        "default": 2
+      },
+      "compact_prompts": false,
+      "omit_canva_detail": false
+    },
     "standard": {
-      "description": "記事内のCMS画像指定をすべて展開する標準モード。アイキャッチ素材1件と本文画像・図解4件を基本にする",
+      "description": "確認用または例外用に、記事内のCMS画像指定をすべて展開する互換モード。通常運用ではadaptiveを使う",
       "compact_prompts": false,
       "omit_canva_detail": false
     }
@@ -84,7 +99,7 @@
     "size": "1200 x 675",
     "aspect_ratio": "16:9",
     "logo_policy": "ロゴ必須。背景が薄い場合は透過ロゴ、濃い・複雑な場合は薄い白背景付きロゴを余白に小さく配置する。",
-    "method": "画像生成でサンプルのような文字入りイラスト図解を作り、後工程ではロゴだけを小さく合成する"
+    "method": "必要な場合のみ画像生成ベースを作り、SVG・Pillow・HTMLなどで日本語ラベルを正確に合成してからロゴを小さく配置"
   },
   "inline_image": {
     "size": "1200 x 675",
@@ -103,7 +118,7 @@
   },
   "generation_style": {
     "illustration": "high-quality Japanese editorial illustration, utilizing varied art styles (e.g., soft watercolor, modern flat vector, pastel, clean line art) to avoid visual repetition, soft natural colors, realistic household objects, contemporary Japanese everyday home, clean but lived-in",
-    "illustrated_diagram_slide": "simple slide-style flat 2D vector infographic, icon-based diagram, clean presentation slide, light cream background, rounded cards, simple arrows, large readable Japanese labels, limited warm colors, minimal icon-like people only if necessary, no photorealism, no realistic lighting, no camera perspective, no detailed room scene",
+    "illustrated_diagram_slide": "simple slide-style flat 2D vector infographic base, icon-based diagram, clean presentation slide, light cream background, rounded cards, simple arrows, clear empty label areas for later SVG/Pillow/HTML composition, limited warm colors, minimal icon-like people only if necessary, no photorealism, no realistic lighting, no camera perspective, no detailed room scene",
     "illustrated_diagram_scene": "high-quality editorial illustration diagram with simple scene panels, utilizing varied art styles (e.g., flat vector, watercolor, pastel, modern line art) to avoid visual repetition, soft colors, no photorealism, no realistic lighting, no camera perspective",
     "photo": "bright realistic editorial photo, natural daylight, clean lived-in Japanese home, not gritty, not luxury advertising, not dramatic",
     "cutout": "warm flat editorial illustration cutout, high-quality 2D vector art, single coherent subject, clean silhouette, easy to remove background"

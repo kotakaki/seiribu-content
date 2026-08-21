@@ -56,6 +56,7 @@ class ArticleMeta:
     slug: str
     main_kw: str = ""
     meta_description: str = ""
+    article_type: str = ""
     target_reader: str = ""
     search_intent: str = ""
     headings: list[str] = field(default_factory=list)
@@ -128,6 +129,14 @@ def find_title(text: str) -> str:
     return "untitled"
 
 
+def frontmatter_value(text: str, key: str) -> str:
+    match = re.search(r"\A---\s*\n(.*?)\n---\s*(?:\n|\Z)", text, flags=re.S)
+    if not match:
+        return ""
+    field = re.search(rf"^\s*{re.escape(key)}:\s*['\"]?(.*?)['\"]?\s*$", match.group(1), flags=re.M)
+    return field.group(1).strip() if field else ""
+
+
 def slugify(text: str) -> str:
     text = text.lower().strip()
     text = re.sub(r"\s+", "-", text)
@@ -153,6 +162,7 @@ def article_meta(path: Path, text: str) -> ArticleMeta:
         slug=slug,
         main_kw=extract_list_value(basic, "メインKW"),
         meta_description=extract_list_value(basic, "Meta Description"),
+        article_type=frontmatter_value(text, "article_type") or extract_list_value(basic, "記事タイプ"),
         target_reader=target_reader,
         search_intent=search_intent,
         headings=headings,
@@ -437,7 +447,7 @@ def mode_settings(config: dict[str, Any], mode: str) -> dict[str, Any]:
 
 def resolve_mode(config: dict[str, Any], requested: str | None = None) -> str:
     mode = requested or config.get("default_mode", "standard")
-    if mode not in {"light", "standard"}:
+    if mode not in {"light", "adaptive", "standard"}:
         raise ValueError(f"Unsupported image engine mode: {mode}")
     return mode
 
@@ -458,28 +468,54 @@ def canva_detail_enabled(config: dict[str, Any], mode: str) -> bool:
     return not bool(mode_settings(config, mode).get("omit_canva_detail", False))
 
 
-def apply_mode_limits(briefs: list[ImageBrief], config: dict[str, Any], mode: str) -> None:
-    if mode != "light":
+def apply_mode_limits(
+    briefs: list[ImageBrief],
+    config: dict[str, Any],
+    mode: str,
+    meta: ArticleMeta,
+) -> None:
+    if mode not in {"light", "adaptive"}:
         return
 
     settings = mode_settings(config, mode)
     max_eyecatches = int(settings.get("max_eyecatches", 1))
-    max_inline = int(settings.get("max_inline_images", 1))
+    if mode == "adaptive":
+        budgets = settings.get("inline_budget_by_article_type", {})
+        max_inline = int(budgets.get(meta.article_type, budgets.get("default", 2)))
+        reason_prefix = f"adaptiveモードで記事タイプ「{meta.article_type or '未設定'}」の画像予算を適用しました。"
+        max_total = int(settings.get("max_total_images", 4))
+    else:
+        max_inline = int(settings.get("max_inline_images", 1))
+        reason_prefix = "lightモードでは本文画像を軽量範囲に絞ります。"
+        max_total = 0
     eyecatch_seen = 0
     inline_seen = 0
+    total_seen = 0
 
     for brief in briefs:
         if brief.role in {"アイキャッチ", "アイキャッチ素材"}:
             eyecatch_seen += 1
             if eyecatch_seen > max_eyecatches:
                 brief.included = False
-                brief.omitted_reason = "lightモードではアイキャッチ系画像を1件までに絞ります。"
+                brief.omitted_reason = f"{reason_prefix}アイキャッチ系画像は{max_eyecatches}件までに絞ります。"
+                continue
+            if max_total and total_seen >= max_total:
+                brief.included = False
+                brief.omitted_reason = f"{reason_prefix}合計画像数の上限{max_total}件を超えるため保留しました。"
+                continue
+            total_seen += 1
             continue
 
         inline_seen += 1
         if inline_seen > max_inline:
             brief.included = False
-            brief.omitted_reason = f"lightモードでは本文画像を{max_inline}件までに絞ります。必要なら --mode standard で出力します。"
+            brief.omitted_reason = f"{reason_prefix}本文画像は{max_inline}件までに絞ります。必要なら --mode standard で全指定を確認します。"
+            continue
+        if max_total and total_seen >= max_total:
+            brief.included = False
+            brief.omitted_reason = f"{reason_prefix}合計画像数の上限{max_total}件を超えるため保留しました。"
+            continue
+        total_seen += 1
 
 
 def build_local_composition(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any]) -> dict[str, Any]:
@@ -524,7 +560,8 @@ def compact_prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, A
                 "Important:\nThis must look like a simple slide diagram, not a photo, not a realistic scene, not watercolor, not manga, not a full room illustration. Use minimal icon-like people only if needed. No realistic lighting, no camera perspective, no detailed faces.\n\n"
                 f"Content:\n{block.fields.get('目的', '')}\n\n"
                 "Layout:\nClean presentation layout with cards and arrows.\n\n"
-                f"Use only these Japanese labels:\n{labels}\n\n"
+                f"Label content to add later with SVG, Pillow, or HTML:\n{labels}\n"
+                "Do not render Japanese text or labels in the generated image; leave clean, readable label areas.\n\n"
                 f"Avoid:\nno extra text, no garbled Japanese, no logo, no watermark, no speech bubbles, no money unless explicitly required, no truck unless explicitly required, no sales scene, {diagram_forbidden}. {block.fields.get('避けたい表現', avoid)}.\n"
                 "Leave a quiet corner for a small logo overlay."
             )
@@ -535,7 +572,7 @@ def compact_prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, A
                 "Do NOT make full-bleed comic panels or full-screen immersive scenes. Keep ample margin space. "
                 "You can use spot illustrations of characters and items inside the boxes. "
                 "Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. "
-                "Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. "
+                "Reserve clean label areas for the short Japanese labels implied by the brief; do not render text in the generated image because labels will be added later with SVG, Pillow, or HTML. "
                 "Do not specify a font; let the image model choose a clean natural label style. "
             )
             if "アイコン" in kind or "人物不要" in labels:
@@ -644,7 +681,8 @@ def prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any], mod
                 "Important:\nThis must look like a simple slide diagram, not a photo, not a realistic scene, not watercolor, not manga, not a full room illustration. Use minimal icon-like people only if needed. No realistic lighting, no camera perspective, no detailed faces.\n\n"
                 f"Content:\n{block.fields.get('目的', '')}\n\n"
                 "Layout:\nClean presentation layout with cards and arrows.\n\n"
-                f"Use only these Japanese labels:\n{labels}\n\n"
+                f"Label content to add later with SVG, Pillow, or HTML:\n{labels}\n"
+                "Do not render Japanese text or labels in the generated image; leave clean, readable label areas.\n\n"
                 f"Avoid:\nno extra text, no garbled Japanese, no logo, no watermark, no speech bubbles, no money unless explicitly required, no truck unless explicitly required, no sales scene, {diagram_forbidden}. {block.fields.get('避けたい表現', avoid)}.\n"
                 "Leave a quiet corner for a small Seiribu brand logo overlay."
             )
@@ -655,7 +693,7 @@ def prompt_for(block: ImageBrief, meta: ArticleMeta, config: dict[str, Any], mod
                 "Do NOT create full-bleed comic panels or edge-to-edge full-screen scenes. Keep ample negative space. "
                 "It is perfectly fine to use spot illustrations of characters and items inside the diagram boxes. "
                 "Do not create empty placeholder boxes, dotted rectangles, blank logo slots, or unused label cards. "
-                "Render only the short Japanese labels explicitly implied by the brief, naturally, as part of the generated infographic. "
+                "Reserve clean label areas for the short Japanese labels implied by the brief; do not render text in the generated image because labels will be added later with SVG, Pillow, or HTML. "
                 "Do not specify a font; let the image model choose a clean natural label style. "
             )
             if "アイコン" in kind or "人物不要" in labels:
@@ -759,7 +797,7 @@ def enrich_briefs(
                 "headline_font": config["eyecatch"].get("headline_font", ""),
                 "subtitle_font": config["eyecatch"].get("subtitle_font", ""),
             }
-        elif block.role == "記事内図解":
+        elif block.role.startswith("記事内図解"):
             inline_count += 1
             block.method = config["inline_diagram"]["method"]
             block.size = config["inline_diagram"]["size"]
@@ -791,7 +829,7 @@ def enrich_briefs(
         block.alt = block.fields.get("ALT") or f"{meta.title}に関する{block.role}"
         block.wp_title = infer_wp_title(block, meta)
     dedupe_file_names(briefs)
-    apply_mode_limits(briefs, config, mode)
+    apply_mode_limits(briefs, config, mode, meta)
     for block in briefs:
         if block.role in {"アイキャッチ", "アイキャッチ素材"}:
             block.local_composition = build_local_composition(block, meta, config)
@@ -828,14 +866,14 @@ def quality_notes(briefs: list[ImageBrief], mode: str = "standard") -> list[str]
 
     if mode == "light" and omitted:
         notes.append("本文画像はlightモードの初回範囲です。追加画像は保留分から必要に応じて選びます。")
-    elif len(inline) < 2:
-        notes.append("本文画像が少なめです。ピラー記事では図解をもう1枚検討してください。")
-    elif len(inline) == 4:
-        notes.append("本文画像・図解は4枚構成です。記事内の全CMSブリーフを標準制作対象にします。")
-    elif len(inline) > 4:
-        notes.append("本文画像が多めです。標準は本文画像・図解4枚です。")
+    elif len(inline) == 0:
+        notes.append("本文画像・図解はありません。表やチェックリストだけで判断できる記事として扱います。")
+    elif len(inline) == 1:
+        notes.append("本文画像・図解は1件です。悩み解決・FAQ記事では適正範囲です。")
+    elif len(inline) <= 3:
+        notes.append("本文画像・図解は可変予算の範囲内です。各画像に独立した判断上の役割があるか確認します。")
     else:
-        notes.append("本文画像の枚数は適正範囲です。")
+        notes.append("本文画像・図解が多めです。各画像に独立した判断上の役割があるか人間が確認します。")
 
     if mode == "light":
         if omitted:
@@ -996,6 +1034,7 @@ def json_plan(meta: ArticleMeta, briefs: list[ImageBrief], config: dict[str, Any
             "title": meta.title,
             "slug": meta.slug,
             "main_kw": meta.main_kw,
+            "article_type": meta.article_type,
             "target_reader": meta.target_reader,
             "search_intent": meta.search_intent,
         },
@@ -1079,7 +1118,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument(
         "--mode",
-        choices=["light", "standard"],
+        choices=["light", "adaptive", "standard"],
         help="Output mode. Defaults to config default_mode.",
     )
     parser.add_argument(
